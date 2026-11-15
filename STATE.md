@@ -1,5 +1,5 @@
 # STATE
-last_updated: 2026-11-15T09:00:00Z
+last_updated: 2026-11-15T10:30:00Z
 current_phase: M0
 
 tasks:
@@ -85,7 +85,7 @@ tasks:
     notes: "PersistentStore (redb 2.6, copy-on-write ACID): write-through commit per insert, rollback to committed DB on failure, content-addressed ids survive reload via content_digest_hint, hash-identified endorsed corpora persist. Summarisation = meet (mixed content stays EXTERNAL). MemoryRecord stores label + full ancestry; recover_label is the meet with known ancestors (restart can never raise). VectorStore adapter preserves label through round-trip. kill -9 simulation (uncommitted txn absent after reopen), corrupt-file detection fails closed (size guard + catch_unwind around redb create), 8-thread concurrent writers behind Mutex = one store."
   - id: M2-T06
     status: DONE
-    commit: null
+    commit: cace85e
     tests_green: [T-DEC-001, T-DEC-002, T-DEC-003, T-DEC-004, T-DEC-005, T-DEC-006, T-DEC-007, T-DEC-008]
     notes: "Scoped declassification: minting requires a DeclassifyAuthority trait; the agent channel holds DenyAllAuthority so model-initiated declassification is rejected (T-DEC-001). Records are scoped to one target; expired TTL restores the EXTERNAL taint (T-DEC-003); entries are stable-digest'd and serialisable for replay (T-DEC-004). The acceptance rule maps to GateError fail-closed: R12 applies (integration with M3 endorsement API pending)."
   - id: M3-T01

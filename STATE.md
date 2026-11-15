@@ -181,10 +181,14 @@ tasks:
 
 issues:
   - id: ISSUE-006
-    task: M4-T01/M4-T04
-    kind: SPEC_CONFLICT
-    detail: "verify_consistency (RFC 9162 s2.1.4.2) is not shipped: my first transcription failed round-trip on m=8,n=16 (fr/sr sibling ordering), and shipping a self-consistent but unverified algorithm would be a false guarantee (R10). Prover output is byte-identical to ref/merkle_ref.py, which is what M4-T01 claims. The verifier must be implemented and cross-checked against the reference prover for all (m<=n<=64) before mcp-audit verify can claim consistency checking (M4-T04)."
+    task: M4-T01/M4-T03/M4-T04
+    kind: NEEDS_HUMAN
+    detail: "verify_consistency (RFC 9162 §2.1.4.2) is NOT shipped. Prover output is byte-identical to ref/merkle_ref.py, but a verifier is required before a witness may cosign (M4-T03) or mcp-audit may claim consistency checking (M4-T04). Diagnosis for whoever picks this up: the fr/sr fold in the RFC text is level- and left/right-sensitive, and my attempted transcription of the 'odd sn => sibling side' rule is wrong. Concrete counterexamples to test against (proofs produced by ref/merkle_ref.py): (m=2,n=8) proof=[H23,H47] old=H01; (m=6,n=8) proof=[H45,H67,L0147]; (m=7,n=8) proof=[l6,l7,H45,L]; (m=8,n=16) proof=[R815]. A correct rule must satisfy all four: m=2 needs p to be a right sibling at both levels while the *old* fold must stop at H01; m=8 needs H(old,p). Establishing the rule from the RFC text (rather than guessing) is the blocker; I will not ship a self-consistent guess (R10, §0.5)."
     status: OPEN
+  - id: ISSUE-007
+    task: M4-T03
+    kind: NEEDS_HUMAN
+    detail: "BLOCKED on DEC-P04 (own STH format + witness/cosignature protocol vs an existing community spec) AND on ISSUE-006 (a witness must verify consistency to its last-cosigned head before cosigning; without a sound verifier a cosignature is worthless). Per R12 the proposed behaviour can be implemented behind a config flag once the format is decided; it is not started rather than stubbed."
   - id: ISSUE-005
     task: M3-T05
     kind: NEEDS_HUMAN

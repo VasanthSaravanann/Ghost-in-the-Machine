@@ -54,6 +54,14 @@ cargo +nightly fuzz run mcp_frame -- -max_total_time=600
 See `plan.md` §2.1. Everything under `crates/` is Rust; `ref/` holds the
 non-TCB independent verifier used only for differential tests.
 
+## Known gaps in the log layer
+
+- `verify_consistency` is deliberately not shipped (`ISSUE-006`): the prover is
+  byte-identical to the independent reference, but the verifying fold is not yet
+  derived correctly. No witness cosignature or `mcp-audit verify` consistency
+  claim is made until it is.
+- `M4-T03` (STH + witnessing) is blocked on `DEC-P04` and `ISSUE-006`.
+
 ## Human sign-off required
 
 Per plan.md §0.2 R12, `DEC-P01`..`DEC-P04` are recorded in `STATE.md` as

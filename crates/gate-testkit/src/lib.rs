@@ -113,29 +113,6 @@ impl VectorTool {
     }
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn fake_clock_advances_and_jumps() {
-        let c = FakeClock::new(1_000);
-        c.advance(500);
-        assert_eq!(c.now_ms(), 1_500);
-        c.jump_to(10);
-        assert_eq!(c.now_ms(), 10);
-    }
-
-    #[test]
-    fn seeded_rng_is_reproducible() {
-        let a = SeededRng::new(7);
-        let b = SeededRng::new(7);
-        assert_eq!(a.bytes32(), b.bytes32());
-        let c = SeededRng::new(8);
-        assert_ne!(a.bytes32(), c.bytes32());
-    }
-}
-
 /// Paraphrase/laundering transforms (plan.md §3.1, T-TNT-007..020).
 ///
 /// Each entry rewrites `input` into a plausible "cleaned" form: summarised,
@@ -270,4 +247,27 @@ fn hex_encode(text: &str) -> String {
         out.push_str(&format!("{byte:02x}"));
     }
     out
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn fake_clock_advances_and_jumps() {
+        let c = FakeClock::new(1_000);
+        c.advance(500);
+        assert_eq!(c.now_ms(), 1_500);
+        c.jump_to(10);
+        assert_eq!(c.now_ms(), 10);
+    }
+
+    #[test]
+    fn seeded_rng_is_reproducible() {
+        let a = SeededRng::new(7);
+        let b = SeededRng::new(7);
+        assert_eq!(a.bytes32(), b.bytes32());
+        let c = SeededRng::new(8);
+        assert_ne!(a.bytes32(), c.bytes32());
+    }
 }

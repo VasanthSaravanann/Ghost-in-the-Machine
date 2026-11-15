@@ -92,7 +92,7 @@ fn t_prv_004_ancestry_dag() {
             Label::ExternalUntrustedData,
             "tool:b",
             "b",
-            &[root.id.clone()],
+            std::slice::from_ref(&root.id),
             1,
         ))
         .unwrap();
@@ -101,7 +101,7 @@ fn t_prv_004_ancestry_dag() {
             Label::ExternalUntrustedData,
             "principal",
             "c",
-            &[mid.id.clone()],
+            std::slice::from_ref(&mid.id),
             2,
         ))
         .unwrap();
@@ -111,7 +111,13 @@ fn t_prv_004_ancestry_dag() {
     assert!(ancestry.contains(&root.id));
     let missing = SegmentId::from("seg_does_not_exist");
     assert_eq!(
-        store.insert(seg(Label::PrincipalDirect, "x", "x", &[missing.clone()], 3)),
+        store.insert(seg(
+            Label::PrincipalDirect,
+            "x",
+            "x",
+            std::slice::from_ref(&missing),
+            3
+        )),
         Err(ProvenanceError::UnknownParent(missing))
     );
 }
@@ -243,7 +249,7 @@ fn t_prv_010_taint_cannot_be_raised() {
             Label::PrincipalDirect,
             "agent:clean",
             "clean",
-            &[tainted.id.clone()],
+            std::slice::from_ref(&tainted.id),
             1,
         ))
         .unwrap_err();
@@ -253,7 +259,7 @@ fn t_prv_010_taint_cannot_be_raised() {
             Label::ExternalUntrustedData,
             "agent:clean",
             "clean",
-            &[tainted.id],
+            std::slice::from_ref(&tainted.id),
             1,
         ))
         .unwrap();

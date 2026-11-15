@@ -10,3 +10,7 @@ publish.workspace = true
 workspace = true
 
 [dependencies]
+gate-core.workspace = true
+
+[dev-dependencies]
+proptest.workspace = true

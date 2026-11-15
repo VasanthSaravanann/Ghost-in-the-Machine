@@ -89,10 +89,10 @@ tasks:
     tests_green: [T-DEC-001, T-DEC-002, T-DEC-003, T-DEC-004, T-DEC-005, T-DEC-006, T-DEC-007, T-DEC-008]
     notes: "Scoped declassification: minting requires a DeclassifyAuthority trait; the agent channel holds DenyAllAuthority so model-initiated declassification is rejected (T-DEC-001). Records are scoped to one target; expired TTL restores the EXTERNAL taint (T-DEC-003); entries are stable-digest'd and serialisable for replay (T-DEC-004). The acceptance rule maps to GateError fail-closed: R12 applies (integration with M3 endorsement API pending)."
   - id: M3-T01
-    status: TODO
+    status: DONE
     commit: null
-    tests_green: []
-    notes: ""
+    tests_green: [T-BUD-001, T-BUD-002, T-BUD-003, T-BUD-004, T-BUD-005, T-BUD-006, T-BUD-007, T-BUD-008, T-BUD-009, T-BUD-010, T-BUD-011]
+    notes: "Per-episode, per-class E_max (default 5); hard cap, no in-band raise (request_band_raise logs InBandRaiseIgnored); out-of-band principal only via PrincipalGate, distinct CapChanged ledger event, Reset bounds used to the new cap; >=20s inter-prompt, DEC-P03 queue (renders only when due, budget consumed at render, overflow -> QueueFull + spam); similar-request cooldown clamps used. used<=cap holds after EVERY call (incl. render_due); seeded property test 1000 cases. LeafSink integration is M3-T04."
   - id: M3-T02
     status: TODO
     commit: null

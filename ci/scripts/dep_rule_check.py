@@ -43,7 +43,12 @@ def self_test(root: Path) -> int:
         dst = Path(td) / "repo"
         shutil.copytree(root, dst, ignore=shutil.ignore_patterns("target", ".git"))
         c = dst / "crates" / "gate-ledger" / "Cargo.toml"
-        c.write_text(c.read_text() + 'gate-testkit = { path = "../gate-testkit" }\n')
+        text = c.read_text()
+        if "[dependencies]" in text:
+            text = text.replace("[dependencies]", "[dependencies]\ngate-testkit = { path = \"../gate-testkit\" }", 1)
+        else:
+            text += "\n[dependencies]\ngate-testkit = { path = \"../gate-testkit" + ' }"'
+        c.write_text(text)
         if check(dst) == 0:
             print("SELF-TEST FAILED: seeded dependency was not detected", file=sys.stderr)
             return 1

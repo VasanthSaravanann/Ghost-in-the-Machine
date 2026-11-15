@@ -82,6 +82,14 @@ pub enum Class {
 }
 
 impl Class {
+    pub const ALL: [Self; 5] = [
+        Self::ReadOnly,
+        Self::IdempotentWrite,
+        Self::ExternalEgress,
+        Self::Irreversible,
+        Self::PrivilegeGranting,
+    ];
+
     #[must_use]
     pub fn is_read_only(self) -> bool {
         self == Self::ReadOnly

@@ -440,6 +440,10 @@ dependencies = [
 [[package]]
 name = "gate-ledger"
 version = "0.1.0"
+dependencies = [
+ "gate-core",
+ "proptest",
+]
 
 [[package]]
 name = "gate-policy"

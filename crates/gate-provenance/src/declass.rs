@@ -114,11 +114,13 @@ impl DeclassificationLedger {
 
     /// Mint a record through the authority. A record is scoped to exactly one
     /// `target`; calling this with the agent channel's authority always fails.
+    #[allow(clippy::too_many_arguments)]
     pub fn request(
         &mut self,
         authority: &dyn DeclassifyAuthority,
         segment: &SegmentId,
         target: &str,
+        known_segment: bool,
         prev_label: Label,
         issued_ms: i64,
         ttl_ms: i64,
@@ -126,7 +128,7 @@ impl DeclassificationLedger {
         let principal = authority
             .authorize(segment, target)
             .ok_or(DeclassifyError::NotAuthorised)?;
-        if segment.as_str().is_empty() {
+        if !known_segment || segment.as_str().is_empty() {
             return Err(DeclassifyError::UnknownSegment(segment.clone()));
         }
         let record = DeclassifyRecord {

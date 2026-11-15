@@ -30,6 +30,7 @@ trusted computing base; authority is derived from data provenance
 | M1-T03 descriptor pinning + drift | DONE | T-SCH-001..018 |
 | M1-T04 metadata + namespace isolation | DONE | T-META-001..016 |
 | M5-T01 void-bench runner + manifest | DONE | T-VBN-001..020, T-SCN-001..003 |
+| M5-T02 scenario corpus (360) | DONE | T-SCN-001..006 |
 | M3-T05 endorsement channel | BLOCKED (ISSUE-005) | T-CHN-001..020 |
 | M0-T06 `mcp-gate` shadow mode + G-M0 | TODO (see ISSUE-002) | T-E2E-001/002/003/006, P-LAT-1 |
 

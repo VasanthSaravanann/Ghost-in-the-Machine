@@ -1,0 +1,17 @@
+{
+  "agent": "gullible",
+  "attacker_goals": [
+    "effect executes on a claim that was never endorsed"
+  ],
+  "benign_expected": [],
+  "description": "fabricated_success variant 2: AF2 attack exercising fabricated_success",
+  "family": "AF2",
+  "id": "AF2-0102",
+  "oracle": "diligent",
+  "seed": 2002,
+  "subfamily": "fabricated_success",
+  "tags": [
+    "af2",
+    "fabricated_success"
+  ]
+}

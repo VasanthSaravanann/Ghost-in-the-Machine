@@ -161,9 +161,12 @@ fn t_scn_003_loader_sorted_and_coverage() {
     assert_eq!(ids, sorted);
     let matrix = coverage(&scenarios);
     assert_eq!(matrix.len(), 5);
-    assert_eq!(matrix.get("AF1"), Some(&1));
-    assert_eq!(matrix.get("BEN"), Some(&1));
-    assert_eq!(matrix.get("AF3"), Some(&0));
+    // M5-T02 corpus minimums: >=40 per attack family, >=200 benign.
+    assert!(matrix.get("AF1").copied().unwrap_or(0) >= 40, "{matrix:?}");
+    assert!(matrix.get("AF2").copied().unwrap_or(0) >= 40, "{matrix:?}");
+    assert!(matrix.get("AF3").copied().unwrap_or(0) >= 40, "{matrix:?}");
+    assert!(matrix.get("AF4").copied().unwrap_or(0) >= 40, "{matrix:?}");
+    assert!(matrix.get("BEN").copied().unwrap_or(0) >= 200, "{matrix:?}");
 }
 
 // T-VBN-005/006 — metrics and the NRP reporting rule.
@@ -312,6 +315,65 @@ fn t_vbn_015_trace_and_coverage() {
     assert_eq!(run.results[0].trace, vec!["t".to_string()]);
     assert_eq!(coverage(&[]).len(), 5);
     assert!(coverage(&[]).values().all(|v| *v == 0));
+}
+
+// T-SCN-004..006 — corpus minimums, subfamily coverage, reproducible generator.
+#[test]
+fn t_scn_004_family_minimums_and_subfamilies() {
+    let scenarios = load_dir(root().join("evals/public")).unwrap();
+    let matrix = coverage(&scenarios);
+    for family in ["AF1", "AF2", "AF3", "AF4"] {
+        assert!(
+            matrix.get(family).copied().unwrap_or(0) >= 40,
+            "{family}: {matrix:?}"
+        );
+    }
+    assert!(matrix.get("BEN").copied().unwrap_or(0) >= 200, "{matrix:?}");
+    for family in ["AF1", "AF2", "AF3", "AF4"] {
+        let mut subs: BTreeMap<&str, usize> = BTreeMap::new();
+        for scenario in scenarios.iter().filter(|s| s.family == family) {
+            *subs.entry(scenario.subfamily.as_str()).or_insert(0) += 1;
+        }
+        assert!(subs.len() >= 8, "{family} subfamilies: {subs:?}");
+        assert!(
+            subs.values().all(|n| *n >= 5),
+            "{family} variants: {subs:?}"
+        );
+    }
+}
+
+#[test]
+fn t_scn_005_ids_sorted_and_seeds_unique() {
+    let scenarios = load_dir(root().join("evals/public")).unwrap();
+    let ids: Vec<&str> = scenarios.iter().map(|s| s.id.as_str()).collect();
+    let mut sorted = ids.clone();
+    sorted.sort();
+    assert_eq!(ids, sorted);
+    let mut seeds: Vec<u64> = scenarios.iter().map(|s| s.seed).collect();
+    seeds.sort_unstable();
+    seeds.dedup();
+    assert_eq!(
+        seeds.len(),
+        scenarios.len(),
+        "every scenario seed is distinct"
+    );
+}
+
+#[test]
+fn t_scn_006_corpus_matches_generator() {
+    let before = load_dir(root().join("evals/public")).unwrap();
+    let out = std::process::Command::new("python3")
+        .arg(root().join("evals/generate_public.py"))
+        .output()
+        .unwrap();
+    assert!(
+        out.status.success(),
+        "{}",
+        String::from_utf8_lossy(&out.stderr)
+    );
+    let after = load_dir(root().join("evals/public")).unwrap();
+    assert_eq!(before, after, "the generator must be reproducible");
+    assert_eq!(scenario_set_hash(&before), scenario_set_hash(&after));
 }
 
 // T-VBN-017..020 — manifest fields, results hash, randomness, public corpus.

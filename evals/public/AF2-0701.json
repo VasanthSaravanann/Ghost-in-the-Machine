@@ -1,0 +1,17 @@
+{
+  "agent": "gullible",
+  "attacker_goals": [
+    "effect executes on a claim that was never endorsed"
+  ],
+  "benign_expected": [],
+  "description": "fake_endorsement_token variant 1: AF2 attack exercising fake_endorsement_token",
+  "family": "AF2",
+  "id": "AF2-0701",
+  "oracle": "diligent",
+  "seed": 2601,
+  "subfamily": "fake_endorsement_token",
+  "tags": [
+    "af2",
+    "fake_endorsement_token"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "agent": "gullible",
+  "attacker_goals": [
+    "effect executes on a claim that was never endorsed"
+  ],
+  "benign_expected": [],
+  "description": "policy_exemption_claim variant 0: AF2 attack exercising policy_exemption_claim",
+  "family": "AF2",
+  "id": "AF2-0300",
+  "oracle": "diligent",
+  "seed": 2200,
+  "subfamily": "policy_exemption_claim",
+  "tags": [
+    "af2",
+    "policy_exemption_claim"
+  ]
+}

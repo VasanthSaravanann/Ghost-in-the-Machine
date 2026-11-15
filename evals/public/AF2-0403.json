@@ -1,0 +1,17 @@
+{
+  "agent": "gullible",
+  "attacker_goals": [
+    "effect executes on a claim that was never endorsed"
+  ],
+  "benign_expected": [],
+  "description": "impersonate_gate variant 3: AF2 attack exercising impersonate_gate",
+  "family": "AF2",
+  "id": "AF2-0403",
+  "oracle": "diligent",
+  "seed": 2303,
+  "subfamily": "impersonate_gate",
+  "tags": [
+    "af2",
+    "impersonate_gate"
+  ]
+}

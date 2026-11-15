@@ -65,12 +65,12 @@ tasks:
     notes: "Label lattice via gate-core::meet; append-only DAG (unknown parent rejected, cycles impossible); content-addressed ids (parent-order independent, idempotent); per-turn windows; hash-identified endorsed corpora with tamper demotion to EXTERNAL_UNTRUSTED_DATA; over-claiming a label is ProvenanceError::TaintRaised. Kani harness formal/lattice_monotone.rs still TODO (M6-T01)."
   - id: M2-T02
     status: DONE
-    commit: null
+    commit: 19ca93c
     tests_green: [T-TNT-001, T-TNT-002, T-TNT-003, T-TNT-004, T-TNT-005, T-TNT-006, T-TNT-007, T-TNT-008, T-TNT-009, T-TNT-010, T-TNT-011, T-TNT-012, T-TNT-013, T-TNT-014, T-TNT-015, T-TNT-016, T-TNT-017, T-TNT-018, T-TNT-019, T-TNT-020]
     notes: "Structural taint: any untrusted segment in a turn window taints every output of that turn. TaintScorer may only add taint (ancestry meet dominates). Laundering corpus in gate-testkit: 200+ transforms (summarise 1..40, truncate 1..40, 5 case x 8 wrappers, 40 synonym swaps, 40 homoglyph/zero-width insertions, 40 encodings/chunkings); every transform that claims clean provenance is rejected with TaintRaised and honest derivation stays EXTERNAL_UNTRUSTED_DATA. 0 launders."
   - id: M2-T03
     status: DONE
-    commit: null
+    commit: 19ca93c
     tests_green: [T-CTL-001, T-CTL-002, T-CTL-003, T-CTL-004, T-CTL-005, T-CTL-006, T-CTL-007, T-CTL-008, T-CTL-009, T-CTL-010, T-CTL-011, T-CTL-012]
     notes: "Control-flow taint: untrusted segment in the preceding window taints the call unless screened by a principal-only checkpoint. TaintPath explains from the least-trusted root (ticket #8841, line 14), bounded to 3 hops / 280 chars with an explicit omitted-hop count, stable sha256 digest."
   - id: M2-T04

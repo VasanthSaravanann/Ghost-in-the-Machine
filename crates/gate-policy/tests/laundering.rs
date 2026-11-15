@@ -74,7 +74,7 @@ fn h6_cross_session_laundering_is_denied_and_policy_only_allows_it() {
                     .unwrap();
                 mirror
             },
-            &[ticket.id.clone()],
+            std::slice::from_ref(&ticket.id),
         )
         .unwrap();
         let memory = store.insert(spec).unwrap();

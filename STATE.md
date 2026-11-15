@@ -139,10 +139,10 @@ tasks:
     tests_green: []
     notes: ""
   - id: M5-T01
-    status: TODO
+    status: DONE
     commit: null
-    tests_green: []
-    notes: ""
+    tests_green: [T-VBN-001, T-VBN-002, T-VBN-003, T-VBN-004, T-VBN-005, T-VBN-006, T-VBN-007, T-VBN-008, T-VBN-009, T-VBN-010, T-VBN-011, T-VBN-013, T-VBN-014, T-VBN-015, T-VBN-017, T-VBN-018, T-VBN-019, T-VBN-020, T-SCN-001, T-SCN-002, T-SCN-003]
+    notes: "Hermetic deterministic runner (no clock/net/tokio — asserted by a source-level test), scenario schema+loader with duplicate-id and family validation, coverage matrix, TargetFramework adapter (ungated reference + deny-all ablations + external adapters), oracle profiles (diligent/distracted/fatigued) seeded per scenario with persuasion bias, JCS-signed manifest (bench_version, git_sha, policy_hash, agent_ids, seeds, scenario_set_hash, results_hash) with tamper/wrong-key rejection, order-independent scenario-set hash, results hash, and the NRP reporting rule (refuses without ASR/utility/E_bar). Scenarios are JSON (valid YAML 1.2) to avoid an unmaintained YAML dep (DEC-006). mcp-gate wiring is M0-T06/M5-T03; evals/public currently has 1 AF1 + 1 BEN scenario, so the ≥40-per-family requirement is M5-T02."
   - id: M5-T02
     status: TODO
     commit: null

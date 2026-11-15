@@ -1,5 +1,6 @@
 [package]
 name = "gate-jcs"
+description = "RFC 8785 JSON Canonicalisation Scheme (own implementation, differential-tested)"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -10,3 +11,8 @@ publish.workspace = true
 workspace = true
 
 [dependencies]
+
+[dev-dependencies]
+gate-testkit.workspace = true
+proptest.workspace = true
+tempfile.workspace = true

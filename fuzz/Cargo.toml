@@ -1,0 +1,23 @@
+[package]
+name = "nova-el-fuzz"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[package.metadata]
+cargo-fuzz = true
+
+# Keep the fuzz crate out of the main workspace: it needs a nightly toolchain,
+# pinned separately (plan.md §2.1, §7).
+[workspace]
+
+[dependencies]
+libfuzzer-sys = "0.4"
+gate-jcs = { path = "../crates/gate-jcs" }
+
+[[bin]]
+name = "jcs_parse"
+path = "fuzz_targets/jcs_parse.rs"
+test = false
+doc = false
+bench = false

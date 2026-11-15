@@ -155,6 +155,11 @@ version = "0.1.0"
 [[package]]
 name = "gate-jcs"
 version = "0.1.0"
+dependencies = [
+ "gate-testkit",
+ "proptest",
+ "tempfile",
+]
 
 [[package]]
 name = "gate-ledger"

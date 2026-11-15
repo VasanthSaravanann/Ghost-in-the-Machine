@@ -19,7 +19,11 @@
 
 use gate_core::Class;
 use gate_provenance::TaintPath;
+
+pub mod sym;
+
 use serde::{Deserialize, Serialize};
+pub use sym::{at_200_percent, render_order, rendered_pixels, token_count, validate, VerdictS};
 
 pub const MAX_TAINT_HOPS: usize = 3;
 pub const MAX_TAINT_CHARS: usize = 280;
@@ -97,6 +101,11 @@ const FLATTERY: &[&str] = &[
     "kind",
 ];
 const PERSUASION: &[&str] = &[
+    // Explicit pleading is a persuasion marker in its own right: a bare
+    // "please" in the agent's justification must fail the filter (T-BRF-003,
+    // T-SYM-015).
+    "please",
+    "pretty please",
     "say yes",
     "trust me",
     "guaranteed",

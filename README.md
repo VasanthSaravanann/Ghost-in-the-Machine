@@ -18,6 +18,11 @@ trusted computing base; authority is derived from data provenance
 | M2-T02 structural taint | DONE | T-TNT-001..020 |
 | M2-T03 control-flow taint | DONE | T-CTL-001..012 |
 | M2-T04 taint pivot halt | DONE | T-PIV-001..014 |
+| M2-T05 provenance persistence | DONE | T-PER-001..016 |
+| M2-T06 scoped declassification | DONE | T-DEC-001..008 |
+| M3-T01 budget + rate limits | DONE | T-BUD-001..011 |
+| M3-T02 brief builder + framing filter | DONE | T-BRF-001..011 |
+| M3-T03 Sup-share validator | DONE | T-SYM-001..018 |
 | M0-T06 `mcp-gate` shadow mode + G-M0 | TODO (see ISSUE-002) | T-E2E-001/002/003/006, P-LAT-1 |
 
 `STATE.md` is the authoritative machine-maintained ledger (task, commit, tests,

@@ -99,10 +99,10 @@ tasks:
     tests_green: [T-BRF-001, T-BRF-002, T-BRF-003, T-BRF-004, T-BRF-005, T-BRF-006, T-BRF-007, T-BRF-008, T-BRF-009, T-BRF-010, T-BRF-011]
     notes: "Third-person briefs on deterministic (class, reversibility) templates; denial-list framing filter catches the >=150-string persuasion corpus; taint diff <=3 spans x <=280 chars with explicit marker; resolved effect concrete (destination, count, blast radius, no ellipses); agent justification quarantined (labelled UNTRUSTED — AUTHORED BY THE AGENT) and counted into w_sup; counter-considerations from the template set only; budget line k of E. Weights w_sup/w_cnt/w_neu computed; sup_share() defined (validated at M3-T03)."
   - id: M3-T03
-    status: TODO
+    status: DONE
     commit: null
-    tests_green: []
-    notes: ""
+    tests_green: [T-SYM-001, T-SYM-002, T-SYM-003, T-SYM-004, T-SYM-005, T-SYM-006, T-SYM-007, T-SYM-008, T-SYM-009, T-SYM-010, T-SYM-011, T-SYM-012, T-SYM-013, T-SYM-014, T-SYM-015, T-SYM-016, T-SYM-017, T-SYM-018]
+    notes: "Sup share = w_sup/(w_sup+w_cnt+w_neu) measured in rendered tokens AND rendered pixel area; the rule takes the max (P3-R7). >0.50 => not rendered + DENY_SYMMETRY (INV-6). Whitespace and zero-size blocks contribute nothing to the pixel measure; tiny-font counter text is pixel-weighted; collapsed justification is still counted; 200% zoom is ratio-invariant; screen-reader/render order is a fixed contract. Deterministic layout model (no browser in the loop); headless-browser cross-check (<=2% per block) is CI work for M3-T05 wiring, recorded as ISSUE-003."
   - id: M3-T04
     status: TODO
     commit: null
@@ -180,6 +180,11 @@ tasks:
     notes: ""
 
 issues:
+  - id: ISSUE-003
+    task: M3-T03
+    kind: NEEDS_HUMAN
+    detail: "The deterministic layout model is implemented and tested for tokens/pixels, whitespace, zero-size, tiny-font, 200% zoom and render order, but the CI cross-check against a headless browser (tolerance <=2% per block) has not been run: no browser harness exists yet. Needs a CI decision (fantoccini/Playwright image) before the M3 gate."
+    status: OPEN
   - id: ISSUE-002
     task: M0-T06
     kind: SPEC_CONFLICT

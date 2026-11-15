@@ -41,9 +41,9 @@ fail_mode = "closed"
 "#;
 
 fn engine() -> PolicyEngine {
-    PolicyEngine::lexical(
-        Arc::new(Policy::parse(POLICY).unwrap_or_else(|_| std::process::exit(1))),
-    )
+    PolicyEngine::lexical(Arc::new(
+        Policy::parse(POLICY).unwrap_or_else(|_| std::process::exit(1)),
+    ))
     .with_pivot_mode(PivotMode::Deny)
 }
 

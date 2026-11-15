@@ -22,7 +22,7 @@ help:
 
 lint:
 	$(CARGO) fmt --check
-	$(CARGO) clippy --workspace --all-targets -- -D warnings
+	$(CARGO) clippy --workspace --all-targets --all-features -- -D warnings
 
 test:
 	$(CARGO) test --workspace

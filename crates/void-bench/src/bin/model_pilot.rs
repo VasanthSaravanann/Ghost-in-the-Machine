@@ -187,9 +187,9 @@ fn valid_address(addr: &str) -> bool {
         && domain.contains('.')
         && !domain.starts_with('.')
         && !domain.ends_with('.')
-        && addr.chars().all(|c| {
-            c.is_ascii_alphanumeric() || matches!(c, '@' | '.' | '-' | '_' | '+' | '!')
-        })
+        && addr
+            .chars()
+            .all(|c| c.is_ascii_alphanumeric() || matches!(c, '@' | '.' | '-' | '_' | '+' | '!'))
 }
 
 fn generate(model: &str, prompt: &str, json_output: bool) -> Option<String> {
@@ -290,7 +290,10 @@ fn provenance_closure(attack: bool, ticket: &str) -> Option<AuthClosure> {
             SourceRef::with_locator("tool:ticket", "session 1"),
         )
     } else {
-        (Label::PrincipalDirect, SourceRef::new("principal:address-book"))
+        (
+            Label::PrincipalDirect,
+            SourceRef::new("principal:address-book"),
+        )
     };
     let segment = store
         .insert(SegmentSpec::new(label, source, ticket, Vec::new(), 0))
@@ -380,7 +383,7 @@ fn builtin_rows() -> Vec<Row> {
             .to_owned(),
         expected: BENIGN.to_owned(),
         style: "none".to_owned(),
-            task: None,
+        task: None,
     });
     rows.push(Row {
         id: "MP-B-2".to_owned(),
@@ -391,7 +394,7 @@ fn builtin_rows() -> Vec<Row> {
             .to_owned(),
         expected: BENIGN.to_owned(),
         style: "none".to_owned(),
-            task: None,
+        task: None,
     });
     rows.push(Row {
         id: "MP-B-3".to_owned(),
@@ -401,7 +404,7 @@ fn builtin_rows() -> Vec<Row> {
             .to_owned(),
         expected: BENIGN.to_owned(),
         style: "none".to_owned(),
-            task: None,
+        task: None,
     });
     rows
 }
@@ -439,7 +442,10 @@ fn load_rows(path: &str) -> Option<Vec<Row>> {
                 .and_then(|s| s.as_str())
                 .unwrap_or("none")
                 .to_owned(),
-            task: value.get("task").and_then(|t| t.as_str()).map(str::to_owned),
+            task: value
+                .get("task")
+                .and_then(|t| t.as_str())
+                .map(str::to_owned),
         });
     }
     (!rows.is_empty()).then_some(rows)
@@ -479,13 +485,21 @@ fn run_model(
         );
 
         let closure = provenance_closure(row.attack, &row.ticket).unwrap_or_default();
-        let target = if row.attack { ATTACKER } else { row.expected.as_str() };
+        let target = if row.attack {
+            ATTACKER
+        } else {
+            row.expected.as_str()
+        };
         let (b3_allows, b3_reason) = decide(&permissive, target, AuthClosure::new());
         let (g_allows, g_reason) = decide(&permissive, target, closure);
         let (strict_allows, strict_reason) = decide(&strict, ATTACKER, AuthClosure::new());
 
         for mode in modes {
-            let default_task = if is_json_model(model) { TASK_JSON } else { TASK };
+            let default_task = if is_json_model(model) {
+                TASK_JSON
+            } else {
+                TASK
+            };
             let task = row.task.as_deref().unwrap_or(default_task);
             let prompt = format!(
                 "{}\n\nYour memory of the previous session: <data>{summary}</data>\n\n{task}",
@@ -577,7 +591,11 @@ fn run_adaptive(
                 .unwrap_or_default(),
                 is_json_model(model),
             );
-            let default_task = if is_json_model(model) { TASK_JSON } else { TASK };
+            let default_task = if is_json_model(model) {
+                TASK_JSON
+            } else {
+                TASK
+            };
             let task = row.task.as_deref().unwrap_or(default_task);
             let reply = generate(
                 model,
@@ -649,9 +667,7 @@ fn main() {
     let models: Vec<String> = arg("--models=")
         .map(|m| m.split(',').map(str::trim).map(str::to_owned).collect())
         .unwrap_or_else(|| vec!["llama3.2:latest".to_owned()]);
-    let reps: u64 = arg("--reps=")
-        .and_then(|v| v.parse().ok())
-        .unwrap_or(4);
+    let reps: u64 = arg("--reps=").and_then(|v| v.parse().ok()).unwrap_or(4);
     let modes: Vec<PromptMode> = arg("--modes=")
         .map(|m| {
             m.split(',')
@@ -659,13 +675,7 @@ fn main() {
                 .collect::<Vec<_>>()
         })
         .filter(|m| !m.is_empty())
-        .unwrap_or_else(|| {
-            vec![
-                PromptMode::Plain,
-                PromptMode::B2Strict,
-                PromptMode::B2Allow,
-            ]
-        });
+        .unwrap_or_else(|| vec![PromptMode::Plain, PromptMode::B2Strict, PromptMode::B2Allow]);
     let summarizer = arg("--summarizer=").unwrap_or_else(|| "assisted".to_owned());
     let adaptive = arg("--attacker=").is_some_and(|v| v == "adaptive");
     let budget: u64 = arg("--budget=").and_then(|v| v.parse().ok()).unwrap_or(3);

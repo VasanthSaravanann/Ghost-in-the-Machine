@@ -516,6 +516,15 @@ dependencies = [
 [[package]]
 name = "gate-tlog"
 version = "0.1.0"
+dependencies = [
+ "gate-core",
+ "gate-crypto",
+ "gate-testkit",
+ "redb",
+ "serde",
+ "serde_json",
+ "tempfile",
+]
 
 [[package]]
 name = "gate-transport"

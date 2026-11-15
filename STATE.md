@@ -119,10 +119,10 @@ tasks:
     tests_green: [T-DRF-001, T-DRF-002, T-DRF-003, T-DRF-004, T-DRF-005, T-DRF-006, T-DRF-007, T-DRF-008, T-DRF-009, T-DRF-010, T-DRF-011, T-DRF-012, T-DRF-013, T-DRF-014]
     notes: "Per-principal trailing windows (20): rubber-stamp rate (<2 s), regret rate (Leaf B scale >=2; un-attested never counts), bounded sycophantic-drift score monotone in the stamp rate, per-principal isolation. auto_tighten fires only on a FULL window with regret >15%: lowers the cap by one (never raises, floor 1) and requires dual principal. Dual-principal brief is built from shared material only, so P1's decision/note are structurally absent; any split denies (DUAL_PRINCIPAL_SPLIT finding). Deterministic/replayable. G-M3 still unrun (ISSUE-004)."
   - id: M4-T01
-    status: TODO
+    status: DONE
     commit: null
-    tests_green: []
-    notes: ""
+    tests_green: [T-MRK-001, T-MRK-002, T-MRK-003, T-MRK-004, T-MRK-005, T-MRK-006, T-MRK-007, T-MRK-008, T-MRK-009, T-MRK-010, T-MRK-011, T-MRK-012, T-MRK-013, T-MRK-014, T-MRK-015, T-MRK-016, T-MRK-017, T-MRK-018, T-MRK-019, T-MRK-020]
+    notes: "RFC 9162 MTH with 0x00 leaf / 0x01 node domain separation, inclusion proofs and consistency proofs, redb TreeStore (append + reopen + corrupt-file fail-closed). Tree heads, inclusion proofs and consistency proofs are byte-identical to the independent ref/merkle_ref.py over 64 leaves / all (m,n) pairs up to n=24. NOTE: the verifying algorithm for consistency proofs is deliberately NOT shipped here — the first implementation failed its own round-trip and shipping it would be a false guarantee; proof-level agreement with the independent reference is what M4-T01 claims. Sound verify_consistency is M4-T04 (ISSUE-006)."
   - id: M4-T02
     status: TODO
     commit: null
@@ -180,6 +180,11 @@ tasks:
     notes: ""
 
 issues:
+  - id: ISSUE-006
+    task: M4-T01/M4-T04
+    kind: SPEC_CONFLICT
+    detail: "verify_consistency (RFC 9162 s2.1.4.2) is not shipped: my first transcription failed round-trip on m=8,n=16 (fr/sr sibling ordering), and shipping a self-consistent but unverified algorithm would be a false guarantee (R10). Prover output is byte-identical to ref/merkle_ref.py, which is what M4-T01 claims. The verifier must be implemented and cross-checked against the reference prover for all (m<=n<=64) before mcp-audit verify can claim consistency checking (M4-T04)."
+    status: OPEN
   - id: ISSUE-005
     task: M3-T05
     kind: NEEDS_HUMAN

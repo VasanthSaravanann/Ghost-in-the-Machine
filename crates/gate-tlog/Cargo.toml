@@ -1,5 +1,6 @@
 [package]
 name = "gate-tlog"
+description = "RFC 9162 Merkle tree, inclusion and consistency proofs (plan.md M4-T01)"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -10,3 +11,12 @@ publish.workspace = true
 workspace = true
 
 [dependencies]
+gate-core.workspace = true
+gate-crypto.workspace = true
+redb.workspace = true
+serde.workspace = true
+
+[dev-dependencies]
+serde_json.workspace = true
+tempfile.workspace = true
+gate-testkit.workspace = true

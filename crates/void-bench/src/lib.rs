@@ -18,6 +18,8 @@
     )
 )]
 
+pub mod stats;
+
 use std::collections::BTreeMap;
 use std::path::Path;
 

@@ -230,7 +230,19 @@ fn main() {
         .and_then(Path::parent)
         .expect("repo root")
         .to_path_buf();
-    let scenarios = load_dir(root.join("evals/public")).expect("corpus");
+    // `--corpus <dir>` selects the split; default is the dev corpus.
+    let args: Vec<String> = std::env::args().skip(1).collect();
+    let corpus = args
+        .iter()
+        .position(|a| a == "--corpus")
+        .and_then(|i| args.get(i + 1).cloned())
+        .unwrap_or_else(|| "evals/public".to_owned());
+    let split = if corpus.contains("test") {
+        "TEST"
+    } else {
+        "DEV"
+    };
+    let scenarios = load_dir(root.join(&corpus)).expect("corpus");
     eprintln!("corpus: {} scenarios", scenarios.len());
 
     let mut targets: Vec<(&str, Box<dyn TargetFramework>)> = vec![
@@ -240,7 +252,7 @@ fn main() {
         ("G-taint", Box::new(GateTarget::new(true))),
     ];
 
-    println!("PILOT-STATIC — scripted gullible agent, templated dev corpus, single host");
+    println!("PILOT-STATIC — split: {split} ({corpus}); scripted gullible agent; single host");
     let header = ["AF1", "AF2", "AF3", "AF4"]
         .map(|f| format!("{f} ASR (95% ub)"))
         .join(" | ");
@@ -327,6 +339,11 @@ fn main() {
     println!("Note: trials per family are small; intervals are wide by construction. E_bar not measured (no endorsement channel).");
     let out = root.join("results");
     let _ = std::fs::create_dir_all(&out);
+    let out_name = if split == "TEST" {
+        "test.json"
+    } else {
+        "pilot.json"
+    };
     let json = serde_json::json!({
         "label": "PILOT-STATIC",
         "corpus": scenarios.len(),
@@ -337,7 +354,7 @@ fn main() {
         out.join("pilot.json"),
         serde_json::to_string_pretty(&json).unwrap_or_default(),
     );
-    eprintln!("wrote results/pilot.json");
+    eprintln!("wrote results/{out_name}");
 }
 
 #[cfg(test)]

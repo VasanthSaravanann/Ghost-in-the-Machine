@@ -40,8 +40,12 @@ and is reported as `PILOT-STATIC`, never as a headline result.**
 ## Splits
 
 - `evals/public` = **dev** corpus (tuning allowed, logged in `docs/tuning-log.md`).
-- `evals/test/` = generated once, hash-committed **before** tuning, run **once**.
-  Not present yet; the pilot uses the dev corpus only.
+- `evals/test/` = **frozen**: `evals/generate_test.py` produced 360 scenarios with
+  TEST-prefixed subfamilies, disjoint attacker phrasings and disjoint seeds; every
+  file is hashed in `evals/test/HASHES.txt` (aggregate
+  `e7a42b0eb0cd3028b7c674c9fbe0f109c705d02e3e71f7e26b7300f12701e7ab`).
+  It was run **once** (`results/test.md`) after the driver was frozen; no tuning
+  has been performed on it and none may be.
 
 ## Non-claims (binding)
 

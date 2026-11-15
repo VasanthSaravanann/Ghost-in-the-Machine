@@ -148,10 +148,13 @@ pattern replicates: plain ASR is non-zero on at least one model, `b2allow` lower
 but does not reach zero on every model, and G denies every successful call that B3
 allows.
 
-*Fixed design:* `evals/external/injecagent-memory-v1.jsonl` (36 cases x attack/benign;
-first 24 rows by id = 12 attack / 12 benign). Three models as in H8b. Modes `plain`,
-`b2`, `b2allow`; one repetition; same parser, adapters, policies and intervals. Run
-once.
+*Fixed design (amended BEFORE the definitive run):* the first execution was aborted by
+a 40-minute tool timeout after 77/216 records and was discarded without analysis. The
+subset is reduced for runtime, not because of any outcome: first 12 rows of
+`evals/external/injecagent-memory-v1.jsonl` by id = 6 attack / 6 benign. Three models
+as in H8b. Modes `plain` and `b2allow` (the `b2` arm is dropped to halve runtime; H8b
+already measures it); one repetition; same parser, adapters, policies and intervals.
+Run once.
 
 *Non-claim:* this is **not** the InjecAgent benchmark and no InjecAgent score is
 computed. The benchmark's `Tool Response` and `Attacker Instruction` are verbatim; a

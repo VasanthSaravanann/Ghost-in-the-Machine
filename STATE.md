@@ -180,6 +180,11 @@ tasks:
     notes: "docs/pentest-brief.md (scope per crate, out-of-scope incl. unimplemented M3-T05/M4-T03, rules of engagement, known false-confidence traps) and docs/known-gaps.md (all open issues, pending DEC items, unverified §0.7/§12 claims, and an explicit list of what the tests do NOT establish). No external engagement has been performed; P0/P1 closure is a human gate at GA."
 
 issues:
+  - id: ISSUE-009
+    task: all (scope)
+    kind: SPEC_CONFLICT
+    detail: "plan.md v1.2 adds an 'Active track: RESEARCH' banner that makes NOVA-EL-L5-RESEARCH-TRACK.md override R9/R12, §0.5, the §4 phase plan and the §6.6 gates — but that file is not in the repository (checked at HEAD and in the working tree). Per §0.5 this is a conflict: the authoritative remaining-scope list cannot be read. Estimates below are therefore given for BOTH readings: (A) GA path per §4/§6.6 as currently written, (B) research track, which is parametric only until the file exists. Resolve by committing the research-track file."
+    status: OPEN
   - id: ISSUE-008
     task: M6-T01/M6-T02/M6-T03
     kind: DEP_BLOCKED

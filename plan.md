@@ -5,6 +5,8 @@
 **Spec version:** 1.1 (revised and verified — see §0.7)
 **Audience:** an autonomous coding agent (and the human reviewing it)
 
+> **Active track: RESEARCH.** Read `NOVA-EL-L5-RESEARCH-TRACK.md` after this file. It overrides §0.2 R9/R12, §0.5, the §4 phase plan and the §6.6 gates; everything else here (R1–R8, R10–R11, invariants, tests) stays in force. The original M0–M6 plan remains the GA path.
+>
 > This file is the single source of truth for the build. Read Section 0 first, every session.
 > Tasks are ordered, dependency-linked, and each one has **tests that must pass** and, where relevant, an **eval gate**.
 > If anything here conflicts with your instincts, this file wins. If it conflicts with itself, stop and escalate (§0.5).
@@ -126,7 +128,7 @@ Evals measure resilience *and* utility. An implementation that denies everything
 | DEC-P01 | Group commit; synchronous durable commit before release for every class with external side effects; `READ_ONLY` spans flushed asynchronously with bounded lag. |
 | DEC-P02 | `gate-jcs` rejects integer literals not exactly representable as an IEEE 754 double (prevents two distinct inputs canonicalising identically). |
 | DEC-P03 | Prompts deferred by the 20 s rate limit queue (max depth N) and consume budget only when rendered; overflow is denied. |
-| DEC-P04 | Own STH format + witness protocol; evaluate existing community transparency-log witness/cosignature specs before inventing one (**not verified here**). |
+| DEC-P04 | **Superseded in v1.2:** adopt the C2SP `signed-note`, `tlog-checkpoint`, `tlog-cosignature` and `tlog-witness` specifications (verified to exist; cosignature v1 binds the log origin with a `cosignature/v1` domain-separation header). RFC 9162 §4.10 STH is **not** used. Pin spec tags. |
 
 **Still unverified:** whether `webauthn-rs` links OpenSSL in the current release; the suitability of any community witness spec; whether Kani can discharge the lattice/budget proofs at the stated size; whether the latency/throughput targets are reachable on your storage; and every citation in the original PRD.
 
@@ -256,7 +258,7 @@ CI enforces: no product crate depends on `gate-testkit` or `void-bench` (R-grep,
 
 > **Leaf-hash clarification (resolves a PRD ambiguity):** the *entry digest* is `E = H(salt ‖ JCS(payload))`. The RFC 9162 *Merkle leaf hash* is `H(0x00 ‖ E)`. Never log `H(JCS(payload))` unsalted (INV-10).
 
-> **Scope of RFC 9162 (v1.1 correction):** we use RFC 9162's Merkle tree hash, inclusion proofs and consistency proofs. We do **not** claim conformance to its STH structure (§4.10), TransItem formats or client API — those are specific to CT for TLS certificates. The Signed Tree Head format and the witness-cosignature protocol are defined by this project (DEC-P04) and documented in `docs/adr/`. RFC 9162 is Experimental-track; the Merkle algorithms are shared with RFC 6962 and are stable.
+> **Scope of RFC 9162 (v1.1 correction):** we use RFC 9162's Merkle tree hash, inclusion proofs and consistency proofs. We do **not** claim conformance to its STH structure (§4.10), TransItem formats or client API — those are specific to CT for TLS certificates. The checkpoint (signed tree head) format and witness-cosignature protocol follow the C2SP specifications (DEC-P04, revised in v1.2), pinned to tagged versions and documented in `docs/adr/`. RFC 9162 is Experimental-track; the Merkle algorithms are shared with RFC 6962 and are stable.
 
 ---
 
@@ -460,7 +462,7 @@ Notation: `Deps` = tasks that must be DONE. `Tests` = IDs defined in §5. `Gate`
 
 **M4-T03 STH + witnessing (P4-R3, R8, INV-9)**
 - Deps: M4-T01, M0-T03
-- Do: STH every ≤60 s (project-defined STH format, DEC-P04 — see §2.4 scope note); witness protocol (cosign STH; verify consistency to last-cosigned head before signing); require ≥2 of ≥3; `TRANSPARENCY_DEGRADED` state; default policy blocks `IRREVERSIBLE`/`PRIVILEGE_GRANTING` while degraded.
+- Do: checkpoint every ≤60 s in the C2SP `tlog-checkpoint` format (DEC-P04, revised); witness protocol per C2SP `tlog-witness`/`tlog-cosignature` (a cosignature must bind the log origin; replay under another origin is rejected); witness protocol (cosign STH; verify consistency to last-cosigned head before signing); require ≥2 of ≥3; `TRANSPARENCY_DEGRADED` state; default policy blocks `IRREVERSIBLE`/`PRIVILEGE_GRANTING` while degraded.
 - Tests: T-WIT-001..020 (honest/lazy/equivocating/offline witness matrix)
 - DoD: equivocating witness detected via consistency proof mismatch.
 
@@ -1136,7 +1138,7 @@ transparency_degraded.block_classes = ["IRREVERSIBLE", "PRIVILEGE_GRANTING"]
 6. Provenance composition across agent-to-agent delegation.
 7. Post-quantum signature default (ML-DSA / SLH-DSA) for long-lived leaves.
 8. Whether the PRD's cited external works exist as stated — **unverified**; do not rely on them for any design decision or print them in release docs until a human has checked them against the publisher of record.
-9. Witness protocol and STH format (DEC-P04): adopt an existing community transparency-log witness/cosignature specification versus defining our own. Not evaluated in this revision.
+9. Witness protocol and checkpoint format (DEC-P04): resolved in v1.2 in favour of the C2SP specifications; remaining question is which signature type the log key uses and which spec tags to pin.
 10. Whether `webauthn-rs` (or any needed TLS/crypto dependency) can satisfy the native-code policy in §2.0, or an allowlisted exception is required.
 11. Storage profile and group-commit window that satisfy both P1-R5 and NF-R1 (DEC-P01).
 

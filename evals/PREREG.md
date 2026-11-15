@@ -141,6 +141,23 @@ prompt defence and must be reported as such.
 supplied out-of-band). Budget 3, 5 attack styles, `llama3.2:latest`, permissive
 allowlist, B3/G decisions on the same transcripts. Run once.
 
+## H9 — InjecAgent-derived memory-injection corpus (PRE-REGISTERED, not yet run)
+
+*Hypothesis:* on injection prose taken from InjecAgent (payload verbatim), the H8b
+pattern replicates: plain ASR is non-zero on at least one model, `b2allow` lowers it
+but does not reach zero on every model, and G denies every successful call that B3
+allows.
+
+*Fixed design:* `evals/external/injecagent-memory-v1.jsonl` (36 cases x attack/benign;
+first 24 rows by id = 12 attack / 12 benign). Three models as in H8b. Modes `plain`,
+`b2`, `b2allow`; one repetition; same parser, adapters, policies and intervals. Run
+once.
+
+*Non-claim:* this is **not** the InjecAgent benchmark and no InjecAgent score is
+computed. The benchmark's `Tool Response` and `Attacker Instruction` are verbatim; a
+routing suffix naming the attacker/partner address is added because this pilot's
+metric is the recipient of a later-session email, not an attacker tool call.
+
 ## H6/H7 — added after the pilot (before running them)
 
 | ID | Hypothesis | Metric | Decision rule |

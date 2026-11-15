@@ -1,14 +1,13 @@
 //! H7 — the over-taint cost frontier, measured on benign workloads.
 //!
 //! For each benign scenario that reads untrusted content and then performs an
-//! allowlisted effectful call, we ask two boundary policies whether the call is
-//! permitted:
-//!   * CONSERVATIVE — every untrusted segment in the turn window taints the call;
-//!   * PRECISE      — a principal-only checkpoint screens the read, so the write
-//!                    is allowed (the H7 mechanism).
-//! The difference is the *cost* of conservative boundary taint, reported with
-//! exact 95 % upper bounds. No model calls, no scenario-supplied taint labels.
-
+//! allowlisted effectful call, two boundary policies are asked whether the call
+//! is permitted. CONSERVATIVE: every untrusted segment in the turn window taints
+//! the call. PRECISE: a principal-only checkpoint screens the read, so the write
+//! is allowed (the H7 mechanism). The difference is the cost of conservative
+//! boundary taint, reported with exact 95 % upper bounds. No model calls and no
+//! scenario-supplied taint labels are involved.
+//!
 #![allow(clippy::print_stdout)]
 
 use std::sync::Arc;

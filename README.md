@@ -1,5 +1,3 @@
-# NOVA-EL L5
-
 Inline enforcement proxy at the MCP transport boundary. The model is outside the
 trusted computing base; authority is derived from data provenance
 (`plan.md` is the build spec and wins over this file).

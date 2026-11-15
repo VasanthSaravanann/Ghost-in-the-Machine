@@ -1,5 +1,6 @@
 [package]
 name = "gate-provenance"
+description = "Provenance lattice, ancestry DAG, structural taint, control flow (plan.md M2-T01..T04)"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -10,3 +11,10 @@ publish.workspace = true
 workspace = true
 
 [dependencies]
+gate-core.workspace = true
+gate-crypto.workspace = true
+serde.workspace = true
+
+[dev-dependencies]
+gate-testkit.workspace = true
+proptest.workspace = true

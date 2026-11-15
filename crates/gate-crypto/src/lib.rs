@@ -276,7 +276,11 @@ impl Signer for P256Signer {
     }
 
     fn public_key(&self) -> Vec<u8> {
-        self.key.verifying_key().to_sec1_point(true).as_bytes().to_vec()
+        self.key
+            .verifying_key()
+            .to_sec1_point(true)
+            .as_bytes()
+            .to_vec()
     }
 
     fn sign(&self, message: &[u8]) -> Result<Signature, GateError> {

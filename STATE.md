@@ -154,20 +154,20 @@ tasks:
     tests_green: []
     notes: ""
   - id: M6-T01
-    status: TODO
+    status: BLOCKED
     commit: null
     tests_green: []
-    notes: ""
+    notes: "Kani toolchain is not installed and §0.7 records that whether Kani can discharge the lattice/budget proofs at the stated size is unverified. Writing harnesses that cannot be run would be a false claim of formal verification."
   - id: M6-T02
-    status: TODO
+    status: BLOCKED
     commit: null
     tests_green: []
-    notes: ""
+    notes: "Three fuzz targets exist (jcs_parse, mcp_frame, policy_toml) with committed corpora, but the acceptance criterion is >=72h cumulative runtime, which is wall-clock and cannot be satisfied in a coding session."
   - id: M6-T03
-    status: TODO
+    status: BLOCKED
     commit: null
     tests_green: []
-    notes: ""
+    notes: "Needs two independent builders producing identical hashes plus a CycloneDX SBOM and signed release. No release pipeline or SBOM tool is provisioned; the CI 'release' job in §7 does not exist yet."
   - id: M6-T04
     status: DONE
     commit: fdf589d
@@ -180,6 +180,10 @@ tasks:
     notes: "docs/pentest-brief.md (scope per crate, out-of-scope incl. unimplemented M3-T05/M4-T03, rules of engagement, known false-confidence traps) and docs/known-gaps.md (all open issues, pending DEC items, unverified §0.7/§12 claims, and an explicit list of what the tests do NOT establish). No external engagement has been performed; P0/P1 closure is a human gate at GA."
 
 issues:
+  - id: ISSUE-008
+    task: M6-T01/M6-T02/M6-T03
+    kind: DEP_BLOCKED
+    detail: "Kani toolchain (M6-T01), 72h wall-clock fuzzing (M6-T02) and a reproducible-build/SBOM release pipeline (M6-T03) are external resources, not code. Marked BLOCKED rather than DONE so STATE.md does not overstate hardening."
   - id: ISSUE-006
     task: M4-T01/M4-T03/M4-T04
     kind: NEEDS_HUMAN

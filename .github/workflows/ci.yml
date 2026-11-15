@@ -10,7 +10,9 @@ jobs:
         with: { components: "rustfmt, clippy" }
       - run: cargo fmt --check
       - run: cargo clippy --all-targets --all-features -- -D warnings
-      - run: cargo test --workspace --all-features
+      - run: cargo test --workspace
+      # FIPS profile: Ed25519 must be refused, P-256 + SHA-256 must still work.
+      - run: cargo test -p gate-crypto --features fips
       - run: bash ci/scripts/r_grep.sh
       - run: bash ci/scripts/forbid_unsafe_check.sh
       - run: python3 ci/scripts/tcb_lang_check.py
@@ -23,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
-      - run: cargo test --workspace --all-features --tests
+      - run: cargo test --workspace --tests
 
   adv:
     runs-on: ubuntu-latest
@@ -32,4 +34,4 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
       # Adversarial suites: every test named t_* is an attempt to violate an
       # invariant or a task acceptance criterion (§5.12).
-      - run: cargo test --workspace --all-features -- t_
+      - run: cargo test --workspace -- t_

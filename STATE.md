@@ -74,10 +74,10 @@ tasks:
     tests_green: [T-CTL-001, T-CTL-002, T-CTL-003, T-CTL-004, T-CTL-005, T-CTL-006, T-CTL-007, T-CTL-008, T-CTL-009, T-CTL-010, T-CTL-011, T-CTL-012]
     notes: "Control-flow taint: untrusted segment in the preceding window taints the call unless screened by a principal-only checkpoint. TaintPath explains from the least-trusted root (ticket #8841, line 14), bounded to 3 hops / 280 chars with an explicit omitted-hop count, stable sha256 digest."
   - id: M2-T04
-    status: TODO
+    status: DONE
     commit: null
-    tests_green: []
-    notes: ""
+    tests_green: [T-PIV-001, T-PIV-002, T-PIV-003, T-PIV-004, T-PIV-005, T-PIV-006, T-PIV-007, T-PIV-008, T-PIV-009, T-PIV-010, T-PIV-011, T-PIV-012, T-PIV-013, T-PIV-014]
+    notes: "PolicyEngine::decide now halts tainted privileged calls: PivotMode::Deny (default, pre-M3) returns DENY_TAINT_PIVOT, PivotMode::Escalate returns ESCALATE_ENDORSEMENT_REQUIRED. READ_ONLY exempt; STATUS: IRREVERSIBLE clean allowed; PRIVILEGE_GRANTING untrusted escalates and blanket_allow is unrepresentable. CallRequest::with_taint merges the path hops into the AuthClosure. Model text never enters the decision (T-PIV-011). M3-T01 flips the default to Escalate and enforces E_max."
   - id: M2-T05
     status: TODO
     commit: null
@@ -183,7 +183,7 @@ issues:
   - id: ISSUE-002
     task: M0-T06
     kind: SPEC_CONFLICT
-    detail: "M0-T06 lists T-E2E-001..006. After DEC-005 (M1-T01/T02 done) the policy-mediated subset is real, but T-E2E-003/004/005 still need M2-T01..T04 (lattice, taint, control-flow, pivot halt) and M3-T04 (split-leaf endorsement). M0-T06 can satisfy T-E2E-001/002/006 plus CLI/config/P-LAT-1 only. Escalated per plan.md §0.5 rather than silently re-scoping."
+    detail: "M0-T06 lists T-E2E-001..006. After DEC-005 and M2-T01..T04 the taint path is real, so T-E2E-003 (injection -> taint path -> blocked effect) is now implementable. T-E2E-004 (approve with a balanced brief -> executes once -> Leaf A+B) still needs M3-T02..T04. M0-T06 can satisfy T-E2E-001/002/003/006 plus CLI/config/P-LAT-1; T-E2E-004/005 remain blocked on M3."
     status: OPEN
   - id: ISSUE-001
     task: M0-T06

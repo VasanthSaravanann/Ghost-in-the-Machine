@@ -27,6 +27,7 @@ use std::sync::Arc;
 use gate_core::{AuthClosure, Class, Decision, ReasonCode};
 use gate_crypto::sha256_hex;
 use gate_jcs::canonicalize;
+use gate_provenance::TaintPath;
 use regex::Regex;
 use serde::Serialize;
 use serde_json::Value;
@@ -694,6 +695,9 @@ pub struct CallRequest {
     pub params: serde_json::Map<String, Value>,
     /// Inclusive closure of provenance segments the decision depended on.
     pub closure: AuthClosure,
+    /// Influence chain when the call was tainted (P2-R5). Built from
+    /// provenance, never from model text.
+    pub taint: Option<TaintPath>,
 }
 
 impl CallRequest {
@@ -703,8 +707,46 @@ impl CallRequest {
             tool: tool.into(),
             params,
             closure: AuthClosure::new(),
+            taint: None,
         }
     }
+
+    #[must_use]
+    pub fn with_closure(mut self, closure: AuthClosure) -> Self {
+        self.closure = closure;
+        self
+    }
+
+    /// Attach the influence chain. Its hops join the authorisation closure, so
+    /// `mcp-audit explain` can print exactly what the decision depended on.
+    #[must_use]
+    pub fn with_taint(mut self, taint: TaintPath) -> Self {
+        for hop in &taint.hops {
+            self.closure.insert(hop.segment.clone(), hop.label);
+        }
+        self.taint = Some(taint);
+        self
+    }
+
+    /// Tainted if a path was attached *or* the closure contains anything less
+    /// trusted than principal-direct input.
+    #[must_use]
+    pub fn is_tainted(&self) -> bool {
+        self.taint.is_some()
+            || self
+                .closure
+                .iter()
+                .any(|(_, label)| *label < gate_core::Label::PrincipalDirect)
+    }
+}
+
+/// Behaviour when a privileged call is tainted. Pre-M3 there is no endorsement
+/// channel, so the safe default is [`PivotMode::Deny`] (plan.md M2-T04 permits
+/// "Escalate (or Deny pre-M3)"). M3 flips this to `Escalate`.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum PivotMode {
+    Deny,
+    Escalate,
 }
 
 /// Deterministic policy engine (plan.md §2.3). M1 adds pin/allowlist checks;
@@ -713,6 +755,7 @@ impl CallRequest {
 pub struct PolicyEngine {
     policy: Arc<Policy>,
     resolver: Arc<dyn PathResolver>,
+    pivot: PivotMode,
 }
 
 impl PolicyEngine {
@@ -720,7 +763,22 @@ impl PolicyEngine {
     /// a filesystem question, so there is no insecure default.
     #[must_use]
     pub fn new(policy: Arc<Policy>, resolver: Arc<dyn PathResolver>) -> Self {
-        Self { policy, resolver }
+        Self {
+            policy,
+            resolver,
+            pivot: PivotMode::Deny,
+        }
+    }
+
+    #[must_use]
+    pub fn with_pivot_mode(mut self, pivot: PivotMode) -> Self {
+        self.pivot = pivot;
+        self
+    }
+
+    #[must_use]
+    pub fn pivot_mode(&self) -> PivotMode {
+        self.pivot
     }
 
     /// Pure-lexical engine, for tests and for policies without path prefixes.
@@ -744,7 +802,24 @@ impl PolicyEngine {
             );
         };
         match tool.check_params_with(&request.params, self.resolver.as_ref()) {
-            Ok(()) => Decision::allow(vec![ReasonCode::AllowPolicy], request.closure.clone()),
+            Ok(()) => {
+                // P2-R5: a privileged call influenced by untrusted data halts.
+                // READ_ONLY is exempt (T-PIV-002); every class with an external
+                // side effect is not, and blanket allow can never bypass this.
+                if request.is_tainted() && tool.class.has_external_side_effect() {
+                    return match self.pivot {
+                        PivotMode::Escalate => {
+                            Decision::escalate(ReasonCode::EscalateEndorsementRequired)
+                                .with_closure(request.closure.clone())
+                        }
+                        PivotMode::Deny => Decision::deny_with(
+                            vec![ReasonCode::DenyTaintPivot],
+                            request.closure.clone(),
+                        ),
+                    };
+                }
+                Decision::allow(vec![ReasonCode::AllowPolicy], request.closure.clone())
+            }
             Err(ParamError::NotAllowed(_)) => Decision::deny_with(
                 vec![ReasonCode::DenyParamNotAllowed],
                 request.closure.clone(),

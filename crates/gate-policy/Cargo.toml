@@ -14,6 +14,7 @@ workspace = true
 gate-core.workspace = true
 gate-crypto.workspace = true
 gate-jcs.workspace = true
+gate-provenance.workspace = true
 regex.workspace = true
 serde.workspace = true
 serde_json.workspace = true

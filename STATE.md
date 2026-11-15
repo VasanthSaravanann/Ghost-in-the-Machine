@@ -140,7 +140,7 @@ tasks:
     notes: ""
   - id: M5-T01
     status: DONE
-    commit: null
+    commit: cebddf2
     tests_green: [T-VBN-001, T-VBN-002, T-VBN-003, T-VBN-004, T-VBN-005, T-VBN-006, T-VBN-007, T-VBN-008, T-VBN-009, T-VBN-010, T-VBN-011, T-VBN-013, T-VBN-014, T-VBN-015, T-VBN-017, T-VBN-018, T-VBN-019, T-VBN-020, T-SCN-001, T-SCN-002, T-SCN-003]
     notes: "Hermetic deterministic runner (no clock/net/tokio — asserted by a source-level test), scenario schema+loader with duplicate-id and family validation, coverage matrix, TargetFramework adapter (ungated reference + deny-all ablations + external adapters), oracle profiles (diligent/distracted/fatigued) seeded per scenario with persuasion bias, JCS-signed manifest (bench_version, git_sha, policy_hash, agent_ids, seeds, scenario_set_hash, results_hash) with tamper/wrong-key rejection, order-independent scenario-set hash, results hash, and the NRP reporting rule (refuses without ASR/utility/E_bar). Scenarios are JSON (valid YAML 1.2) to avoid an unmaintained YAML dep (DEC-006). mcp-gate wiring is M0-T06/M5-T03; evals/public currently has 1 AF1 + 1 BEN scenario, so the ≥40-per-family requirement is M5-T02."
   - id: M5-T02
@@ -215,6 +215,9 @@ issues:
     detail: "G-M0 (P-LAT-1 p99 <= 15 ms with durable commit) needs a storage profile decision (DEC-P01/§12.11) and a benchmark host. Not measurable on this laptop reproducibly."
     status: OPEN
 decisions:
+  - id: DEC-006
+    summary: "M5-T01 (void-bench) implemented before M4-T04, and scenarios are JSON rather than YAML."
+    rationale: "ISSUE-004 makes the eval harness the critical path: without it no phase gate can run. M5-T01's declared dep on M4-T04 is satisfied for the runner/adapter purposes by reference targets (UngatedTarget/deny-all/external adapter); mcp-gate wiring stays M0-T06. JSON is a YAML 1.2 subset, so scenario files remain YAML-readable without adding an unmaintained YAML crate to the tooling."
   - id: DEC-005
     summary: "M1-T01 and M1-T02 are implemented before M0-T06."
     rationale: "M0-T06's T-E2E cases need a real policy engine (ISSUE-002). Reordering the dependency graph, not weakening any test. M0-T06 is now blocked only on M2-T01..T04 (taint) and M3-T04 (endorsement)."

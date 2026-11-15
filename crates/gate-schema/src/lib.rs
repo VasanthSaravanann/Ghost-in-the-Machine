@@ -20,6 +20,12 @@
 
 use std::collections::BTreeMap;
 
+pub mod metadata;
+
+pub use metadata::{
+    sanitise, MetadataMode, Namespace, Sanitised, BEGIN_MARKER, END_MARKER, MAX_METADATA_CHARS,
+};
+
 use gate_core::{GateError, PrincipalId, ReasonCode};
 use gate_crypto::sha256_hex;
 use serde::{Deserialize, Serialize};

@@ -54,10 +54,10 @@ tasks:
     tests_green: [T-SCH-001, T-SCH-002, T-SCH-003, T-SCH-004, T-SCH-005, T-SCH-006, T-SCH-007, T-SCH-008, T-SCH-009, T-SCH-010, T-SCH-011, T-SCH-012, T-SCH-013, T-SCH-014, T-SCH-015, T-SCH-016, T-SCH-017, T-SCH-018]
     notes: "pin = H(JCS(descriptor)) over server+name+description+inputSchema+annotations+version; key-order churn keeps the pin, a single-byte or unicode-confusable edit changes it. Drift quarantines the tool (never auto-adopts); tools/list_changed cannot widen; quarantine is STICKY (checked before pin equality) so reverting to the pinned bytes reports QuarantineHeld, not Unchanged. Un-quarantine requires an out-of-band principal entry with its own audit event; an empty principal is rejected. invoke_allowed denies unknown/quarantined/policy-pin-mismatch with DENY_UNPINNED or DENY_DRIFT. Cross-server name collisions are namespaced as server:tool (full isolation/metadata handling is M1-T04)."
   - id: M1-T04
-    status: TODO
+    status: DONE
     commit: null
-    tests_green: []
-    notes: ""
+    tests_green: [T-META-001, T-META-002, T-META-003, T-META-004, T-META-005, T-META-006, T-META-007, T-META-008, T-META-009, T-META-010, T-META-011, T-META-012, T-META-013, T-META-014, T-META-015, T-META-016]
+    notes: "Delimit mode (default) frames descriptor text with an EXTERNAL_UNTRUSTED_DATA marker pair and escapes any forgery attempt, so the text can never break out; strip mode removes instruction clauses. Invisible characters (zero-width, unicode tags U+E0000-E007F, soft hyphen) are counted and removed in BOTH modes; base64-shaped tokens, cross-server server:tool references, instruction patterns, control chars and bidi overrides are recorded as FINDINGS ONLY (never a verdict, never a policy edit — T-META-005/006). Output is bounded with an explicit TRUNCATED_METADATA finding. Namespace registers server:tool, keeps both tools when names collide and logs the collision. Findings map to the closed METADATA_POISONING_SUSPECTED code at the wiring layer."
   - id: M2-T01
     status: DONE
     commit: 486aac3

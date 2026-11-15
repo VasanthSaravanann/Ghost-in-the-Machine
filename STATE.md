@@ -150,7 +150,7 @@ tasks:
     notes: "Deterministic generator (evals/generate_public.py) produces the committed corpus: 40 AF1 + 40 AF2 + 40 AF3 + 40 AF4 + 200 BEN = 360 scenarios, 8 subfamilies x 5 variants per attack family and 8 subfamilies x 25 per benign family, matching §6.4's coverage matrix shape. Tests assert per-family minimums, >=8 subfamilies and >=5 variants each, sorted ids, globally unique seeds, and that re-running the generator is byte-identical (so the corpus cannot silently drift). Scenario CONTENT is templated per subfamily: descriptions are placeholders, not yet curated attack texts — curation is a human-review task and the eval numbers therefore remain provisional."
   - id: M5-T03
     status: IN_PROGRESS
-    commit: null
+    commit: 62fd532
     tests_green: []
     notes: ""
   - id: M6-T01

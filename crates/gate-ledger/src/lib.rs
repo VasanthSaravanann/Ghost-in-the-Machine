@@ -13,10 +13,16 @@
 )]
 
 pub mod budget;
+pub mod drift;
 pub mod leaf;
 
 pub use budget::{
     BudgetError, BudgetEvent, BudgetEventKind, BudgetTracker, BudgetView, CapAction, PrincipalGate,
+};
+pub use drift::{
+    combine, second_principal_brief, DecisionRecord, DriftMetrics, DualOutcome,
+    DualPrincipalRequest, FirstPrincipalInput, PrincipalMetrics, Tightening, REGRET_THRESHOLD,
+    RUBBER_STAMP_MS, WINDOW,
 };
 pub use leaf::{
     EndorsementLedger, FramingSummary, LeafA, LeafB, LedgerError, ReleaseReceipt, Resume,

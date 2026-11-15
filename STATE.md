@@ -109,15 +109,15 @@ tasks:
     tests_green: [T-LDG-001, T-LDG-002, T-LDG-003, T-LDG-004, T-LDG-005, T-LDG-006, T-LDG-007, T-LDG-008, T-LDG-009, T-LDG-010, T-LDG-011, T-LDG-012, T-LDG-013, T-LDG-014, T-LDG-015, T-LDG-016, T-LDG-017, T-LDG-018, T-LDG-019, T-LDG-020, T-LDG-021, T-LDG-022, T-LDG-023, T-LDG-024, T-LDG-025, T-LDG-026]
     notes: "Leaf A carries every P3-R17 field (schema test), signed over JCS bytes with digest+signature verified; release requires H(JCS(outbound)) == call_digest (INV-5: one-byte mutation, wrong call, replay all denied); 15-min endorsement timeout fails closed; resume plan never re-prompts (Endorsed->Release, Released->ExecuteOnce, Executed->Done, NF-R5); Leaf B bound by ref=H(leaf_a) with 0..3 regret and duplicate-attestation rejection; tick() records AttestLapsed after delta_t and never invents confirmation (INV-8); delta_t bounds 1h..30d; asymmetric briefs are never endorsed; leaves exit ONLY through gate_core::LeafSink, implemented by VecSink and by gate_span::SpanLeafSink (signed, chained, fsync'd span chain, T-LDG-016b)."
   - id: M3-T05
-    status: TODO
+    status: BLOCKED
     commit: null
     tests_green: []
     notes: ""
   - id: M3-T06
-    status: TODO
+    status: DONE
     commit: null
-    tests_green: []
-    notes: ""
+    tests_green: [T-DRF-001, T-DRF-002, T-DRF-003, T-DRF-004, T-DRF-005, T-DRF-006, T-DRF-007, T-DRF-008, T-DRF-009, T-DRF-010, T-DRF-011, T-DRF-012, T-DRF-013, T-DRF-014]
+    notes: "Per-principal trailing windows (20): rubber-stamp rate (<2 s), regret rate (Leaf B scale >=2; un-attested never counts), bounded sycophantic-drift score monotone in the stamp rate, per-principal isolation. auto_tighten fires only on a FULL window with regret >15%: lowers the cap by one (never raises, floor 1) and requires dual principal. Dual-principal brief is built from shared material only, so P1's decision/note are structurally absent; any split denies (DUAL_PRINCIPAL_SPLIT finding). Deterministic/replayable. G-M3 still unrun (ISSUE-004)."
   - id: M4-T01
     status: TODO
     commit: null
@@ -180,6 +180,11 @@ tasks:
     notes: ""
 
 issues:
+  - id: ISSUE-005
+    task: M3-T05
+    kind: NEEDS_HUMAN
+    detail: "BLOCKED on ISSUE-003: T-CHN-001..020 are headless-browser tests (clickjacking/iframe, origin confusion, 3 s dwell, WebAuthn assertion validation) and no browser harness or CI image decision exists. Also needs the DEC on webauthn-rs native-code policy (§2.4, §12.10). Not started rather than partly stubbed."
+    status: OPEN
   - id: ISSUE-004
     task: M1-T01..M3-T03
     kind: NEEDS_HUMAN

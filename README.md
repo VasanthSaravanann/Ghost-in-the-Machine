@@ -24,6 +24,8 @@ trusted computing base; authority is derived from data provenance
 | M3-T02 brief builder + framing filter | DONE | T-BRF-001..011 |
 | M3-T03 Sup-share validator | DONE | T-SYM-001..018 |
 | M3-T04 split-leaf ledger | DONE | T-LDG-001..026 |
+| M3-T06 drift/regret + dual principal | DONE | T-DRF-001..014 |
+| M3-T05 endorsement channel | BLOCKED (ISSUE-005) | T-CHN-001..020 |
 | M0-T06 `mcp-gate` shadow mode + G-M0 | TODO (see ISSUE-002) | T-E2E-001/002/003/006, P-LAT-1 |
 
 `STATE.md` is the authoritative machine-maintained ledger (task, commit, tests,

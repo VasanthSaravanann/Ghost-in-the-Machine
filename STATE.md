@@ -1,5 +1,5 @@
 # STATE
-last_updated: 2026-11-15T18:00:00Z
+last_updated: 2026-11-15T19:30:00Z
 current_phase: M0
 
 tasks:
@@ -125,7 +125,7 @@ tasks:
     notes: "RFC 9162 MTH with 0x00 leaf / 0x01 node domain separation, inclusion proofs and consistency proofs, redb TreeStore (append + reopen + corrupt-file fail-closed). Tree heads, inclusion proofs and consistency proofs are byte-identical to the independent ref/merkle_ref.py over 64 leaves / all (m,n) pairs up to n=24. NOTE: the verifying algorithm for consistency proofs is deliberately NOT shipped here — the first implementation failed its own round-trip and shipping it would be a false guarantee; proof-level agreement with the independent reference is what M4-T01 claims. Sound verify_consistency is M4-T04 (ISSUE-006)."
   - id: M4-T02
     status: DONE
-    commit: null
+    commit: 88ffa64
     tests_green: [T-SLT-001, T-SLT-002, T-SLT-003, T-SLT-004, T-SLT-005, T-SLT-006, T-SLT-007, T-SLT-008, T-SLT-009, T-SLT-010, T-SLT-011, T-SLT-012, T-SLT-013, T-SLT-014, T-SLT-015, T-SLT-016, T-SLT-017, T-SLT-018]
     notes: "E = SHA256(salt || payload); Merkle leaf = H(0x00 || E). XChaCha20-Poly1305 evidence store with AAD binding to the leaf id, 32-byte salts from the injected Rng, payload bucketing/padding (256..64KiB, 4-byte length prefix) so ciphertext length does not leak. Selective disclosure reveals one salt+payload and recomputes exactly that leaf; shredding drops salt+ciphertext (idempotent) and every other inclusion proof still verifies. Key rotation re-encrypts all records. 'Grep the log' test scans persisted bytes and finds no plaintext, no unsalted digest, no entry digest and no salt. Salts are never persisted with the log."
   - id: M4-T03

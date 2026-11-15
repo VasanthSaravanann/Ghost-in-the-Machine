@@ -44,10 +44,10 @@ tasks:
     tests_green: [T-POL-001, T-POL-002, T-POL-003, T-POL-004, T-POL-005, T-POL-006, T-POL-007, T-POL-008, T-POL-009, T-POL-010, T-POL-011, T-POL-012, T-POL-013, T-POL-014, T-POL-015, T-POL-016, T-POL-017, T-POL-018, T-POL-019, T-POL-020]
     notes: "Strict TOML parser: unknown keys, missing class/pin, invalid regex, unbounded limits, non-closed fail_mode and default_deny=false are all rejected. Pin = sha256:<64 lowercase hex>. Policy hash = sha256(JCS(parsed policy)), order-insensitive. PolicyEngine::decide does pin + strict allowlist (deny, never strip); value validators land in M1-T02. Pulled ahead of M0-T06 (DEC-005)."
   - id: M1-T02
-    status: TODO
+    status: DONE
     commit: null
-    tests_green: []
-    notes: ""
+    tests_green: [T-PAR-001, T-PAR-002, T-PAR-003, T-PAR-004, T-PAR-005, T-PAR-006, T-PAR-007, T-PAR-008, T-PAR-009, T-PAR-010, T-PAR-011, T-PAR-012, T-PAR-013, T-PAR-014, T-PAR-015, T-PAR-016, T-PAR-017, T-PAR-018, T-PAR-019, T-PAR-020, T-PAR-021, T-PAR-022, T-PAR-023, T-PAR-024, T-PAR-025, T-PAR-026, T-PAR-027, T-PAR-028, T-PAR-029, T-PAR-030]
+    notes: "Strict allowlist (deny, never strip), regex (linear, ReDoS corpus <10 ms), enum, inclusive numeric range, segment-aware path prefix with confusable/control rejection, injected PathResolver (LexicalResolver for pure tests, FsResolver canonicalises symlinks and new files through the parent), ASCII-only URL host allowlist (no userinfo, rejects IDN homographs, rejects nested redirect URLs), max_len/max_items exact boundaries, null-vs-absent and all type-confusion cases deny. PolicyEngine now REQUIRES a resolver (no insecure default); mcp-gate must inject FsResolver."
   - id: M1-T03
     status: TODO
     commit: null
@@ -183,7 +183,7 @@ issues:
   - id: ISSUE-002
     task: M0-T06
     kind: SPEC_CONFLICT
-    detail: "M0-T06 lists T-E2E-001..006 but T-E2E-003/004/005 require provenance taint paths, the policy engine, quarantine and endorsements (M1-T02/M1-T03/M2-T04/M3-T04). M0-T06 can only satisfy the shadow-mode subset (T-E2E-001/002/006) plus CLI/config. Escalated per plan.md §0.5 rather than silently re-scoping."
+    detail: "M0-T06 lists T-E2E-001..006. After DEC-005 (M1-T01/T02 done) the policy-mediated subset is real, but T-E2E-003/004/005 still need M2-T01..T04 (lattice, taint, control-flow, pivot halt) and M3-T04 (split-leaf endorsement). M0-T06 can satisfy T-E2E-001/002/006 plus CLI/config/P-LAT-1 only. Escalated per plan.md §0.5 rather than silently re-scoping."
     status: OPEN
   - id: ISSUE-001
     task: M0-T06

@@ -12,7 +12,9 @@ trusted computing base; authority is derived from data provenance
 | M0-T03 `gate-crypto` | DONE | T-CRY-001..010 (RFC 8032 KATs) |
 | M0-T04 `gate-span` | DONE | T-SPAN-001..014 |
 | M0-T05 `gate-transport` | DONE | T-TRN-001..020, fuzz `mcp_frame` |
-| M0-T06 `mcp-gate` shadow mode + G-M0 | TODO (see ISSUE-002) | T-E2E-001..006, P-LAT-1 |
+| M1-T01 `gate-policy` DSL + engine | DONE | T-POL-001..020 |
+| M1-T02 parameter validators | DONE | T-PAR-001..030 |
+| M0-T06 `mcp-gate` shadow mode + G-M0 | TODO (see ISSUE-002) | T-E2E-001/002/006, P-LAT-1 |
 
 `STATE.md` is the authoritative machine-maintained ledger (task, commit, tests,
 eval numbers, open issues, pending decisions).

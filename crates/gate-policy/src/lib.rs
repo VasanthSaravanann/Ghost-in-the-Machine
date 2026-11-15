@@ -31,6 +31,10 @@ use regex::Regex;
 use serde::Serialize;
 use serde_json::Value;
 
+pub mod validate;
+
+pub use validate::{FsResolver, LexicalResolver, ParamError, PathResolver};
+
 /// Hard limits, so a hostile policy cannot make the gate unresponsive.
 pub const MAX_TOOLS: usize = 4_096;
 pub const MAX_PARAMS_PER_TOOL: usize = 64;
@@ -108,7 +112,7 @@ pub enum DegradePolicy {
     Deny,
 }
 
-/// Parameter validator set (M1-T01 parses them; M1-T02 enforces values).
+/// Parameter validator set. Values are enforced by [\`validate\`].
 #[derive(Clone, Debug, Default, Serialize)]
 pub struct ParamRule {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -157,25 +161,6 @@ pub struct ToolPolicy {
     pub requires_endorsement_if_tainted: bool,
     pub endorsement: Endorsement,
     pub degrade_on_exporter_loss: DegradePolicy,
-}
-
-impl ToolPolicy {
-    /// Strict allowlist: an unlisted parameter is *denied*, never stripped
-    /// (plan.md M1-T02, T-PAR-001). Value validation lands in M1-T02.
-    pub fn check_params(&self, params: &serde_json::Map<String, Value>) -> Result<(), ParamError> {
-        for name in params.keys() {
-            if !self.params.contains_key(name) {
-                return Err(ParamError::NotAllowed(name.clone()));
-            }
-        }
-        Ok(())
-    }
-}
-
-#[derive(Clone, Debug, PartialEq, Eq)]
-pub enum ParamError {
-    NotAllowed(String),
-    Invalid(String),
 }
 
 #[derive(Clone, Debug, Serialize)]
@@ -724,15 +709,24 @@ impl CallRequest {
 
 /// Deterministic policy engine (plan.md §2.3). M1 adds pin/allowlist checks;
 /// M1-T02 adds value validators; M2-T04 adds the taint pivot.
-#[derive(Clone, Debug)]
+#[derive(Clone)]
 pub struct PolicyEngine {
     policy: Arc<Policy>,
+    resolver: Arc<dyn PathResolver>,
 }
 
 impl PolicyEngine {
+    /// The resolver is mandatory: deciding whether a path escapes its prefix is
+    /// a filesystem question, so there is no insecure default.
     #[must_use]
-    pub fn new(policy: Arc<Policy>) -> Self {
-        Self { policy }
+    pub fn new(policy: Arc<Policy>, resolver: Arc<dyn PathResolver>) -> Self {
+        Self { policy, resolver }
+    }
+
+    /// Pure-lexical engine, for tests and for policies without path prefixes.
+    #[must_use]
+    pub fn lexical(policy: Arc<Policy>) -> Self {
+        Self::new(policy, Arc::new(LexicalResolver))
     }
 
     #[must_use]
@@ -749,7 +743,7 @@ impl PolicyEngine {
                 request.closure.clone(),
             );
         };
-        match tool.check_params(&request.params) {
+        match tool.check_params_with(&request.params, self.resolver.as_ref()) {
             Ok(()) => Decision::allow(vec![ReasonCode::AllowPolicy], request.closure.clone()),
             Err(ParamError::NotAllowed(_)) => Decision::deny_with(
                 vec![ReasonCode::DenyParamNotAllowed],

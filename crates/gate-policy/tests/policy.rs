@@ -15,7 +15,7 @@ fn policy(text: &str) -> Policy {
 }
 
 fn engine(text: &str) -> PolicyEngine {
-    PolicyEngine::new(Arc::new(policy(text)))
+    PolicyEngine::lexical(Arc::new(policy(text)))
 }
 
 fn minimal(tool_extra: &str) -> String {

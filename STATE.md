@@ -181,6 +181,8 @@ tasks:
 
 notes_pilot: "PILOT-STATIC run committed: results/pilot.md + results/pilot.json. B0 100% ASR / 100% utility; B1 0% ASR / 62.5% utility / 37.5% FPR; B3 (pinning+allowlist, no provenance) 100% ASR; G (B3 + boundary taint) 0% ASR (ub 7.2%, n=40) / 100% utility / 0% FPR. Harness discriminates and the deny-all baseline is punished. The 0% is by construction (scenario declares taint), so this validates enforcement correctness, not real-world effectiveness. Pre-registration committed first (evals/PREREG.md); Clopper-Pearson bounds unit-tested."
 
+notes_research: "H6/H7 (added to evals/PREREG.md after the pilot, before running): cross-session laundering test in crates/gate-policy/tests/laundering.rs shows the provenance-derived closure denies a delayed privileged call with allowlisted params (DENY_TAINT_PIVOT, path names ticket #8841 line 14) while the policy-only configuration allows the identical call; restart cannot launder the label. H7 shows conservative turn-window taint denies a benign read->allowlisted-write flow and a principal-only checkpoint restores it (over-taint cost, measured as the frontier). void-bench now derives taint from a real ProvenanceStore per scenario instead of a scenario flag."
+
 issues:
   - id: ISSUE-009
     task: all (scope)

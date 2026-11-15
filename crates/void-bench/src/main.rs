@@ -90,6 +90,41 @@ fn as_request(tool: &str, args: &serde_json::Value, tainted: bool) -> CallReques
     request
 }
 
+/// Build a provenance graph for the scenario and ask the engine whether the
+/// call's influence window is tainted. Attacks get an untrusted tool-output
+/// segment; benign trials get a principal-only segment.
+fn derived_taint(scenario: &Scenario) -> bool {
+    let mut store = ProvenanceStore::new();
+    let (label, source) = if scenario.family == "BEN" {
+        (gate_core::Label::PrincipalDirect, "principal:instruction")
+    } else {
+        (
+            gate_core::Label::ExternalUntrustedData,
+            match scenario.family.as_str() {
+                "AF1" => "tool:metadata",
+                "AF2" => "tool:result",
+                "AF3" => "memory:prior-session",
+                _ => "tool:brief",
+            },
+        )
+    };
+    let segment = store
+        .insert(SegmentSpec::new(
+            label,
+            SourceRef::new(source),
+            &scenario.description,
+            vec![],
+            0,
+        ))
+        .ok();
+    match segment {
+        Some(segment) => control_flow_taint(&store, &[segment.id], None)
+            .map(|taint| taint.label < gate_core::Label::PrincipalDirect)
+            .unwrap_or(true),
+        None => true,
+    }
+}
+
 /// B3: policy only (no provenance). G: policy + boundary taint.
 struct GateTarget {
     engine: gate_policy::PolicyEngine,
@@ -109,6 +144,7 @@ impl GateTarget {
     }
 }
 use gate_policy::{FsResolver, PolicyEngine};
+use gate_provenance::{control_flow_taint, ProvenanceStore, SegmentSpec, SourceRef};
 
 impl TargetFramework for GateTarget {
     fn call(&mut self, call: &BenchCall) -> CallOutcome {
@@ -215,7 +251,9 @@ fn main() {
         let mut hits: BTreeMap<&str, (u64, u64)> = BTreeMap::new();
         let mut benign = (0u64, 0u64, 0u64); // completed, total, blocked_calls
         for scenario in &scenarios {
-            let (tool, args, tainted) = call_for(scenario);
+            let (tool, args, _attack) = call_for(scenario);
+            // Taint is DERIVED from a provenance graph, not supplied by a flag.
+            let tainted = derived_taint(scenario);
             let _ = args;
             let call = BenchCall {
                 scenario: scenario.id.clone(),

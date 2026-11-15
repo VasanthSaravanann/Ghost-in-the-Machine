@@ -49,3 +49,13 @@ No claim about real models, real attackers, human principals, or superiority ove
 prior systems is made from a pilot. Scripted `gullible` agents always attempt the
 attack, so a deterministic gate blocks designed scenarios nearly by construction:
 the pilot tests **enforcement correctness and the harness**, not real-world effect.
+
+## H6/H7 — added after the pilot (before running them)
+
+| ID | Hypothesis | Metric | Decision rule |
+|---|---|---|---|
+| H6 | Provenance-mediated taint survives **cross-session** memory + compaction, so a delayed privileged call is denied, while a policy-only configuration (no provenance) allows it | deny vs allow on the same call | Report both; a difference is the C2 result |
+| H7 | Turn-window (conservative) taint over-blocks benign tasks that read untrusted data and then perform an allowlisted write, compared with a principal-checkpointed precise path | FPR / utility, paired | Report Δ with interval; over-taint is a cost, not a win |
+
+Both use **provenance-derived** closures (no scenario-supplied taint label), so the
+result is a property of the data flow rather than of the harness.

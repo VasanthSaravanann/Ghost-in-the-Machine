@@ -1,0 +1,30 @@
+# cargo-deny configuration. See plan.md §2.0 / §2.4.
+[advisories]
+version = 2
+yanked = "deny"
+ignore = []
+
+[licenses]
+version = 2
+allow = ["Apache-2.0", "MIT", "BSD-3-Clause", "ISC", "Unicode-3.0", "Zlib", "MPL-2.0", "CC0-1.0"]
+
+[bans]
+multiple-versions = "warn"
+wildcards = "deny"
+# Native-code dependencies are forbidden in decision crates (§2.0). The
+# crate-level ban below is the belt; ci/scripts/tcb_lang_check.py is the
+# braces: it walks the *dependency tree* of every decision crate, which is
+# what the spec actually requires.
+deny = [
+  { name = "cc" },
+  { name = "bindgen" },
+  { name = "pyo3" },
+  { name = "cmake" },
+  { name = "pkg-config" },
+  { name = "openssl-sys" },
+  { name = "ring" },
+]
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"

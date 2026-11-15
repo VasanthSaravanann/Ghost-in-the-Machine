@@ -1,0 +1,33 @@
+name: ci
+on: [push, pull_request]
+
+jobs:
+  fast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with: { components: "rustfmt, clippy" }
+      - run: cargo fmt --check
+      - run: cargo clippy --all-targets --all-features -- -D warnings
+      - run: cargo test --workspace --all-features
+      - run: bash ci/scripts/r_grep.sh
+      - run: bash ci/scripts/forbid_unsafe_check.sh
+      - run: python3 ci/scripts/tcb_lang_check.py
+      - run: cargo install cargo-deny cargo-audit --locked || true
+      - run: cargo deny check
+      - run: cargo audit
+
+  integ:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo test --workspace --all-features --test '*'
+
+  adv:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo test --workspace --all-features invariant

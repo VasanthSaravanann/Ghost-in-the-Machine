@@ -1,5 +1,5 @@
 # STATE
-last_updated: 2026-11-15T15:00:00Z
+last_updated: 2026-11-15T16:30:00Z
 current_phase: M0
 
 tasks:
@@ -115,7 +115,7 @@ tasks:
     notes: ""
   - id: M3-T06
     status: DONE
-    commit: null
+    commit: e7e04a2
     tests_green: [T-DRF-001, T-DRF-002, T-DRF-003, T-DRF-004, T-DRF-005, T-DRF-006, T-DRF-007, T-DRF-008, T-DRF-009, T-DRF-010, T-DRF-011, T-DRF-012, T-DRF-013, T-DRF-014]
     notes: "Per-principal trailing windows (20): rubber-stamp rate (<2 s), regret rate (Leaf B scale >=2; un-attested never counts), bounded sycophantic-drift score monotone in the stamp rate, per-principal isolation. auto_tighten fires only on a FULL window with regret >15%: lowers the cap by one (never raises, floor 1) and requires dual principal. Dual-principal brief is built from shared material only, so P1's decision/note are structurally absent; any split denies (DUAL_PRINCIPAL_SPLIT finding). Deterministic/replayable. G-M3 still unrun (ISSUE-004)."
   - id: M4-T01

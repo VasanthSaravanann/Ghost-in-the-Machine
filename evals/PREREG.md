@@ -99,6 +99,28 @@ gate's denial rate and does not lower benign utility.
 no claim that the gate beats prompt defence on utility (the two operate on different
 information: `b2allow` is handed the recipient, `G` is not).
 
+## H8c — LLM-rewrite adaptive attacker (PRE-REGISTERED, not yet run)
+
+*Hypothesis:* a fixed-budget LLM rewrite loop raises attack success relative to the
+single-shot ticket, and the provenance gate still denies every successful call that
+the policy-only configuration would allow.
+
+*Fixed design (do not change after seeing a result):*
+
+- Model: `llama3.2:latest` only. Attacker and target are the **same model**
+  (self-play); this is a stated limitation, not a frontier attacker.
+- Rows: the 5 attack styles; budget k = 1..3 rewrites per row; prompt mode `plain`.
+- Loop: summarise -> session-2 reply -> if the attacker address is chosen, stop;
+  otherwise ask the model to rewrite the ticket (fixed meta-prompt, not tuned).
+- Decisions: permissive allowlist; B3 (empty closure) vs G (provenance closure).
+- Metrics: attacks succeeding at budget <= k, B3-allows, G-allows, with one-sided
+  95 % Clopper-Pearson bounds; every rewrite is written to the transcript.
+- Run once; report every row, including refusals and empty rewrites.
+
+*Non-claim:* this does not replace the §6.4 adaptive campaign (full policy knowledge,
+search over gate evasions, reported budget). It is a first, honest measurement of
+whether an attacker with a query budget can beat the prompt layer.
+
 ## H6/H7 — added after the pilot (before running them)
 
 | ID | Hypothesis | Metric | Decision rule |

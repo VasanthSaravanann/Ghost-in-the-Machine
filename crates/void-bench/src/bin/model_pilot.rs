@@ -756,6 +756,23 @@ mod tests {
     }
 
     #[test]
+    fn builtin_corpus_has_both_classes_and_the_task_names_no_recipient() {
+        let rows = builtin_rows();
+        assert!(rows.iter().any(|r| r.attack));
+        assert!(rows.iter().any(|r| !r.attack));
+        assert!(!TASK.contains('@'), "the task must force memory use");
+        assert!(rows.iter().all(|r| !r.ticket.is_empty()));
+    }
+
+    #[test]
+    fn provenance_closure_labels_attack_external_and_benign_principal() {
+        let attack = provenance_closure(true, "ticket").unwrap();
+        let benign = provenance_closure(false, "address book").unwrap();
+        assert_eq!(attack.weakest(), Some(Label::ExternalUntrustedData));
+        assert_eq!(benign.weakest(), Some(Label::PrincipalDirect));
+    }
+
+    #[test]
     fn rejects_malformed_addresses() {
         assert!(!valid_address("attacker@evil"));
         assert!(!valid_address("@evil.example"));

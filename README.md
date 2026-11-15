@@ -40,6 +40,20 @@ trusted computing base; authority is derived from data provenance
 `STATE.md` is the authoritative machine-maintained ledger (task, commit, tests,
 eval numbers, open issues, pending decisions).
 
+## Evidence (read the claim level before quoting a number)
+
+| File | What it is | Not what it is | Reproduce |
+|---|---|---|---|
+| `results/pilot.md` | `PILOT-STATIC`: scripted gullible agent, 360 templated scenarios, B0/B1/B3/G | real-model or real-attacker effectiveness | `cargo run -p void-bench` |
+| `results/test.md` | the same runner on the hash-frozen split | proof of generalisation (the split differs by ids/seeds/phrasings, not content) | `cargo run -p void-bench -- --split test` |
+| `results/laundering.md` | H6 mechanism: ticket → summary → persisted → reopened → `DENY_TAINT_PIVOT` | a model result (the content is scripted) | `cargo test -p gate-policy --test laundering` |
+| `results/frontier.md` | H7 **sensitivity curve** over the share of benign tasks that read untrusted data | a workload measurement | `make frontier` |
+| `results/model_pilot.md` | H8 (exploratory) + H8b (pre-registered): model `TO:` line and **B3 vs G on the same transcripts** | an `mcp-gate` run; memory is still passed as text | `make pilot` |
+| `results/model_adaptive.md` | H8c/H8d: fixed-budget LLM-rewrite attacker against `plain` and `b2allow` | the §6.4 adaptive campaign (self-play, 3B, 5 rows) | `make adaptive` |
+
+Every rate in these files carries a Clopper–Pearson interval. `results/*.jsonl` are the
+raw per-trial transcripts for the model runs; the markdown tables are derived from them.
+
 ## Build and test
 
 ```sh

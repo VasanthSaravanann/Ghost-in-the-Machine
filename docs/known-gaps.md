@@ -13,6 +13,7 @@ Generated from `STATE.md`. **This file is the honest answer to "is it safe yet?"
 | ISSUE-005 | M3-T05 | Browser CI image + `webauthn-rs` native-code policy undecided. |
 | ISSUE-006 | M4-T03, half of M4-T04 | `verify_consistency` is not shipped. The prover is byte-identical to the independent reference; the verifying fold is not yet derived correctly. **Do not trust a cosignature until this is fixed.** |
 | ISSUE-007 | M4-T03 | Witness protocol blocked on DEC-P04 and ISSUE-006. |
+| ISSUE-010 | external validity | An Adaption-generated corpus exists (120 rows) but the MCP has no row export, so it cannot be ingested. No external benchmark was run. |
 
 ## Decisions pending human sign-off (R12)
 

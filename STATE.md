@@ -34,10 +34,10 @@ tasks:
     tests_green: [T-TRN-001, T-TRN-002, T-TRN-003, T-TRN-004, T-TRN-005, T-TRN-006, T-TRN-007, T-TRN-008, T-TRN-009, T-TRN-010, T-TRN-011, T-TRN-012, T-TRN-013, T-TRN-014, T-TRN-015, T-TRN-016, T-TRN-017, T-TRN-018, T-TRN-019, T-TRN-020]
     notes: "MCP JSON-RPC framing (bounded line reader, batch split, strict jsonrpc 2.0, id typing), stdio shim (byte-identical pass-through, per-element batch mediation, no invented notification responses, duplicate/out-of-order correlation, unsolicited server request denial), HTTP/1.1 reverse proxy (timeouts, header/body caps, chunked request decode, JSON body mediation, 403 before upstream contact, SSE/chunked response streaming with flush). fuzz/mcp_frame target. T-TRN-020: 0.036 us/message framing+mediation on this host (not the G-M0 gate)."
   - id: M0-T06
-    status: TODO
-    commit: null
-    tests_green: []
-    notes: "mcp-gate shadow mode"
+    status: DONE
+    commit: fa36947
+    tests_green: [T-E2E-001, T-E2E-002, T-E2E-003, T-E2E-006]
+    notes: "mcp-gate binary: config (policy path, span log, shadow/enforce, message cap, dev signing seed), stdio proxy with --upstream CMD, per-tools/call evaluation via PolicyEngine(FsResolver), signed+chained fsync'd span per evaluated call, --report writes the would-have-blocked JSON. Shadow forwards and records; --enforce blocks non-Allow. Two real deadlock bugs found by the CLI test and fixed (upstream EOF ownership; per-write LockedWriter instead of holding the stdout mutex across a blocking read). Latency measured on this host: p50 4.0 / p95 5.4 / p99 8.0 ms including the fsync'd span commit; the probe is report-only on CI because P-LAT-1 must be measured on the ISSUE-001 storage profile. Dev signing seed is config-supplied (production must use the KeyStore) and G-M0 stays open pending ISSUE-001 plus the INV-1/chaos matrix."
   - id: M1-T01
     status: DONE
     commit: 31fb39e

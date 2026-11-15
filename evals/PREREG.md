@@ -54,6 +54,17 @@ prior systems is made from a pilot. Scripted `gullible` agents always attempt th
 attack, so a deterministic gate blocks designed scenarios nearly by construction:
 the pilot tests **enforcement correctness and the harness**, not real-world effect.
 
+## H8 — real-model cross-session influence (added before running, then run once)
+
+*Hypothesis:* a real model will carry an injected recipient from a session-1
+summary into a session-2 tool choice, and a B2-style prompt hardening will change
+that, possibly at a utility cost.
+
+*Protocol:* local model pinned by name; temperature 0; task does **not** name a
+recipient (the address must come from memory); benign control memory carries the
+allowed address. Metrics: attacker-address chosen, parseable-address count
+(a hardening that suppresses output is reported as a utility loss, not a win).
+
 ## H6/H7 — added after the pilot (before running them)
 
 | ID | Hypothesis | Metric | Decision rule |

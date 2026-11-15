@@ -441,10 +441,21 @@ impl TaintPath {
         sources: &[SegmentId],
         blocked_call: impl Into<String>,
     ) -> Option<Self> {
-        let root = sources
+        // Explain from the *root* of the influence chain (the least-trusted
+        // ancestor with the shortest ancestry), not from the last hop.
+        let mut candidates: Vec<Segment> = sources
             .iter()
-            .filter_map(|id| store.segment(id))
-            .min_by_key(|segment| (segment.label, segment.id.clone()))?;
+            .flat_map(|id| store.ancestry(id))
+            .filter_map(|id| store.segment(&id).cloned())
+            .collect();
+        candidates.sort_by(|a, b| {
+            (a.label, store.ancestry(&a.id).len(), a.id.clone()).cmp(&(
+                b.label,
+                store.ancestry(&b.id).len(),
+                b.id.clone(),
+            ))
+        });
+        let root = candidates.into_iter().next()?;
         let hops = store
             .ancestry(&root.id)
             .into_iter()
@@ -456,7 +467,7 @@ impl TaintPath {
             })
             .collect();
         Some(Self {
-            source: root.source.clone(),
+            source: root.source,
             source_label: root.label,
             hops,
             blocked_call: blocked_call.into(),
@@ -464,6 +475,8 @@ impl TaintPath {
     }
 
     /// Rendered explanation for `mcp-audit explain` / the endorsement brief.
+    /// Bounded to [`MAX_RENDER_CHARS`] characters; omitted hops are counted,
+    /// never silently dropped.
     #[must_use]
     pub fn render(&self) -> String {
         let mut text = format!(
@@ -472,21 +485,33 @@ impl TaintPath {
             self.source,
             self.source_label.as_str()
         );
-        for hop in self.hops.iter().take(MAX_RENDER_HOPS) {
-            text.push_str(&format!(
+        let mut shown = 0usize;
+        for hop in self.hops.iter() {
+            let piece = format!(
                 " <- {} (turn {}, {})",
                 hop.segment,
                 hop.turn,
                 hop.label.as_str()
-            ));
+            );
+            if shown >= MAX_RENDER_HOPS
+                || text.chars().count() + piece.chars().count() + 24 > MAX_RENDER_CHARS
+            {
+                break;
+            }
+            text.push_str(&piece);
+            shown += 1;
         }
-        if self.hops.len() > MAX_RENDER_HOPS {
-            text.push_str(&format!(
-                "{TRUNCATION_MARKER} ({} more hops)",
-                self.hops.len() - MAX_RENDER_HOPS
-            ));
+        let omitted = self.hops.len().saturating_sub(shown);
+        if omitted > 0 {
+            let note = format!("{TRUNCATION_MARKER} ({omitted} more hops)");
+            while text.chars().count() + note.chars().count() > MAX_RENDER_CHARS {
+                if text.pop().is_none() {
+                    break;
+                }
+            }
+            text.push_str(&note);
         }
-        truncate_chars(&text, MAX_RENDER_CHARS)
+        text
     }
 
     /// Stable digest for the ledger (Leaf A `taint_path_digest`).
@@ -510,16 +535,4 @@ impl TaintPath {
         }
         sha256_hex(material.as_bytes())
     }
-}
-
-fn truncate_chars(text: &str, max: usize) -> String {
-    if text.chars().count() <= max {
-        return text.to_owned();
-    }
-    let mut out: String = text
-        .chars()
-        .take(max.saturating_sub(TRUNCATION_MARKER.chars().count()))
-        .collect();
-    out.push_str(TRUNCATION_MARKER);
-    out
 }

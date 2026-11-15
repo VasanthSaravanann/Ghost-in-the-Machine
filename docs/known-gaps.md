@@ -33,11 +33,30 @@ Generated from `STATE.md`. **This file is the honest answer to "is it safe yet?"
 
 ## What the tests do *not* establish
 
-* **No eval gate has run.** ASR, utility, `E_bar`, FPR, regret and NRP numbers have never been produced against `mcp-gate`; the corpus (360 scenarios) is templated per subfamily, not curated attack prose.
-* **No adversarial/chaos matrix run** (ADV-INV1..12) — several depend on M0-T06/M3-T05/M4-T03.
-* **No formal verification**: Kani harnesses are not written; no proof has been discharged.
-* **No fuzzing campaign**: three targets exist (`jcs_parse`, `mcp_frame`, `policy_toml`); cumulative runtime is minutes, not 72 h.
+* **No eval gate has run against `mcp-gate`.** ASR, utility, `E_bar`, FPR, regret and NRP
+  numbers have never been produced by the wired binary; the corpus (360 scenarios) is
+  templated per subfamily, not curated attack prose.
+* **The real-model loop is not an `mcp-gate` run.** `model_pilot` measures the model's
+  `TO:` line and then asks the policy engine about that call, on the same transcript.
+  Memory is still passed as text, and the attack/benign provenance label is assigned by
+  the harness from the row kind; it is not derived from an instrumented tool call.
+* **The external corpus is model-generated.** `evals/external/adaption-mp-v1.jsonl`
+  (when present) comes from Adaption's dataset generator, not AgentDojo/MCPTox. It is
+  independent of the B2 text but still synthetic.
+* **The adaptive attacker is self-play.** One 3B model writes the rewrites, budget 3,
+  5 rows; it does not see the policy, the brief template or the layout model, and does
+  not search over gate evasions (§6.4 is still unrun).
+* **H8 (2026-11) is exploratory.** Its pre-registration was committed with its result
+  and a prior 0/6 protocol was discarded. Only H8b/H8c/H8d are pre-registered before
+  their runs.
+* **No adversarial/chaos matrix run** (ADV-INV1..12) — several depend on
+  M0-T06/M3-T05/M4-T03.
+* **No formal verification**: Kani harnesses are not written; no proof has been
+  discharged.
+* **No fuzzing campaign**: three targets exist (`jcs_parse`, `mcp_frame`, `policy_toml`);
+  cumulative runtime is minutes, not 72 h.
 * **No reproducible build, SBOM or signed release.**
 * **No external pentest.**
 * **No legal/DPIA review** of crypto-shredding as an erasure mechanism.
-* **Latency**: only framing-level numbers (≈0.04 µs/message) exist; end-to-end p50/p95/p99 are unmeasured.
+* **Latency**: only framing-level numbers (≈0.04 µs/message) exist; end-to-end
+  p50/p95/p99 are unmeasured.

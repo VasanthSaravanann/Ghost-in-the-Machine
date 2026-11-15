@@ -1,16 +1,32 @@
-H7 — over-taint cost on benign flows that read untrusted content
-(PILOT-STATIC; no model calls; n = 100 benign scenarios)
+# H7 — over-taint cost curve
 
-| policy | benign writes denied | interpretation |
+Evidence: `cargo run -p void-bench --bin frontier` (no model calls).
+This is a **sensitivity analysis**, not a workload measurement.
+
+| assumed share of benign tasks that read untrusted data | benign writes denied (CONSERVATIVE) | denied (PRECISE checkpoint) |
 |---|---|---|
-| CONSERVATIVE (turn-window taint) | 100/100 = 100.0% (95% ub 100.0%) | safety-first; utility cost |
-| PRECISE (principal checkpoint) | 0/100 = 0.0% (95% ub 3.0%) | recovers utility |
+| 0% (0 of 200) | 0/0 | 0/0 |
+| 10% (20 of 200) | 20/20 = 100.0% | 0/20 = 0.0% |
+| 25% (50 of 200) | 50/50 = 100.0% | 0/50 = 0.0% |
+| 50% (100 of 200) | 100/100 = 100.0% | 0/100 = 0.0% |
+| 75% (150 of 200) | 150/150 = 100.0% | 0/150 = 0.0% |
+| 100% (200 of 200) | 200/200 = 100.0% | 0/200 = 0.0% |
 
-Utility recovered by the checkpoint: 100/100 flows (100.0%).
-Of ALL 200 benign scenarios, the conservative rule would deny 50.0% (100/200).
+## What changed from the previous version
 
-Caveats: (a) the read is synthetic — no real model or document;
-(b) the PRECISE branch is the mechanism by definition, so 0% denial is a
-    consistency check, not a discovery. The measured quantity is the
-    CONSERVATIVE cost, which depends on how often benign tasks touch
-    untrusted data — workload-dependent, hence the denominator is printed.
+The earlier file reported "50% of ALL benign flows would be denied" as if it were
+measured. It was not: `frontier.rs` hardcoded four of eight benign subfamilies as
+"touches untrusted content" (4 × 25 = 100 of 200) and then inserted a synthetic
+untrusted read into every selected scenario. The 50% was the classification, and the
+100% denial was the pivot rule applied to a label the harness had just inserted.
+
+The curve above reports the same mechanism honestly: the cost is **linear in the
+fraction of benign tasks that read untrusted data**, and that fraction is the input
+this corpus cannot supply. The PRECISE branch is the mechanism by definition, so its
+0% is a consistency check, not a discovery.
+
+## What would turn this into a measurement
+
+A workload trace: real benign tasks with tool sequences, with the read/write pattern
+observed rather than assumed. Until then the honest statement is "cost = f(read
+fraction), with f measured here as the identity on this mechanism".

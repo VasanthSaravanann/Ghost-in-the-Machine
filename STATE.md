@@ -5,7 +5,7 @@ current_phase: M0
 tasks:
   - id: M0-T00
     status: DONE
-    commit: null
+    commit: e386724
     tests_green: [T-REPO-001, T-REPO-002, T-REPO-003, T-REPO-004, T-REPO-005, T-REPO-006]
     notes: "workspace (18 crates per §2.1), lints (R7), deny.toml, CI T1-T3 + nightly stubs, r-grep, tcb-lang-check, dep-rule + unwrap self-tests; FakeClock/SeededRng/VectorTool stub"
   - id: M0-T01

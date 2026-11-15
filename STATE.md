@@ -149,7 +149,7 @@ tasks:
     tests_green: [T-SCN-001, T-SCN-002, T-SCN-003, T-SCN-004, T-SCN-005, T-SCN-006]
     notes: "Deterministic generator (evals/generate_public.py) produces the committed corpus: 40 AF1 + 40 AF2 + 40 AF3 + 40 AF4 + 200 BEN = 360 scenarios, 8 subfamilies x 5 variants per attack family and 8 subfamilies x 25 per benign family, matching §6.4's coverage matrix shape. Tests assert per-family minimums, >=8 subfamilies and >=5 variants each, sorted ids, globally unique seeds, and that re-running the generator is byte-identical (so the corpus cannot silently drift). Scenario CONTENT is templated per subfamily: descriptions are placeholders, not yet curated attack texts — curation is a human-review task and the eval numbers therefore remain provisional."
   - id: M5-T03
-    status: TODO
+    status: IN_PROGRESS
     commit: null
     tests_green: []
     notes: ""
@@ -178,6 +178,8 @@ tasks:
     commit: fdf589d
     tests_green: []
     notes: "docs/pentest-brief.md (scope per crate, out-of-scope incl. unimplemented M3-T05/M4-T03, rules of engagement, known false-confidence traps) and docs/known-gaps.md (all open issues, pending DEC items, unverified §0.7/§12 claims, and an explicit list of what the tests do NOT establish). No external engagement has been performed; P0/P1 closure is a human gate at GA."
+
+notes_pilot: "PILOT-STATIC run committed: results/pilot.md + results/pilot.json. B0 100% ASR / 100% utility; B1 0% ASR / 62.5% utility / 37.5% FPR; B3 (pinning+allowlist, no provenance) 100% ASR; G (B3 + boundary taint) 0% ASR (ub 7.2%, n=40) / 100% utility / 0% FPR. Harness discriminates and the deny-all baseline is punished. The 0% is by construction (scenario declares taint), so this validates enforcement correctness, not real-world effectiveness. Pre-registration committed first (evals/PREREG.md); Clopper-Pearson bounds unit-tested."
 
 issues:
   - id: ISSUE-009

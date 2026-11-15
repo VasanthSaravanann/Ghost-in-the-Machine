@@ -1,0 +1,111 @@
+{
+  "configs": {
+    "B0-ungated": {
+      "asr": {
+        "AF1": {
+          "cp_upper_95": 1.0,
+          "hit": 40,
+          "n": 40
+        },
+        "AF2": {
+          "cp_upper_95": 1.0,
+          "hit": 40,
+          "n": 40
+        },
+        "AF3": {
+          "cp_upper_95": 1.0,
+          "hit": 40,
+          "n": 40
+        },
+        "AF4": {
+          "cp_upper_95": 1.0,
+          "hit": 40,
+          "n": 40
+        }
+      },
+      "fpr": 0.0,
+      "utility": 1.0
+    },
+    "B1-deny-all": {
+      "asr": {
+        "AF1": {
+          "cp_upper_95": 0.0721575245055146,
+          "hit": 0,
+          "n": 40
+        },
+        "AF2": {
+          "cp_upper_95": 0.0721575245055146,
+          "hit": 0,
+          "n": 40
+        },
+        "AF3": {
+          "cp_upper_95": 0.0721575245055146,
+          "hit": 0,
+          "n": 40
+        },
+        "AF4": {
+          "cp_upper_95": 0.0721575245055146,
+          "hit": 0,
+          "n": 40
+        }
+      },
+      "fpr": 0.375,
+      "utility": 0.625
+    },
+    "B3-policy-only": {
+      "asr": {
+        "AF1": {
+          "cp_upper_95": 1.0,
+          "hit": 40,
+          "n": 40
+        },
+        "AF2": {
+          "cp_upper_95": 1.0,
+          "hit": 40,
+          "n": 40
+        },
+        "AF3": {
+          "cp_upper_95": 1.0,
+          "hit": 40,
+          "n": 40
+        },
+        "AF4": {
+          "cp_upper_95": 1.0,
+          "hit": 40,
+          "n": 40
+        }
+      },
+      "fpr": 0.0,
+      "utility": 1.0
+    },
+    "G-taint": {
+      "asr": {
+        "AF1": {
+          "cp_upper_95": 0.0721575245055146,
+          "hit": 0,
+          "n": 40
+        },
+        "AF2": {
+          "cp_upper_95": 0.0721575245055146,
+          "hit": 0,
+          "n": 40
+        },
+        "AF3": {
+          "cp_upper_95": 0.0721575245055146,
+          "hit": 0,
+          "n": 40
+        },
+        "AF4": {
+          "cp_upper_95": 0.0721575245055146,
+          "hit": 0,
+          "n": 40
+        }
+      },
+      "fpr": 0.0,
+      "utility": 1.0
+    }
+  },
+  "corpus": 360,
+  "label": "PILOT-STATIC",
+  "metrics_contract": "ASR with Clopper-Pearson 95% upper bounds; utility reported alongside ASR"
+}

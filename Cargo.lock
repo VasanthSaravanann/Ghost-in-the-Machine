@@ -1350,6 +1350,8 @@ dependencies = [
  "gate-core",
  "gate-crypto",
  "gate-jcs",
+ "gate-policy",
+ "gate-provenance",
  "gate-testkit",
  "serde",
  "serde_json",

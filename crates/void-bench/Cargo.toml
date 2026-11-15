@@ -1,6 +1,6 @@
 [package]
 name = "void-bench"
-description = "Hermetic deterministic scenario runner and signed manifest (plan.md M5-T01)"
+description = "Hermetic deterministic scenario runner, signed manifest, pilot driver (plan.md M5-T01)"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -14,6 +14,8 @@ workspace = true
 gate-core.workspace = true
 gate-crypto.workspace = true
 gate-jcs.workspace = true
+gate-policy.workspace = true
+gate-provenance.workspace = true
 serde.workspace = true
 serde_json.workspace = true
 

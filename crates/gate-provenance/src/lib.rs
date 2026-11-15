@@ -25,6 +25,7 @@ use gate_core::{Label, SegmentId};
 use gate_crypto::sha256_hex;
 use serde::{Deserialize, Serialize};
 
+pub mod declass;
 pub mod persist;
 
 /// Where a segment came from. `locator` is what an explanation can point at

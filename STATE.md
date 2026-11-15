@@ -180,6 +180,11 @@ tasks:
     notes: ""
 
 issues:
+  - id: ISSUE-004
+    task: M1-T01..M3-T03
+    kind: NEEDS_HUMAN
+    detail: "These tasks are marked DONE against their test lists, but their PHASE eval gates (G-M1 AF1<=5%, G-M2 AF3<=10%, G-M3 AF4<=10%) have never run: void-bench is a stub and there is no evals/ suite (public or held-out). Per R9 a task is not DONE until its acceptance list is green in CI, so progress here is 'tests green, gate unrun'. Resolving requires void-bench (M5-T01) + scenario authoring (M5-T02), which should now be treated as the critical path."
+    status: OPEN
   - id: ISSUE-003
     task: M3-T03
     kind: NEEDS_HUMAN

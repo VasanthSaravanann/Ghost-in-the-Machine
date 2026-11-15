@@ -49,10 +49,10 @@ tasks:
     tests_green: [T-PAR-001, T-PAR-002, T-PAR-003, T-PAR-004, T-PAR-005, T-PAR-006, T-PAR-007, T-PAR-008, T-PAR-009, T-PAR-010, T-PAR-011, T-PAR-012, T-PAR-013, T-PAR-014, T-PAR-015, T-PAR-016, T-PAR-017, T-PAR-018, T-PAR-019, T-PAR-020, T-PAR-021, T-PAR-022, T-PAR-023, T-PAR-024, T-PAR-025, T-PAR-026, T-PAR-027, T-PAR-028, T-PAR-029, T-PAR-030]
     notes: "Strict allowlist (deny, never strip), regex (linear, ReDoS corpus <10 ms), enum, inclusive numeric range, segment-aware path prefix with confusable/control rejection, injected PathResolver (LexicalResolver for pure tests, FsResolver canonicalises symlinks and new files through the parent), ASCII-only URL host allowlist (no userinfo, rejects IDN homographs, rejects nested redirect URLs), max_len/max_items exact boundaries, null-vs-absent and all type-confusion cases deny. PolicyEngine now REQUIRES a resolver (no insecure default); mcp-gate must inject FsResolver."
   - id: M1-T03
-    status: TODO
+    status: DONE
     commit: null
-    tests_green: []
-    notes: ""
+    tests_green: [T-SCH-001, T-SCH-002, T-SCH-003, T-SCH-004, T-SCH-005, T-SCH-006, T-SCH-007, T-SCH-008, T-SCH-009, T-SCH-010, T-SCH-011, T-SCH-012, T-SCH-013, T-SCH-014, T-SCH-015, T-SCH-016, T-SCH-017, T-SCH-018]
+    notes: "pin = H(JCS(descriptor)) over server+name+description+inputSchema+annotations+version; key-order churn keeps the pin, a single-byte or unicode-confusable edit changes it. Drift quarantines the tool (never auto-adopts); tools/list_changed cannot widen; quarantine is STICKY (checked before pin equality) so reverting to the pinned bytes reports QuarantineHeld, not Unchanged. Un-quarantine requires an out-of-band principal entry with its own audit event; an empty principal is rejected. invoke_allowed denies unknown/quarantined/policy-pin-mismatch with DENY_UNPINNED or DENY_DRIFT. Cross-server name collisions are namespaced as server:tool (full isolation/metadata handling is M1-T04)."
   - id: M1-T04
     status: TODO
     commit: null

@@ -1,5 +1,6 @@
 [package]
 name = "gate-schema"
+description = "Descriptor pinning, drift detection and quarantine (plan.md M1-T03)"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -10,3 +11,11 @@ publish.workspace = true
 workspace = true
 
 [dependencies]
+gate-core.workspace = true
+gate-crypto.workspace = true
+gate-jcs.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+[dev-dependencies]
+proptest.workspace = true

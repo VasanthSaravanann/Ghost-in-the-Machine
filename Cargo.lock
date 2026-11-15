@@ -536,6 +536,14 @@ dependencies = [
 [[package]]
 name = "gate-schema"
 version = "0.1.0"
+dependencies = [
+ "gate-core",
+ "gate-crypto",
+ "gate-jcs",
+ "proptest",
+ "serde",
+ "serde_json",
+]
 
 [[package]]
 name = "gate-span"

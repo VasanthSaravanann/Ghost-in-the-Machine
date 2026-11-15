@@ -94,10 +94,10 @@ tasks:
     tests_green: [T-BUD-001, T-BUD-002, T-BUD-003, T-BUD-004, T-BUD-005, T-BUD-006, T-BUD-007, T-BUD-008, T-BUD-009, T-BUD-010, T-BUD-011]
     notes: "Per-episode, per-class E_max (default 5); hard cap, no in-band raise (request_band_raise logs InBandRaiseIgnored); out-of-band principal only via PrincipalGate, distinct CapChanged ledger event, Reset bounds used to the new cap; >=20s inter-prompt, DEC-P03 queue (renders only when due, budget consumed at render, overflow -> QueueFull + spam); similar-request cooldown clamps used. used<=cap holds after EVERY call (incl. render_due); seeded property test 1000 cases. LeafSink integration is M3-T04."
   - id: M3-T02
-    status: TODO
-    commit: null
-    tests_green: []
-    notes: ""
+    status: DONE
+    commit: e0012ae
+    tests_green: [T-BRF-001, T-BRF-002, T-BRF-003, T-BRF-004, T-BRF-005, T-BRF-006, T-BRF-007, T-BRF-008, T-BRF-009, T-BRF-010, T-BRF-011]
+    notes: "Third-person briefs on deterministic (class, reversibility) templates; denial-list framing filter catches the >=150-string persuasion corpus; taint diff <=3 spans x <=280 chars with explicit marker; resolved effect concrete (destination, count, blast radius, no ellipses); agent justification quarantined (labelled UNTRUSTED — AUTHORED BY THE AGENT) and counted into w_sup; counter-considerations from the template set only; budget line k of E. Weights w_sup/w_cnt/w_neu computed; sup_share() defined (validated at M3-T03)."
   - id: M3-T03
     status: TODO
     commit: null

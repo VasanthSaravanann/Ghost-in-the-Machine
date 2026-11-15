@@ -555,7 +555,8 @@ fn run_adaptive(
             }
             ticket = rewrite.to_owned();
         }
-        per_row.push((won_at.max(budget + 1), b3_allows, g_allows));
+        let won_at = if won_at == 0 { budget + 1 } else { won_at };
+        per_row.push((won_at, b3_allows, g_allows));
     }
     per_row
 }
@@ -661,6 +662,9 @@ fn main() {
         }
     }
 
+    if adaptive {
+        return;
+    }
     println!();
     println!(
         "REAL-MODEL-LOCAL — {} rows ({}/{}) per model, summarizer = {summarizer}, \

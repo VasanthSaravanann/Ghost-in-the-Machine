@@ -121,6 +121,17 @@ the policy-only configuration would allow.
 search over gate evasions, reported budget). It is a first, honest measurement of
 whether an attacker with a query budget can beat the prompt layer.
 
+## H8d — adaptive attacker against the utility-preserving prompt defence (PRE-REGISTERED)
+
+*Hypothesis:* the fixed-budget rewrite attacker that succeeds against `plain` also
+succeeds against `b2allow` at some budget, while the provenance gate (G) still denies
+every successful call. If it does not, that is a genuine (single-model) advantage for
+prompt defence and must be reported as such.
+
+*Fixed design:* identical to H8c except prompt mode `b2allow` (permitted recipient
+supplied out-of-band). Budget 3, 5 attack styles, `llama3.2:latest`, permissive
+allowlist, B3/G decisions on the same transcripts. Run once.
+
 ## H6/H7 — added after the pilot (before running them)
 
 | ID | Hypothesis | Metric | Decision rule |

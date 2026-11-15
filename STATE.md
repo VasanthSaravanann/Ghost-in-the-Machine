@@ -1,5 +1,5 @@
 # STATE
-last_updated: 2026-11-15T06:00:00Z
+last_updated: 2026-11-15T09:00:00Z
 current_phase: M0
 
 tasks:
@@ -75,7 +75,7 @@ tasks:
     notes: "Control-flow taint: untrusted segment in the preceding window taints the call unless screened by a principal-only checkpoint. TaintPath explains from the least-trusted root (ticket #8841, line 14), bounded to 3 hops / 280 chars with an explicit omitted-hop count, stable sha256 digest."
   - id: M2-T04
     status: DONE
-    commit: null
+    commit: b701b6c
     tests_green: [T-PIV-001, T-PIV-002, T-PIV-003, T-PIV-004, T-PIV-005, T-PIV-006, T-PIV-007, T-PIV-008, T-PIV-009, T-PIV-010, T-PIV-011, T-PIV-012, T-PIV-013, T-PIV-014]
     notes: "PolicyEngine::decide now halts tainted privileged calls: PivotMode::Deny (default, pre-M3) returns DENY_TAINT_PIVOT, PivotMode::Escalate returns ESCALATE_ENDORSEMENT_REQUIRED. READ_ONLY exempt; STATUS: IRREVERSIBLE clean allowed; PRIVILEGE_GRANTING untrusted escalates and blanket_allow is unrepresentable. CallRequest::with_taint merges the path hops into the AuthClosure. Model text never enters the decision (T-PIV-011). M3-T01 flips the default to Escalate and enforces E_max."
   - id: M2-T05

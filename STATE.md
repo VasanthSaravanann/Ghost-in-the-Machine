@@ -169,15 +169,15 @@ tasks:
     tests_green: []
     notes: ""
   - id: M6-T04
-    status: TODO
+    status: DONE
     commit: null
-    tests_green: []
-    notes: ""
+    tests_green: [T-CRY-001, T-CRY-004, T-CRY-010]
+    notes: "`--features fips` on gate-crypto disables Ed25519 at three points (SuiteId::parse, Ed25519Signer::sign, Ed25519Verifier::verify) returning GateError::Unsupported rather than silently falling back; ECDSA-P256 + SHA-256 continue to work end-to-end. The Ed25519 known-answer suite is cfg'd out under FIPS by design (tests/fips.rs covers the FIPS surface); CI runs both profiles."
   - id: M6-T05
-    status: TODO
+    status: DONE
     commit: null
     tests_green: []
-    notes: ""
+    notes: "docs/pentest-brief.md (scope per crate, out-of-scope incl. unimplemented M3-T05/M4-T03, rules of engagement, known false-confidence traps) and docs/known-gaps.md (all open issues, pending DEC items, unverified §0.7/§12 claims, and an explicit list of what the tests do NOT establish). No external engagement has been performed; P0/P1 closure is a human gate at GA."
 
 issues:
   - id: ISSUE-006

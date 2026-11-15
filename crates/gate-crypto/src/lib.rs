@@ -47,10 +47,18 @@ impl SuiteId {
         }
     }
 
-    /// Unknown suites are rejected, never defaulted (T-CRY-005).
+    /// Unknown suites are rejected, never defaulted (T-CRY-005). Under the FIPS
+    /// profile Ed25519 is refused outright (M6-T04).
     pub fn parse(s: &str) -> Result<Self, GateError> {
         match s {
-            "ed25519" => Ok(Self::Ed25519),
+            "ed25519" => {
+                if cfg!(feature = "fips") {
+                    return Err(GateError::Unsupported(
+                        "ed25519 disabled in FIPS profile".into(),
+                    ));
+                }
+                Ok(Self::Ed25519)
+            }
             "p256-sha256" | "ecdsa-p256-sha256" => Ok(Self::P256Sha256),
             other => Err(GateError::Unsupported(format!("crypto suite {other:?}"))),
         }
@@ -181,6 +189,12 @@ impl Signer for Ed25519Signer {
     }
 
     fn sign(&self, message: &[u8]) -> Result<Signature, GateError> {
+        if cfg!(feature = "fips") {
+            // Never silently fall back: the FIPS profile has no Ed25519.
+            return Err(GateError::Unsupported(
+                "ed25519 disabled in FIPS profile".into(),
+            ));
+        }
         let sig = ed25519_dalek::Signer::sign(&self.key, message);
         Ok(Signature {
             suite: SuiteId::Ed25519,
@@ -216,6 +230,11 @@ impl Verifier for Ed25519Verifier {
     }
 
     fn verify(&self, message: &[u8], signature: &Signature) -> Result<(), GateError> {
+        if cfg!(feature = "fips") {
+            return Err(GateError::Unsupported(
+                "ed25519 disabled in FIPS profile".into(),
+            ));
+        }
         if signature.suite != SuiteId::Ed25519 || signature.key_id != self.key_id {
             return Err(GateError::VerificationFailed);
         }

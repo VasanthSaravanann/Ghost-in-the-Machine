@@ -10,6 +10,10 @@ publish.workspace = true
 [lints]
 workspace = true
 
+[features]
+# FIPS profile (M6-T04): Ed25519 is disabled, ECDSA-P256 + SHA-256 only.
+fips = []
+
 [dependencies]
 gate-core.workspace = true
 serde.workspace = true

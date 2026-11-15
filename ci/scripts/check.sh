@@ -5,6 +5,7 @@ cd "$(dirname "$0")/../.."
 cargo fmt --check
 cargo clippy --all-targets --all-features -- -D warnings
 cargo test --workspace --all-features
+cargo test -p gate-crypto --features fips
 bash ci/scripts/r_grep.sh
 bash ci/scripts/forbid_unsafe_check.sh
 python3 ci/scripts/tcb_lang_check.py

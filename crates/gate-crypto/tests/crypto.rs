@@ -1,4 +1,8 @@
 //! T-CRY-001..010 (plan.md §5.3).
+//!
+//! The Ed25519 known-answer suite is not applicable under the FIPS profile
+//! (Ed25519 is disabled there); `tests/fips.rs` covers the FIPS surface.
+#![cfg(not(feature = "fips"))]
 #![allow(clippy::unwrap_used, clippy::expect_used, clippy::panic)]
 
 use gate_core::GateError;

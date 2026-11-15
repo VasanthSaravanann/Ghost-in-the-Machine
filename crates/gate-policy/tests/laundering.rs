@@ -7,7 +7,7 @@
 
 use std::sync::Arc;
 
-use gate_core::{AuthClosure, Class, Label, PrincipalId, ReasonCode, SegmentId, Verdict};
+use gate_core::{AuthClosure, Label, PrincipalId, ReasonCode, SegmentId, Verdict};
 use gate_policy::{CallRequest, PivotMode, Policy, PolicyEngine};
 use gate_provenance::persist::{summarise, PersistentStore};
 use gate_provenance::{control_flow_taint, PrincipalCheckpoint, SegmentSpec, SourceRef};
@@ -159,13 +159,13 @@ fn h7_principal_checkpoint_recovers_utility_without_losing_security() {
         ))
         .unwrap();
 
-    let conservative = control_flow_taint(&store, &[doc.id.clone()], None).unwrap();
+    let conservative = control_flow_taint(&store, std::slice::from_ref(&doc.id), None).unwrap();
     let closure: AuthClosure = [(doc.id.clone(), conservative.label)].into_iter().collect();
     assert_eq!(engine().decide(&call(closure)).verdict(), Verdict::Deny);
 
     let checkpoint = PrincipalCheckpoint::new(PrincipalId::from("prn_alice"), [doc.id.clone()]);
     assert!(
-        control_flow_taint(&store, &[doc.id.clone()], Some(&checkpoint)).is_none(),
+        control_flow_taint(&store, std::slice::from_ref(&doc.id), Some(&checkpoint)).is_none(),
         "a principal checkpoint screens the benign read"
     );
     let screened = engine().decide(&call(AuthClosure::new()));

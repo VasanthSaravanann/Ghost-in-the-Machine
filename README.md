@@ -11,8 +11,8 @@ trusted computing base; authority is derived from data provenance
 | M0-T02 `gate-jcs` (RFC 8785) | DONE | T-JCS-001..020, T-JCS-V (100k differential) |
 | M0-T03 `gate-crypto` | DONE | T-CRY-001..010 (RFC 8032 KATs) |
 | M0-T04 `gate-span` | DONE | T-SPAN-001..014 |
-| M0-T05 `gate-transport` | TODO (next) | T-TRN-001..020, fuzz `mcp_frame` |
-| M0-T06 `mcp-gate` shadow mode + G-M0 | TODO | T-E2E-001..006, P-LAT-1 |
+| M0-T05 `gate-transport` | DONE | T-TRN-001..020, fuzz `mcp_frame` |
+| M0-T06 `mcp-gate` shadow mode + G-M0 | TODO (see ISSUE-002) | T-E2E-001..006, P-LAT-1 |
 
 `STATE.md` is the authoritative machine-maintained ledger (task, commit, tests,
 eval numbers, open issues, pending decisions).
@@ -30,6 +30,7 @@ Fuzzing (`cargo-fuzz`, nightly, separate workspace):
 
 ```sh
 cargo +nightly fuzz run jcs_parse -- -max_total_time=600
+cargo +nightly fuzz run mcp_frame -- -max_total_time=600
 ```
 
 ## Layout

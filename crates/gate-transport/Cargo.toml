@@ -1,5 +1,6 @@
 [package]
 name = "gate-transport"
+description = "MCP JSON-RPC framing, stdio shim, HTTP/SSE proxy (plan.md M0-T05)"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -10,3 +11,10 @@ publish.workspace = true
 workspace = true
 
 [dependencies]
+gate-core.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+gate-testkit.workspace = true
+serde_json.workspace = true

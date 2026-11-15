@@ -14,10 +14,18 @@ cargo-fuzz = true
 [dependencies]
 libfuzzer-sys = "0.4"
 gate-jcs = { path = "../crates/gate-jcs" }
+gate-transport = { path = "../crates/gate-transport" }
 
 [[bin]]
 name = "jcs_parse"
 path = "fuzz_targets/jcs_parse.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "mcp_frame"
+path = "fuzz_targets/mcp_frame.rs"
 test = false
 doc = false
 bench = false

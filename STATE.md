@@ -29,10 +29,10 @@ tasks:
     tests_green: [T-SPAN-001, T-SPAN-002, T-SPAN-003, T-SPAN-004, T-SPAN-005, T-SPAN-006, T-SPAN-007, T-SPAN-008, T-SPAN-009, T-SPAN-010, T-SPAN-011, T-SPAN-012, T-SPAN-013, T-SPAN-014]
     notes: "JCS-signed spans over Ed25519, per-episode hash chain, length-prefixed fsync'd segment log, append_batch (group commit) behind DEC-P01, injectable Fsync proves effect is withheld until durable, exporter-loss maps through failclosed, OTel-GenAI/MCP attribute schema. Storage profile for P-LAT-1: local APFS SSD, not yet measured."
   - id: M0-T05
-    status: TODO
+    status: DONE
     commit: null
-    tests_green: []
-    notes: "gate-transport"
+    tests_green: [T-TRN-001, T-TRN-002, T-TRN-003, T-TRN-004, T-TRN-005, T-TRN-006, T-TRN-007, T-TRN-008, T-TRN-009, T-TRN-010, T-TRN-011, T-TRN-012, T-TRN-013, T-TRN-014, T-TRN-015, T-TRN-016, T-TRN-017, T-TRN-018, T-TRN-019, T-TRN-020]
+    notes: "MCP JSON-RPC framing (bounded line reader, batch split, strict jsonrpc 2.0, id typing), stdio shim (byte-identical pass-through, per-element batch mediation, no invented notification responses, duplicate/out-of-order correlation, unsolicited server request denial), HTTP/1.1 reverse proxy (timeouts, header/body caps, chunked request decode, JSON body mediation, 403 before upstream contact, SSE/chunked response streaming with flush). fuzz/mcp_frame target. T-TRN-020: 0.036 us/message framing+mediation on this host (not the G-M0 gate)."
   - id: M0-T06
     status: TODO
     commit: null
@@ -180,6 +180,11 @@ tasks:
     notes: ""
 
 issues:
+  - id: ISSUE-002
+    task: M0-T06
+    kind: SPEC_CONFLICT
+    detail: "M0-T06 lists T-E2E-001..006 but T-E2E-003/004/005 require provenance taint paths, the policy engine, quarantine and endorsements (M1-T02/M1-T03/M2-T04/M3-T04). M0-T06 can only satisfy the shadow-mode subset (T-E2E-001/002/006) plus CLI/config. Escalated per plan.md §0.5 rather than silently re-scoping."
+    status: OPEN
   - id: ISSUE-001
     task: M0-T06
     kind: NEEDS_HUMAN

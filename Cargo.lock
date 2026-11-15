@@ -399,6 +399,12 @@ version = "0.1.0"
 [[package]]
 name = "gate-transport"
 version = "0.1.0"
+dependencies = [
+ "gate-core",
+ "gate-testkit",
+ "serde_json",
+ "thiserror",
+]
 
 [[package]]
 name = "gate-witness"

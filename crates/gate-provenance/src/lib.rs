@@ -25,6 +25,8 @@ use gate_core::{Label, SegmentId};
 use gate_crypto::sha256_hex;
 use serde::{Deserialize, Serialize};
 
+pub mod persist;
+
 /// Where a segment came from. `locator` is what an explanation can point at
 /// ("ticket #8841", "line 14") without storing the content itself.
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
@@ -107,6 +109,10 @@ pub struct SegmentSpec {
     pub label: Label,
     pub source: SourceRef,
     pub content: String,
+    /// Persistence hint: when set, this digest is used instead of hashing
+    /// `content`, so the exact content-addressed id survives a reload even when
+    /// the original content is not persisted (only the digest is).
+    pub content_digest_hint: Option<String>,
     pub parents: Vec<SegmentId>,
     pub turn: u64,
 }
@@ -124,8 +130,22 @@ impl SegmentSpec {
             label,
             source,
             content: content.into(),
+            content_digest_hint: None,
             parents,
             turn,
+        }
+    }
+
+    /// Rebuild a spec from a stored segment, preserving its exact id.
+    #[must_use]
+    pub fn from_segment(segment: &Segment) -> Self {
+        Self {
+            label: segment.label,
+            source: segment.source.clone(),
+            content: String::new(),
+            content_digest_hint: Some(segment.content_digest.clone()),
+            parents: segment.parents.iter().cloned().collect(),
+            turn: segment.turn,
         }
     }
 }
@@ -171,6 +191,21 @@ impl ProvenanceStore {
     #[must_use]
     pub fn is_empty(&self) -> bool {
         self.segments.is_empty()
+    }
+
+    /// All stored ids in deterministic order.
+    #[must_use]
+    pub fn ids(&self) -> Vec<SegmentId> {
+        self.segments.keys().cloned().collect()
+    }
+
+    /// `(source, digest)` pairs for every registered endorsed corpus.
+    #[must_use]
+    pub fn endorsed_entries(&self) -> Vec<(String, String)> {
+        self.endorsed
+            .iter()
+            .map(|(k, v)| (k.clone(), v.clone()))
+            .collect()
     }
 
     /// Segments observed in a turn's input window, in deterministic order.
@@ -230,7 +265,10 @@ impl ProvenanceStore {
             Some(Label::derive(labels.iter()))
         };
 
-        let content_digest = sha256_hex(spec.content.as_bytes());
+        let content_digest = match &spec.content_digest_hint {
+            Some(hint) => hint.clone(),
+            None => sha256_hex(spec.content.as_bytes()),
+        };
         let mut label = self.effective_label(&spec, &content_digest);
         if let Some(parent_label) = parent_label {
             if label > parent_label {

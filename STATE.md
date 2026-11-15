@@ -79,10 +79,10 @@ tasks:
     tests_green: [T-PIV-001, T-PIV-002, T-PIV-003, T-PIV-004, T-PIV-005, T-PIV-006, T-PIV-007, T-PIV-008, T-PIV-009, T-PIV-010, T-PIV-011, T-PIV-012, T-PIV-013, T-PIV-014]
     notes: "PolicyEngine::decide now halts tainted privileged calls: PivotMode::Deny (default, pre-M3) returns DENY_TAINT_PIVOT, PivotMode::Escalate returns ESCALATE_ENDORSEMENT_REQUIRED. READ_ONLY exempt; STATUS: IRREVERSIBLE clean allowed; PRIVILEGE_GRANTING untrusted escalates and blanket_allow is unrepresentable. CallRequest::with_taint merges the path hops into the AuthClosure. Model text never enters the decision (T-PIV-011). M3-T01 flips the default to Escalate and enforces E_max."
   - id: M2-T05
-    status: TODO
+    status: DONE
     commit: null
-    tests_green: []
-    notes: ""
+    tests_green: [T-PER-001, T-PER-002, T-PER-003, T-PER-004, T-PER-005, T-PER-006, T-PER-007, T-PER-008, T-PER-009, T-PER-010, T-PER-011, T-PER-012, T-PER-013, T-PER-014, T-PER-015, T-PER-016]
+    notes: "PersistentStore (redb 2.6, copy-on-write ACID): write-through commit per insert, rollback to committed DB on failure, content-addressed ids survive reload via content_digest_hint, hash-identified endorsed corpora persist. Summarisation = meet (mixed content stays EXTERNAL). MemoryRecord stores label + full ancestry; recover_label is the meet with known ancestors (restart can never raise). VectorStore adapter preserves label through round-trip. kill -9 simulation (uncommitted txn absent after reopen), corrupt-file detection fails closed (size guard + catch_unwind around redb create), 8-thread concurrent writers behind Mutex = one store."
   - id: M2-T06
     status: TODO
     commit: null

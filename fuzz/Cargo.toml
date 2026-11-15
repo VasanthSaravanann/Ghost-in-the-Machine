@@ -15,6 +15,7 @@ cargo-fuzz = true
 libfuzzer-sys = "0.4"
 gate-jcs = { path = "../crates/gate-jcs" }
 gate-transport = { path = "../crates/gate-transport" }
+gate-policy = { path = "../crates/gate-policy" }
 
 [[bin]]
 name = "jcs_parse"
@@ -26,6 +27,13 @@ bench = false
 [[bin]]
 name = "mcp_frame"
 path = "fuzz_targets/mcp_frame.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "policy_toml"
+path = "fuzz_targets/policy_toml.rs"
 test = false
 doc = false
 bench = false

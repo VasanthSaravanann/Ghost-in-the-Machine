@@ -1,5 +1,6 @@
 [package]
 name = "gate-policy"
+description = "Policy DSL, capability classes, deterministic PolicyEngine (plan.md M1-T01)"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -10,3 +11,12 @@ publish.workspace = true
 workspace = true
 
 [dependencies]
+gate-core.workspace = true
+gate-crypto.workspace = true
+gate-jcs.workspace = true
+regex.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+toml.workspace = true
+
+[dev-dependencies]

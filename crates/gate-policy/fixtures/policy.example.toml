@@ -1,0 +1,51 @@
+# Canonical policy fixture (plan.md §9.1 / Appendix A). T-POL-001 parses this
+# file, so every pin below is valid lowercase hex.
+
+[tool."mailer:send_email"]
+class = "EXTERNAL_EGRESS"
+pin = "sha256:9f2c1b7d4e6a8c0f2d4b6e8a0c2e4f6a8b0d2f4e6c8a0b2d4f6e8c0a2b4d6f8e"
+params_allow = ["to", "subject", "body"]
+requires_endorsement_if_tainted = true
+
+  [tool."mailer:send_email".to]
+  match = '^[\w.+-]+@(corp\.example|partner\.example)$'
+  max_items = 5
+
+  [tool."mailer:send_email".subject]
+  max_len = 200
+
+  [tool."mailer:send_email".body]
+  max_len = 20000
+
+  [tool."mailer:send_email".endorsement]
+  escalation_cap = 2
+  delta_t = "24h"
+  blanket_allow = false
+
+[tool."fs:read_file"]
+class = "READ_ONLY"
+pin = "sha256:4b81e2c9a7d5f3b1e8c6a4d2f0b8e6c4a2d0f8e6b4c2a0d8f6e4b2c0a8d6f4e2"
+params_allow = ["path"]
+degrade_on_exporter_loss = "allow"
+
+  [tool."fs:read_file".path]
+  prefix_allow = ["/workspace/"]
+
+[tool."db:grant_role"]
+class = "PRIVILEGE_GRANTING"
+pin = "sha256:1a3c5e7b9d0f2a4c6e8b0d2f4a6c8e0b2d4f6a8c0e2b4d6f8a0c2e4b6d8f0a2c"
+params_allow = ["role", "principal"]
+
+  [tool."db:grant_role".role]
+  enum = ["reader", "writer"]
+
+  [tool."db:grant_role".principal]
+  match = '^prn_[a-z0-9]+$'
+
+[defaults]
+default_deny = true
+metadata_handling = "delimit"
+fail_mode = "closed"
+
+  [defaults.transparency_degraded]
+  block_classes = ["IRREVERSIBLE", "PRIVILEGE_GRANTING"]

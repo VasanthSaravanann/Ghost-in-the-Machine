@@ -14,7 +14,7 @@ jobs:
       - run: bash ci/scripts/r_grep.sh
       - run: bash ci/scripts/forbid_unsafe_check.sh
       - run: python3 ci/scripts/tcb_lang_check.py
-      - run: cargo install cargo-deny cargo-audit --locked || true
+      - run: cargo install cargo-deny cargo-audit --locked
       - run: cargo deny check
       - run: cargo audit
 
@@ -23,11 +23,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
-      - run: cargo test --workspace --all-features --test '*'
+      - run: cargo test --workspace --all-features --tests
 
   adv:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
-      - run: cargo test --workspace --all-features invariant
+      # Adversarial suites: every test named t_* is an attempt to violate an
+      # invariant or a task acceptance criterion (§5.12).
+      - run: cargo test --workspace --all-features -- t_

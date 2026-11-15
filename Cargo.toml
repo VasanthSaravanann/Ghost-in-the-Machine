@@ -11,24 +11,24 @@ publish = false
 
 [workspace.dependencies]
 # internal
-gate-core = { path = "crates/gate-core" }
-gate-jcs = { path = "crates/gate-jcs" }
-gate-crypto = { path = "crates/gate-crypto" }
-gate-span = { path = "crates/gate-span" }
-gate-schema = { path = "crates/gate-schema" }
-gate-policy = { path = "crates/gate-policy" }
-gate-provenance = { path = "crates/gate-provenance" }
-gate-ledger = { path = "crates/gate-ledger" }
-gate-brief = { path = "crates/gate-brief" }
-gate-tlog = { path = "crates/gate-tlog" }
-gate-witness = { path = "crates/gate-witness" }
-gate-transport = { path = "crates/gate-transport" }
-gate-endorse-channel = { path = "crates/gate-endorse-channel" }
-gate-testkit = { path = "crates/gate-testkit" }
-mcp-gate = { path = "crates/mcp-gate" }
-mcp-audit = { path = "crates/mcp-audit" }
-nova-witness = { path = "crates/nova-witness" }
-void-bench = { path = "crates/void-bench" }
+gate-core = { version = "0.1.0", path = "crates/gate-core" }
+gate-jcs = { version = "0.1.0", path = "crates/gate-jcs" }
+gate-crypto = { version = "0.1.0", path = "crates/gate-crypto" }
+gate-span = { version = "0.1.0", path = "crates/gate-span" }
+gate-schema = { version = "0.1.0", path = "crates/gate-schema" }
+gate-policy = { version = "0.1.0", path = "crates/gate-policy" }
+gate-provenance = { version = "0.1.0", path = "crates/gate-provenance" }
+gate-ledger = { version = "0.1.0", path = "crates/gate-ledger" }
+gate-brief = { version = "0.1.0", path = "crates/gate-brief" }
+gate-tlog = { version = "0.1.0", path = "crates/gate-tlog" }
+gate-witness = { version = "0.1.0", path = "crates/gate-witness" }
+gate-transport = { version = "0.1.0", path = "crates/gate-transport" }
+gate-endorse-channel = { version = "0.1.0", path = "crates/gate-endorse-channel" }
+gate-testkit = { version = "0.1.0", path = "crates/gate-testkit" }
+mcp-gate = { version = "0.1.0", path = "crates/mcp-gate" }
+mcp-audit = { version = "0.1.0", path = "crates/mcp-audit" }
+nova-witness = { version = "0.1.0", path = "crates/nova-witness" }
+void-bench = { version = "0.1.0", path = "crates/void-bench" }
 
 # external (pure Rust; see deny.toml for the native-code ban)
 serde = { version = "1", features = ["derive"] }
@@ -37,7 +37,7 @@ sha2 = "0.10"
 hex = "0.4"
 thiserror = "2"
 ed25519-dalek = { version = "2", features = ["rand_core"] }
-p256 = { version = "0.13", features = ["ecdsa"] }
+p256 = { version = "0.14", features = ["ecdsa"] }
 rand_core = { version = "0.6", features = ["getrandom"] }
 rand_chacha = "0.3"
 chacha20poly1305 = "0.10"

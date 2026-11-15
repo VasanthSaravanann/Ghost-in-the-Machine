@@ -276,17 +276,13 @@ impl Signer for P256Signer {
     }
 
     fn public_key(&self) -> Vec<u8> {
-        self.key
-            .verifying_key()
-            .to_encoded_point(true)
-            .as_bytes()
-            .to_vec()
+        self.key.verifying_key().to_sec1_point(true).as_bytes().to_vec()
     }
 
     fn sign(&self, message: &[u8]) -> Result<Signature, GateError> {
         // RFC 6979 deterministic ECDSA: no RNG in the signing path (R6).
         let sig: P256Signature = self.key.sign(message);
-        let sig = sig.normalize_s().unwrap_or(sig);
+        let sig = sig.normalize_s();
         Ok(Signature {
             suite: SuiteId::P256Sha256,
             key_id: self.key_id.clone(),
@@ -323,8 +319,9 @@ impl Verifier for P256Verifier {
         }
         let sig = P256Signature::from_slice(&signature.bytes)
             .map_err(|_| GateError::VerificationFailed)?;
-        // Reject malleable high-S signatures (T-CRY-004).
-        if sig.normalize_s().is_some() {
+        // Reject malleable high-S signatures (T-CRY-004): a signature that is
+        // not already canonical normalises to different bytes.
+        if sig.normalize_s().to_bytes() != sig.to_bytes() {
             return Err(GateError::VerificationFailed);
         }
         self.key

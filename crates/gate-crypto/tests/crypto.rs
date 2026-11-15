@@ -70,10 +70,10 @@ fn t_cry_004_p256_roundtrip_and_low_s() {
 
     // The produced signature is canonical (low-S).
     let parsed = p256::ecdsa::Signature::from_slice(&sig.bytes).unwrap();
-    assert!(parsed.normalize_s().is_none());
+    assert_eq!(parsed.normalize_s().to_bytes(), parsed.to_bytes());
 
     // A malleated high-S signature must be rejected.
-    let high = parsed.normalize_s().unwrap_or(parsed);
+    let high = parsed.normalize_s();
     let mut malleated = sig.clone();
     malleated.bytes = high.to_bytes().to_vec();
     if malleated.bytes != sig.bytes {

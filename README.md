@@ -48,7 +48,7 @@ eval numbers, open issues, pending decisions).
 | `results/test.md` | the same runner on the hash-frozen split | proof of generalisation (the split differs by ids/seeds/phrasings, not content) | `cargo run -p void-bench -- --split test` |
 | `results/laundering.md` | H6 mechanism: ticket → summary → persisted → reopened → `DENY_TAINT_PIVOT` | a model result (the content is scripted) | `cargo test -p gate-policy --test laundering` |
 | `results/frontier.md` | H7 **sensitivity curve** over the share of benign tasks that read untrusted data | a workload measurement | `make frontier` |
-| `results/model_pilot.md` | H8 (exploratory) + H8b (pre-registered): model `TO:` line and **B3 vs G on the same transcripts** | an `mcp-gate` run; memory is still passed as text | `make pilot` |
+| `results/model_pilot.md` | H8 (exploratory) + H8b (pre-registered): **three digest-pinned models**, paired B3 vs G on the same transcripts | an `mcp-gate` run; memory is still passed as text | `make pilot` |
 | `results/model_adaptive.md` | H8c/H8d: fixed-budget LLM-rewrite attacker against `plain` and `b2allow` | the §6.4 adaptive campaign (self-play, 3B, 5 rows) | `make adaptive` |
 
 Every rate in these files carries a Clopper–Pearson interval. `results/*.jsonl` are the

@@ -83,6 +83,7 @@ pub const GENAI_ATTRIBUTES: &[(&str, AttrKind)] = &[
     ("gate.duration_ms", AttrKind::Int),
     ("gate.score", AttrKind::Float),
     ("gate.leaf_type", AttrKind::Str),
+    ("gate.reason", AttrKind::Str),
     ("gate.leaf_digest", AttrKind::Str),
     ("gate.decision", AttrKind::Str),
 ];

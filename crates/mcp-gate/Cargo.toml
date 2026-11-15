@@ -1,5 +1,6 @@
 [package]
 name = "mcp-gate"
+description = "Inline MCP enforcement proxy; shadow mode (plan.md M0-T06)"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -10,3 +11,16 @@ publish.workspace = true
 workspace = true
 
 [dependencies]
+gate-core.workspace = true
+gate-crypto.workspace = true
+gate-policy.workspace = true
+gate-provenance.workspace = true
+gate-span.workspace = true
+gate-transport.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+toml.workspace = true
+
+[dev-dependencies]
+gate-testkit.workspace = true
+tempfile.workspace = true

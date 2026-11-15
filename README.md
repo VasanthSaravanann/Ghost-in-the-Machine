@@ -33,8 +33,9 @@ trusted computing base; authority is derived from data provenance
 | M5-T02 scenario corpus (360) | DONE | T-SCN-001..006 |
 | M6-T04 FIPS profile | DONE | T-CRY fips suite |
 | M6-T05 pentest prep | DONE | docs/pentest-brief.md |
+| M0-T06 mcp-gate shadow mode | DONE | T-E2E-001/002/003/006 |
 | M3-T05 endorsement channel | BLOCKED (ISSUE-005) | T-CHN-001..020 |
-| M0-T06 `mcp-gate` shadow mode + G-M0 | TODO (see ISSUE-002) | T-E2E-001/002/003/006, P-LAT-1 |
+| G-M0 latency/INV-1 gate | PENDING (ISSUE-001) | measured p99 8.0 ms incl. fsync |
 
 `STATE.md` is the authoritative machine-maintained ledger (task, commit, tests,
 eval numbers, open issues, pending decisions).

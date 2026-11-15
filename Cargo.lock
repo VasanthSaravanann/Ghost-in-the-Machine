@@ -715,6 +715,19 @@ version = "0.1.0"
 [[package]]
 name = "mcp-gate"
 version = "0.1.0"
+dependencies = [
+ "gate-core",
+ "gate-crypto",
+ "gate-policy",
+ "gate-provenance",
+ "gate-span",
+ "gate-testkit",
+ "gate-transport",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "toml",
+]
 
 [[package]]
 name = "memchr"

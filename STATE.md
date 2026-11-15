@@ -39,10 +39,10 @@ tasks:
     tests_green: []
     notes: "mcp-gate shadow mode"
   - id: M1-T01
-    status: TODO
-    commit: null
-    tests_green: []
-    notes: ""
+    status: DONE
+    commit: 31fb39e
+    tests_green: [T-POL-001, T-POL-002, T-POL-003, T-POL-004, T-POL-005, T-POL-006, T-POL-007, T-POL-008, T-POL-009, T-POL-010, T-POL-011, T-POL-012, T-POL-013, T-POL-014, T-POL-015, T-POL-016, T-POL-017, T-POL-018, T-POL-019, T-POL-020]
+    notes: "Strict TOML parser: unknown keys, missing class/pin, invalid regex, unbounded limits, non-closed fail_mode and default_deny=false are all rejected. Pin = sha256:<64 lowercase hex>. Policy hash = sha256(JCS(parsed policy)), order-insensitive. PolicyEngine::decide does pin + strict allowlist (deny, never strip); value validators land in M1-T02. Pulled ahead of M0-T06 (DEC-005)."
   - id: M1-T02
     status: TODO
     commit: null
@@ -191,6 +191,9 @@ issues:
     detail: "G-M0 (P-LAT-1 p99 <= 15 ms with durable commit) needs a storage profile decision (DEC-P01/§12.11) and a benchmark host. Not measurable on this laptop reproducibly."
     status: OPEN
 decisions:
+  - id: DEC-005
+    summary: "M1-T01 and M1-T02 are implemented before M0-T06."
+    rationale: "M0-T06's T-E2E cases need a real policy engine (ISSUE-002). Reordering the dependency graph, not weakening any test. M0-T06 is now blocked only on M2-T01..T04 (taint) and M3-T04 (endorsement)."
   - id: DEC-P01
     summary: "Group commit with bounded batch window; synchronous durable commit before release for every class with an external side effect; READ_ONLY flushed asynchronously with bounded lag."
     rationale: "Proposed in plan.md §0.7. Implemented as SegmentLog::append (sync durable) and SegmentLog::append_batch (one fsync per batch). PENDING HUMAN SIGN-OFF (R12): append_batch is not used by any default code path, and P-LAT-1 has not been measured."

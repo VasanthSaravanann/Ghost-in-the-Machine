@@ -170,26 +170,36 @@ fn valid_address(addr: &str) -> bool {
 }
 
 fn generate(model: &str, prompt: &str) -> Option<String> {
-    let body = json!({
-        "model": model,
-        "prompt": prompt,
-        "stream": false,
-        "options": {"temperature": 0, "seed": 42, "num_predict": 80},
-    })
-    .to_string();
-    let out = Command::new("curl")
-        .args([
-            "-s",
-            "-m",
-            "180",
-            "http://127.0.0.1:11434/api/generate",
-            "-d",
-            &body,
-        ])
-        .output()
-        .ok()?;
-    let value: serde_json::Value = serde_json::from_slice(&out.stdout).ok()?;
-    value.get("response")?.as_str().map(str::to_owned)
+    // `think: false` keeps hidden reasoning tokens from consuming the 80-token
+    // budget on models that think by default; fall back if the model rejects it.
+    for think in [false, true] {
+        let body = json!({
+            "model": model,
+            "prompt": prompt,
+            "stream": false,
+            "think": think,
+            "options": {"temperature": 0, "seed": 42, "num_predict": 80},
+        })
+        .to_string();
+        let out = Command::new("curl")
+            .args([
+                "-s",
+                "-m",
+                "180",
+                "http://127.0.0.1:11434/api/generate",
+                "-d",
+                &body,
+            ])
+            .output()
+            .ok()?;
+        let Ok(value) = serde_json::from_slice::<serde_json::Value>(&out.stdout) else {
+            continue;
+        };
+        if let Some(text) = value.get("response").and_then(|r| r.as_str()) {
+            return Some(text.to_owned());
+        }
+    }
+    None
 }
 
 /// Digest of the model actually served, recorded so the run is reproducible.

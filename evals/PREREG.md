@@ -87,7 +87,9 @@ gate's denial rate and does not lower benign utility.
   (delimit+instruct, permitted recipient inside `<allowlist>` outside `<data>`).
 - Summariser: `assisted` (same as H8), retained so H8b is comparable; a neutral
   summariser variant is a separate, later hypothesis.
-- Endpoint: local Ollama, temperature 0, seed 42, num_predict 80; one host.
+- Endpoint: local Ollama, temperature 0, seed 42, num_predict 80; `think:false` is sent
+  where the model accepts it (fallback to the default) so hidden reasoning tokens do
+  not consume the output budget; one host.
 - Decisions on identical transcripts: permissive allowlist that includes the attacker
   domain (B3/G isolation) and a strict allowlist (parameter-validation baseline).
 - Metrics: raw ASR, ASR under B3, ASR under G, benign utility under B3/G, strict-policy

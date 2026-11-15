@@ -39,10 +39,18 @@ def check(root: Path) -> int:
     nodes = {n["id"]: n for n in resolve["nodes"]}
 
     def deps(name):
+        """Normal and build dependencies only: dev-dependencies are never part
+        of a shipped TCB artifact (plan.md §2.0)."""
         for p in md["packages"]:
             if p["name"] == name:
                 node = nodes[p["id"]]
-                return [by_id[d]["name"] for d in node["dependencies"]]
+                out = []
+                for d in node["deps"]:
+                    kinds = [k.get("kind") for k in d.get("dep_kinds", [])] or [None]
+                    if all(k == "dev" for k in kinds):
+                        continue
+                    out.append(by_id[d["pkg"]]["name"])
+                return out
         raise SystemExit(f"tcb-lang-check: crate {name} not found")
 
     # transitive closure

@@ -17,6 +17,7 @@
 use std::sync::atomic::{AtomicI64, Ordering};
 use std::sync::{Arc, Mutex};
 
+use gate_core::{Clock, Rng as GateRng};
 use rand_chacha::rand_core::{RngCore, SeedableRng};
 use rand_chacha::ChaCha20Rng;
 
@@ -44,6 +45,12 @@ impl FakeClock {
     /// Jump *backwards* (clock-skew tests, T-LDG-011..026).
     pub fn jump_to(&self, to_ms: i64) {
         self.now_ms.store(to_ms, Ordering::SeqCst);
+    }
+}
+
+impl Clock for FakeClock {
+    fn now_ms(&self) -> i64 {
+        Self::now_ms(self)
     }
 }
 
@@ -79,7 +86,6 @@ impl SeededRng {
     }
 
     pub fn next_u64(&self) -> u64 {
-        self.fill_bytes(&mut [0u8; 0]);
         self.inner.lock().map(|mut r| r.next_u64()).unwrap_or(0)
     }
 
@@ -87,6 +93,12 @@ impl SeededRng {
         if let Ok(mut r) = self.inner.lock() {
             r.fill_bytes(dest);
         }
+    }
+}
+
+impl GateRng for SeededRng {
+    fn fill_bytes(&self, dest: &mut [u8]) {
+        Self::fill_bytes(self, dest);
     }
 }
 

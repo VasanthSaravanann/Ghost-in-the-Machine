@@ -10,6 +10,7 @@ publish.workspace = true
 workspace = true
 
 [dependencies]
+gate-core.workspace = true
 rand_chacha.workspace = true
 
 [dev-dependencies]

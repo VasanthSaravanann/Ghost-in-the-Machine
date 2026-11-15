@@ -373,6 +373,15 @@ version = "0.1.0"
 [[package]]
 name = "gate-span"
 version = "0.1.0"
+dependencies = [
+ "gate-core",
+ "gate-crypto",
+ "gate-jcs",
+ "gate-testkit",
+ "serde",
+ "serde_json",
+ "tempfile",
+]
 
 [[package]]
 name = "gate-testkit"

@@ -24,10 +24,10 @@ tasks:
     tests_green: [T-CRY-001, T-CRY-002, T-CRY-003, T-CRY-004, T-CRY-005, T-CRY-006, T-CRY-007, T-CRY-008, T-CRY-009, T-CRY-010]
     notes: "Ed25519 + ECDSA-P256 (RFC 6979 deterministic, low-S enforced), SHA-256, SuiteId agility, SoftKeyStore, HsmKeyStore stub returning SignerUnavailable. RFC 8032 TEST 1/2 known-answer vectors pass."
   - id: M0-T04
-    status: TODO
+    status: DONE
     commit: null
-    tests_green: []
-    notes: "gate-span"
+    tests_green: [T-SPAN-001, T-SPAN-002, T-SPAN-003, T-SPAN-004, T-SPAN-005, T-SPAN-006, T-SPAN-007, T-SPAN-008, T-SPAN-009, T-SPAN-010, T-SPAN-011, T-SPAN-012, T-SPAN-013, T-SPAN-014]
+    notes: "JCS-signed spans over Ed25519, per-episode hash chain, length-prefixed fsync'd segment log, append_batch (group commit) behind DEC-P01, injectable Fsync proves effect is withheld until durable, exporter-loss maps through failclosed, OTel-GenAI/MCP attribute schema. Storage profile for P-LAT-1: local APFS SSD, not yet measured."
   - id: M0-T05
     status: TODO
     commit: null
@@ -179,5 +179,22 @@ tasks:
     tests_green: []
     notes: ""
 
-issues: []
-decisions: []
+issues:
+  - id: ISSUE-001
+    task: M0-T06
+    kind: NEEDS_HUMAN
+    detail: "G-M0 (P-LAT-1 p99 <= 15 ms with durable commit) needs a storage profile decision (DEC-P01/§12.11) and a benchmark host. Not measurable on this laptop reproducibly."
+    status: OPEN
+decisions:
+  - id: DEC-P01
+    summary: "Group commit with bounded batch window; synchronous durable commit before release for every class with an external side effect; READ_ONLY flushed asynchronously with bounded lag."
+    rationale: "Proposed in plan.md §0.7. Implemented as SegmentLog::append (sync durable) and SegmentLog::append_batch (one fsync per batch). PENDING HUMAN SIGN-OFF (R12): append_batch is not used by any default code path, and P-LAT-1 has not been measured."
+  - id: DEC-P02
+    summary: "gate-jcs rejects integer literals not exactly representable as IEEE 754 doubles."
+    rationale: "Implemented and tested (T-JCS-007). PENDING HUMAN SIGN-OFF (R12)."
+  - id: DEC-P03
+    summary: "Rate-limited prompts are queued (max depth N) and consume budget only when rendered; overflow denies."
+    rationale: "Not yet implemented (M3-T01/T-BUD-005). PENDING HUMAN SIGN-OFF (R12)."
+  - id: DEC-P04
+    summary: "Own STH format and witness/cosignature protocol rather than an existing community specification."
+    rationale: "Not yet evaluated (M4-T03). PENDING HUMAN SIGN-OFF (R12); no witness code has been written."

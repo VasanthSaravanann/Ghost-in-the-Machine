@@ -19,6 +19,8 @@
 
 use std::path::{Path, PathBuf};
 
+pub mod salt;
+
 use gate_crypto::sha256;
 use redb::{Database, ReadableTable, TableDefinition};
 use serde::{Deserialize, Serialize};

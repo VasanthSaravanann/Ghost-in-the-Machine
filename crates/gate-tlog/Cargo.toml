@@ -13,6 +13,7 @@ workspace = true
 [dependencies]
 gate-core.workspace = true
 gate-crypto.workspace = true
+chacha20poly1305.workspace = true
 redb.workspace = true
 serde.workspace = true
 

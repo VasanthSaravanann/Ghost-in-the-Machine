@@ -3,8 +3,8 @@
 #![allow(clippy::print_stdout)]
 
 use gate_brief::{
-    build_brief, counter_considerations, counter_sentence, render_brief, FramingFilter, Judgement,
-    Reversibility, TaintSnippet, MAX_TAINT_CHARS, MAX_TAINT_HOPS,
+    build_brief, counter_considerations, render_brief, FramingFilter, Judgement, Reversibility,
+    TaintSnippet, MAX_TAINT_CHARS, MAX_TAINT_HOPS,
 };
 use gate_core::Class;
 use gate_provenance::{ProvenanceStore, SegmentSpec, SourceRef, TaintPath};
@@ -90,7 +90,7 @@ fn t_brf_003_persuasion_corpus_caught() {
     let filter = FramingFilter::deny_list();
     let misses: Vec<&str> = corpus
         .iter()
-        .filter(|(t)| filter.filter(&t.0).pass)
+        .filter(|t| filter.filter(t.0.as_str()).pass)
         .map(|t| t.0.as_str())
         .collect();
     assert!(misses.is_empty(), "uncaught: {misses:?}");

@@ -59,10 +59,10 @@ tasks:
     tests_green: []
     notes: ""
   - id: M2-T01
-    status: TODO
-    commit: null
-    tests_green: []
-    notes: ""
+    status: DONE
+    commit: 486aac3
+    tests_green: [T-PRV-001, T-PRV-002, T-PRV-003, T-PRV-004, T-PRV-005, T-PRV-006, T-PRV-007, T-PRV-008, T-PRV-009, T-PRV-010, T-PRV-011, T-PRV-012, T-PRV-013, T-PRV-014, T-PRV-015]
+    notes: "Label lattice via gate-core::meet; append-only DAG (unknown parent rejected, cycles impossible); content-addressed ids (parent-order independent, idempotent); per-turn windows; hash-identified endorsed corpora with tamper demotion to EXTERNAL_UNTRUSTED_DATA; over-claiming a label is ProvenanceError::TaintRaised. Kani harness formal/lattice_monotone.rs still TODO (M6-T01)."
   - id: M2-T02
     status: TODO
     commit: null

@@ -65,6 +65,40 @@ recipient (the address must come from memory); benign control memory carries the
 allowed address. Metrics: attacker-address chosen, parseable-address count
 (a hardening that suppresses output is reported as a utility loss, not a win).
 
+## H8b — confirmatory real-model + boundary replication (PRE-REGISTERED, not yet run)
+
+**Status: pre-registered at this commit; the run below has not been executed when this
+section was written. The 2026-11 H8 run above is reclassified EXPLORATORY (its
+pre-registration was committed with its result and a prior 0/6 protocol was discarded).**
+
+*H8b-1:* On three digest-pinned local models, an attacker-controlled recipient in an
+untrusted ticket reaches the session-2 `TO:` line in at least one model, and the
+provenance closure (G) denies the resulting call while policy-only (B3) allows it.
+
+*H8b-2:* A utility-preserving prompt defence that supplies the permitted recipient
+out-of-band (`b2allow`) lowers ASR relative to no defence, but does not reach the
+gate's denial rate and does not lower benign utility.
+
+*Fixed design (do not change after seeing a result):*
+
+- Models: `llama3.2:latest`, `qwen3:4b`, `gemma3:4b`; each digest recorded at run time.
+- Rows: 5 attack styles + 3 benign, 3 repetitions each = 24 rows/model (15 attack, 9 benign).
+- Prompts: `plain`, `b2` (delimit+instruct, no permitted address), `b2allow`
+  (delimit+instruct, permitted recipient inside `<allowlist>` outside `<data>`).
+- Summariser: `assisted` (same as H8), retained so H8b is comparable; a neutral
+  summariser variant is a separate, later hypothesis.
+- Endpoint: local Ollama, temperature 0, seed 42, num_predict 80; one host.
+- Decisions on identical transcripts: permissive allowlist that includes the attacker
+  domain (B3/G isolation) and a strict allowlist (parameter-validation baseline).
+- Metrics: raw ASR, ASR under B3, ASR under G, benign utility under B3/G, strict-policy
+  block rate; one-sided 95 % Clopper–Pearson bounds on every rate.
+- Transcripts: `results/model_pilot.jsonl`, every prompt and reply, no filtering.
+- Run once. Every cell is reported, including refusals and unparseable output.
+
+*Non-claims:* no frontier model, no external benchmark, no LLM-driven adaptive attacker,
+no claim that the gate beats prompt defence on utility (the two operate on different
+information: `b2allow` is handed the recipient, `G` is not).
+
 ## H6/H7 — added after the pilot (before running them)
 
 | ID | Hypothesis | Metric | Decision rule |

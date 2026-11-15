@@ -1,13 +1,19 @@
-//! H7 — the over-taint cost frontier, measured on benign workloads.
+//! H7 — the over-taint *cost curve*, not a point estimate.
 //!
-//! For each benign scenario that reads untrusted content and then performs an
-//! allowlisted effectful call, two boundary policies are asked whether the call
-//! is permitted. CONSERVATIVE: every untrusted segment in the turn window taints
-//! the call. PRECISE: a principal-only checkpoint screens the read, so the write
-//! is allowed (the H7 mechanism). The difference is the cost of conservative
-//! boundary taint, reported with exact 95 % upper bounds. No model calls and no
-//! scenario-supplied taint labels are involved.
+//! Turner-window taint denies a benign allowlisted write whenever the task read
+//! untrusted content. The size of that cost therefore depends on one input:
+//! **what fraction of benign tasks touch untrusted data**. That fraction is a
+//! workload parameter, not something this corpus measures (the corpus has no
+//! tool sequences). So instead of reporting one number derived from a hardcoded
+//! subfamily list, we sweep the parameter and print the whole curve.
 //!
+//! No model calls and no scenario-supplied taint labels: the read is real in the
+//! provenance graph, but it is *synthetic* for every selected scenario. This is
+//! a sensitivity analysis, and it says so.
+//!
+//! `PRECISE` (principal checkpoint) is the mechanism by definition, so its 0 %
+//! denial is a consistency check, not a discovery.
+
 #![allow(clippy::print_stdout)]
 
 use std::sync::Arc;
@@ -17,7 +23,6 @@ use gate_policy::{CallRequest, PivotMode, Policy, PolicyEngine};
 use gate_provenance::{
     control_flow_taint, PrincipalCheckpoint, ProvenanceStore, SegmentSpec, SourceRef,
 };
-use void_bench::stats::rate_s;
 use void_bench::{load_dir, Scenario};
 
 const POLICY: &str = r#"
@@ -36,9 +41,10 @@ fail_mode = "closed"
 "#;
 
 fn engine() -> PolicyEngine {
-    let policy = Arc::new(Policy::parse(POLICY).unwrap_or_else(|_| std::process::exit(1)));
-    PolicyEngine::new(policy, Arc::new(gate_policy::LexicalResolver))
-        .with_pivot_mode(PivotMode::Deny)
+    PolicyEngine::lexical(
+        Arc::new(Policy::parse(POLICY).unwrap_or_else(|_| std::process::exit(1))),
+    )
+    .with_pivot_mode(PivotMode::Deny)
 }
 
 fn call_with(closure: AuthClosure) -> CallRequest {
@@ -49,43 +55,23 @@ fn call_with(closure: AuthClosure) -> CallRequest {
     CallRequest::new("mailer:send_email", params).with_closure(closure)
 }
 
-/// Benign scenarios whose task shape includes reading untrusted content before a
-/// write. This classification comes from the corpus, not from the result.
-fn touches_untrusted(scenario: &Scenario) -> bool {
-    matches!(
-        scenario.subfamily.as_str(),
-        "read_only_research" | "long_multi_session" | "repeat_tasks" | "multi_tool_write"
-    )
-}
-
-fn main() {
-    let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
-        .parent()
-        .and_then(std::path::Path::parent)
-        .unwrap_or_else(|| std::path::Path::new("."))
-        .to_path_buf();
-    let scenarios = load_dir(root.join("evals/public")).unwrap_or_else(|_| std::process::exit(1));
-    let benign: Vec<&Scenario> = scenarios.iter().filter(|s| s.family == "BEN").collect();
-    let relevant: Vec<&&Scenario> = benign.iter().filter(|s| touches_untrusted(s)).collect();
-
+/// Run the two policies on `chosen` benign scenarios, each given a synthetic
+/// untrusted read before the allowlisted write.
+fn measure(chosen: &[&Scenario]) -> (u64, u64) {
     let mut conservative_denied = 0u64;
     let mut precise_denied = 0u64;
-    let mut allowed_without_read = 0u64;
-
-    for scenario in &relevant {
-        // Provenance graph for the benign flow: an untrusted read, then a write.
+    for scenario in chosen {
         let mut store = ProvenanceStore::new();
         let read = store
             .insert(SegmentSpec::new(
                 Label::ExternalUntrustedData,
                 SourceRef::new("tool:web.fetch"),
                 format!("benign document for {}", scenario.id),
-                vec![],
+                Vec::new(),
                 0,
             ))
             .unwrap_or_else(|_| std::process::exit(1));
 
-        // CONSERVATIVE: the read taints the turn window.
         if let Some(taint) = control_flow_taint(&store, std::slice::from_ref(&read.id), None) {
             let closure: AuthClosure = [(read.id.clone(), taint.label)].into_iter().collect();
             if engine().decide(&call_with(closure)).verdict() != gate_core::Verdict::Allow {
@@ -93,13 +79,10 @@ fn main() {
             }
         }
 
-        // PRECISE: a principal checkpoint screens the read.
         let checkpoint =
             PrincipalCheckpoint::new(PrincipalId::from("prn_principal"), [read.id.clone()]);
         let taint = control_flow_taint(&store, std::slice::from_ref(&read.id), Some(&checkpoint));
-        let screened = taint.is_none();
         let blocked = match taint {
-            // Screened off entirely -> allowed. Otherwise use the remaining label.
             None => false,
             Some(taint) => {
                 let closure: AuthClosure = [(read.id.clone(), taint.label)].into_iter().collect();
@@ -109,48 +92,48 @@ fn main() {
         if blocked {
             precise_denied += 1;
         }
-        if screened {
-            allowed_without_read += 1;
-        }
     }
+    (conservative_denied, precise_denied)
+}
 
-    let n = relevant.len() as u64;
-    println!("H7 — over-taint cost on benign flows that read untrusted content");
-    println!("(PILOT-STATIC; no model calls; n = {n} benign scenarios)");
+fn main() {
+    let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .parent()
+        .and_then(std::path::Path::parent)
+        .unwrap_or_else(|| std::path::Path::new("."))
+        .to_path_buf();
+    let scenarios = load_dir(root.join("evals/public")).unwrap_or_else(|_| std::process::exit(1));
+    let mut benign: Vec<&Scenario> = scenarios.iter().filter(|s| s.family == "BEN").collect();
+    benign.sort_by(|a, b| a.id.cmp(&b.id));
+
+    println!("H7 — over-taint cost curve (sensitivity analysis, not a workload measurement)");
     println!();
-    println!("| policy | benign writes denied | interpretation |");
+    println!(
+        "| assumed share of benign tasks that read untrusted data | benign writes denied (CONSERVATIVE) | denied (PRECISE checkpoint) |"
+    );
     println!("|---|---|---|");
-    println!(
-        "| CONSERVATIVE (turn-window taint) | {} | safety-first; utility cost |",
-        rate_s(conservative_denied, n)
-    );
-    println!(
-        "| PRECISE (principal checkpoint) | {} | recovers utility |",
-        rate_s(precise_denied, n)
-    );
+    for pct in [0u64, 10, 25, 50, 75, 100] {
+        let n = (benign.len() as u64 * pct / 100) as usize;
+        let chosen = &benign[..n.min(benign.len())];
+        let (conservative, precise) = measure(chosen);
+        println!(
+            "| {pct}% ({} of {}) | {}/{} = {:.1}% | {}/{} = {:.1}% |",
+            chosen.len(),
+            benign.len(),
+            conservative,
+            chosen.len(),
+            100.0 * conservative as f64 / chosen.len().max(1) as f64,
+            precise,
+            chosen.len(),
+            100.0 * precise as f64 / chosen.len().max(1) as f64,
+        );
+    }
     println!();
     println!(
-        "Utility recovered by the checkpoint: {}/{} flows ({:.1}%).",
-        allowed_without_read,
-        n,
-        if n == 0 {
-            0.0
-        } else {
-            100.0 * allowed_without_read as f64 / n as f64
-        }
+        "Caveats: (a) the read is synthetic and every selected scenario gets one; the corpus \
+         contains no tool sequences, so the *fraction* is a swept parameter, not a measurement; \
+         (b) the selection is the first N benign scenarios by id, not a random sample; \
+         (c) the PRECISE branch is the mechanism by definition, so 0% denial is a consistency \
+         check, not a discovery; (d) a real workload estimate needs traces, not this corpus."
     );
-    let all = benign.len();
-    println!(
-        "Of ALL {} benign scenarios, the conservative rule would deny {:.1}% ({}/{}).",
-        all,
-        100.0 * conservative_denied as f64 / all.max(1) as f64,
-        conservative_denied,
-        all
-    );
-    println!();
-    println!("Caveats: (a) the read is synthetic — no real model or document;");
-    println!("(b) the PRECISE branch is the mechanism by definition, so 0% denial is a");
-    println!("    consistency check, not a discovery. The measured quantity is the");
-    println!("    CONSERVATIVE cost, which depends on how often benign tasks touch");
-    println!("    untrusted data — workload-dependent, hence the denominator is printed.");
 }

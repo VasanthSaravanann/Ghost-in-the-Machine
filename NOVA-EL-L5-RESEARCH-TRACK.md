@@ -39,11 +39,18 @@ A quick search in this revision confirmed substantial prior art on deterministic
 | FIDES (Costa et al., arXiv 2505.23643) | IFC planner with integrity/confidentiality labels; evaluated on AgentDojo with five LLMs; formal model | Sets the evaluation bar (multiple models, AgentDojo). Also discusses confirmation fatigue. |
 | PRUDENTIA (arXiv 2602.11416) | Improves autonomy over FIDES; AgentDojo + WASP; reports deterministic policies can cost up to ~30% task completion | Overlaps RQ2/RQ3 directly. |
 | RTBAS, Progent | IFC for tool agents; reference-monitor privilege control | Further baselines/related work |
+| AgentPoison (arXiv:2407.12784) | Poisons an agent's long-term memory or knowledge base so a trigger retrieves an adversarial demonstration | **Direct prior art for memory poisoning.** Attacks the retrieval path; does not carry a provenance label through compaction or enforce at the boundary |
+| MINJA (arXiv:2503.03704) | Query-only memory injection: malicious records are written through normal interaction | Establishes memory writes as an attack surface. No boundary enforcement, no cross-session label persistence |
+| InjecAgent (arXiv:2403.02691) | Benchmark for indirect prompt injection in tool-integrated agents | Candidate external benchmark; measures model compliance, not boundary provenance |
 | AgentDojo, MCPTox, MSB | Benchmarks for injection and MCP tool poisoning | External validity (§6) |
 
 **Candidate contributions (hypotheses to validate against the literature, not facts):**
+
+> Citation warning: the AgentPoison / MINJA / InjecAgent rows above were added from memory
+> during a status-fix pass. Per the rule at the top of this section, a human must verify the
+> identifiers and claims before they appear in a paper.
 - **C1** Deployment model: out-of-band enforcement at the MCP transport, unmodified agents and servers, model outside the TCB.
-- **C2** Cross-session provenance persistence and summarisation-as-derivation (memory/compaction laundering).
+- **C2** Cross-session provenance persistence and summarisation-as-derivation (memory/compaction laundering). **Delta over memory-poisoning work** (AgentPoison, MINJA): those attacks target the retrieval/memory write; C2 is about the *label* surviving compaction and restart and being enforced at the boundary, outside the planner. This delta is the claim a reviewer will test first.
 - **C3** Measured cost of boundary-level taint versus in-planner IFC.
 - **C4** Escalation scarcity + symmetric, third-person briefs as an HITL defence — **only if** evaluated credibly (§5, §8).
 - **C5** `void-bench`, if released as a reusable MCP-native benchmark.

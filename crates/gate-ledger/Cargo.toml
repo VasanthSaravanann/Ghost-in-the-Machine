@@ -11,6 +11,13 @@ workspace = true
 
 [dependencies]
 gate-core.workspace = true
+gate-jcs.workspace = true
+gate-crypto.workspace = true
+serde.workspace = true
+serde_json.workspace = true
 
 [dev-dependencies]
 proptest.workspace = true
+gate-testkit.workspace = true
+gate-span.workspace = true
+tempfile.workspace = true

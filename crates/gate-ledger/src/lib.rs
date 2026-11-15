@@ -13,7 +13,12 @@
 )]
 
 pub mod budget;
+pub mod leaf;
 
 pub use budget::{
     BudgetError, BudgetEvent, BudgetEventKind, BudgetTracker, BudgetView, CapAction, PrincipalGate,
+};
+pub use leaf::{
+    EndorsementLedger, FramingSummary, LeafA, LeafB, LedgerError, ReleaseReceipt, Resume,
+    SignedLeafA, Stage,
 };

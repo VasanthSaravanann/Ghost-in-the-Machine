@@ -82,6 +82,8 @@ pub const GENAI_ATTRIBUTES: &[(&str, AttrKind)] = &[
     ("gate.call_digest", AttrKind::Str),
     ("gate.duration_ms", AttrKind::Int),
     ("gate.score", AttrKind::Float),
+    ("gate.leaf_type", AttrKind::Str),
+    ("gate.leaf_digest", AttrKind::Str),
     ("gate.decision", AttrKind::Str),
 ];
 
@@ -636,4 +638,74 @@ pub fn exporter_failure_decision(
 #[must_use]
 pub fn span_suite_ok(suite: SuiteId) -> bool {
     matches!(suite, SuiteId::Ed25519 | SuiteId::P256Sha256)
+}
+
+/// M3 implementation of [`gate_core::LeafSink`]: every ledger leaf goes through
+/// the signed span chain, so it inherits INV-1 (durable commit before release).
+pub struct SpanLeafSink {
+    signer: std::sync::Arc<dyn Signer>,
+    log: std::sync::Arc<SegmentLog>,
+    clock: std::sync::Arc<dyn Clock>,
+    episode: EpisodeId,
+    policy_hash: String,
+    seq: std::sync::atomic::AtomicU64,
+    prev: std::sync::Mutex<Option<String>>,
+}
+
+impl SpanLeafSink {
+    #[must_use]
+    pub fn new(
+        signer: std::sync::Arc<dyn Signer>,
+        log: std::sync::Arc<SegmentLog>,
+        clock: std::sync::Arc<dyn Clock>,
+        episode: EpisodeId,
+        policy_hash: impl Into<String>,
+    ) -> Self {
+        let seq = log.next_seq();
+        Self {
+            signer,
+            log,
+            clock,
+            episode,
+            policy_hash: policy_hash.into(),
+            seq: std::sync::atomic::AtomicU64::new(seq),
+            prev: std::sync::Mutex::new(None),
+        }
+    }
+}
+
+impl gate_core::LeafSink for SpanLeafSink {
+    fn sink_leaf(&self, leaf_type: &str, digest: &str, payload: &[u8]) -> Result<(), GateError> {
+        let seq = self.seq.fetch_add(1, std::sync::atomic::Ordering::SeqCst);
+        let prev = self.prev.lock().map(|p| p.clone()).unwrap_or(None);
+        let spec = SpanSpec::new(
+            format!("span_{leaf_type}_{seq}"),
+            self.episode.clone(),
+            seq,
+            prev,
+            format!("gate.{leaf_type}"),
+            Class::ReadOnly,
+            self.policy_hash.clone(),
+        )
+        .with_duration_ms(0);
+        let mut span = Span::build(spec, self.clock.as_ref());
+        span.attributes.insert(
+            "gate.leaf_type".to_owned(),
+            AttrValue::Str(leaf_type.to_owned()),
+        );
+        span.attributes.insert(
+            "gate.leaf_digest".to_owned(),
+            AttrValue::Str(digest.to_owned()),
+        );
+        span.attributes.insert(
+            "gate.call_digest".to_owned(),
+            AttrValue::Str(gate_crypto::sha256_hex(payload)),
+        );
+        let signed = SignedSpan::sign(span, self.signer.as_ref())?;
+        self.log.append(&signed)?;
+        if let Ok(mut p) = self.prev.lock() {
+            *p = Some(signed.digest.clone());
+        }
+        Ok(())
+    }
 }

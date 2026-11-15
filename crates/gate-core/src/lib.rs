@@ -526,3 +526,39 @@ pub enum GateError {
     #[error("internal error: {0}")]
     Internal(String),
 }
+
+/// The ONLY way ledger entries leave `gate-ledger` (plan.md §2.3). The M3
+/// implementation writes into the signed span chain; M4 swaps in the Merkle-log
+/// sink without touching ledger code.
+pub trait LeafSink: Send + Sync {
+    /// `leaf_type` is `ENDORSEMENT_T0` or `ATTESTATION_T0_PLUS_DT`.
+    fn sink_leaf(&self, leaf_type: &str, digest: &str, payload: &[u8]) -> Result<(), GateError>;
+}
+
+/// In-memory sink for tests and replay tooling.
+#[derive(Debug, Default)]
+pub struct VecSink {
+    entries: std::sync::Mutex<Vec<(String, String, Vec<u8>)>>,
+}
+
+impl VecSink {
+    #[must_use]
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    #[must_use]
+    pub fn entries(&self) -> Vec<(String, String, Vec<u8>)> {
+        self.entries.lock().map(|e| e.clone()).unwrap_or_default()
+    }
+}
+
+impl LeafSink for VecSink {
+    fn sink_leaf(&self, leaf_type: &str, digest: &str, payload: &[u8]) -> Result<(), GateError> {
+        self.entries
+            .lock()
+            .map_err(|_| GateError::Internal("sink poisoned".into()))?
+            .push((leaf_type.to_owned(), digest.to_owned(), payload.to_vec()));
+        Ok(())
+    }
+}

@@ -1,5 +1,5 @@
 # STATE
-last_updated: 2026-11-15T13:30:00Z
+last_updated: 2026-11-15T15:00:00Z
 current_phase: M0
 
 tasks:
@@ -105,7 +105,7 @@ tasks:
     notes: "Sup share = w_sup/(w_sup+w_cnt+w_neu) measured in rendered tokens AND rendered pixel area; the rule takes the max (P3-R7). >0.50 => not rendered + DENY_SYMMETRY (INV-6). Whitespace and zero-size blocks contribute nothing to the pixel measure; tiny-font counter text is pixel-weighted; collapsed justification is still counted; 200% zoom is ratio-invariant; screen-reader/render order is a fixed contract. Deterministic layout model (no browser in the loop); headless-browser cross-check (<=2% per block) is CI work for M3-T05 wiring, recorded as ISSUE-003."
   - id: M3-T04
     status: DONE
-    commit: null
+    commit: a06fe53
     tests_green: [T-LDG-001, T-LDG-002, T-LDG-003, T-LDG-004, T-LDG-005, T-LDG-006, T-LDG-007, T-LDG-008, T-LDG-009, T-LDG-010, T-LDG-011, T-LDG-012, T-LDG-013, T-LDG-014, T-LDG-015, T-LDG-016, T-LDG-017, T-LDG-018, T-LDG-019, T-LDG-020, T-LDG-021, T-LDG-022, T-LDG-023, T-LDG-024, T-LDG-025, T-LDG-026]
     notes: "Leaf A carries every P3-R17 field (schema test), signed over JCS bytes with digest+signature verified; release requires H(JCS(outbound)) == call_digest (INV-5: one-byte mutation, wrong call, replay all denied); 15-min endorsement timeout fails closed; resume plan never re-prompts (Endorsed->Release, Released->ExecuteOnce, Executed->Done, NF-R5); Leaf B bound by ref=H(leaf_a) with 0..3 regret and duplicate-attestation rejection; tick() records AttestLapsed after delta_t and never invents confirmation (INV-8); delta_t bounds 1h..30d; asymmetric briefs are never endorsed; leaves exit ONLY through gate_core::LeafSink, implemented by VecSink and by gate_span::SpanLeafSink (signed, chained, fsync'd span chain, T-LDG-016b)."
   - id: M3-T05

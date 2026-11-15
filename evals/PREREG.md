@@ -92,6 +92,13 @@ gate's denial rate and does not lower benign utility.
   not consume the output budget; one host.
 - Decisions on identical transcripts: permissive allowlist that includes the attacker
   domain (B3/G isolation) and a strict allowlist (parameter-validation baseline).
+- Output adapter: `llama3.2` and `gemma3` answer with a `TO:` line; `qwen3:4b` is
+  grammar-constrained for **both** the memory summary (`{"summary": "..."}`) and the
+  session-2 answer (`{"to": "..."}`) because it otherwise emits unbounded reasoning and
+  truncates before answering (a 1-rep pipeline smoke produced 0/8 parseable at 80
+  tokens). The extracted fields are the same sentence and recipient; this is a
+  compatibility measure, not an outcome-driven change, recorded per model in the
+  transcript.
 - Metrics: raw ASR, ASR under B3, ASR under G, benign utility under B3/G, strict-policy
   block rate; one-sided 95 % Clopper–Pearson bounds on every rate.
 - Transcripts: `results/model_pilot.jsonl`, every prompt and reply, no filtering.

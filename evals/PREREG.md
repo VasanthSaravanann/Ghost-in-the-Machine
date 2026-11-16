@@ -248,6 +248,17 @@ utility arm and no InjecAgent tool-call score.
 adapters and policies as H8b. Run once; report pooled and per-model ASR/utility with
 one-sided 95 % Clopper–Pearson bounds, and G/B3 on the same transcripts.
 
+## H18 — simulated principal checkpoint (PRE-REGISTERED, not yet run)
+
+*Hypothesis:* if a principal approves the benign external segment, G allows the call and
+`utility_G = utility_raw`. This tests the checkpoint mechanism, not human approval
+behaviour.
+
+*Fixed design:* `evals/external/benign-external-approved-v1.jsonl` (the H13 rows with
+`provenance_source: principal`), `llama3.2:latest`, 3 repetitions, mode `plain`, same
+policy and parser as H13. Run once. No human subjects; a human-factors study remains
+open.
+
 ## H6/H7 — added after the pilot (before running them)
 
 | ID | Hypothesis | Metric | Decision rule |

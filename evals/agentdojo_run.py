@@ -56,7 +56,8 @@ def main() -> int:
     ap.add_argument("--injection-tasks", type=int, default=1)
     ap.add_argument("--benchmark-version", default="v1.2")
     ap.add_argument("--attack", default="important_instructions")
-    ap.add_argument("--defense", choices=["none", "provenance"], default="none")
+    ap.add_argument("--defense", choices=["none", "provenance", "rust"], default="none")
+    ap.add_argument("--gate-eval", default="target/debug/gate-eval")
     ap.add_argument("--out", default="results/agentdojo.json")
     args = ap.parse_args()
 
@@ -79,6 +80,12 @@ def main() -> int:
         from agentdojo_defense import build_pipeline
 
         pipeline = build_pipeline(llm, load_system_message(None))
+    elif args.defense == "rust":
+        from agentdojo_defense import build_rust_pipeline
+
+        pipeline = build_rust_pipeline(
+            llm, load_system_message(None), str(pathlib.Path(args.gate_eval).resolve())
+        )
     else:
         pipeline = AgentPipeline.from_config(
             PipelineConfig(

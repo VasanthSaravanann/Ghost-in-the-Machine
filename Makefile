@@ -12,13 +12,22 @@ REPS ?= 3
 .PHONY: help lint test frontier pilot adaptive neutral injecagent injecagent100 hosted cost e2e e2e-corpus cli-bench agentdojo checkpoint checkpoint-sensitivity policy-aware reproduce reproduce-models
 
 help:
-	@echo "lint              fmt --check + clippy -D warnings"
-	@echo "test              full workspace test suite"
-	@echo "frontier          H7 over-taint cost curve (no model calls)"
-	@echo "pilot             H8b: three-model paired B3/G run (needs Ollama models)"
-	@echo "adaptive          H8c/H8d: fixed-budget LLM-rewrite attacker (needs Ollama)"
-	@echo "reproduce         lint + test + frontier (offline)"
-	@echo "reproduce-models  reproduce + pilot + adaptive (local models)"
+	@echo "reproduce               lint + 433 tests + frontier (offline, no models)"
+	@echo "pilot                   H8b: paired B3/G on local models (MODELS, REPS)"
+	@echo "adaptive                H8c/H8d: fixed-budget LLM rewrite (llama3.2)"
+	@echo "policy-aware            H11: policy-aware attacker (llama3.2)"
+	@echo "neutral                 H10: neutral summariser (MODELS)"
+	@echo "hosted                  H12: hosted 27B-31B models (ADAPTION_API_KEY)"
+	@echo "injecagent              H9: InjecAgent-derived corpus (network + MODELS)"
+	@echo "injecagent100           H14: 100 external attacks (ADAPTION_API_KEY)"
+	@echo "cost                    H13: cost of G on benign external flows (key)"
+	@echo "e2e                     H15: live model through the real proxy (key)"
+	@echo "e2e-corpus              full model corpus through the CLI (Ollama)"
+	@echo "cli-bench               360-scenario corpus through the CLI (scripted)"
+	@echo "agentdojo               AgentDojo baseline + replay (AGENTDOJO_PY)"
+	@echo "checkpoint              H18: simulated principal approval (llama3.2)"
+	@echo "checkpoint-sensitivity  principal accuracy target (no models)"
+	@echo "reproduce-models        reproduce + pilot + adaptive + neutral + policy-aware"
 
 lint:
 	$(CARGO) fmt --check
@@ -58,7 +67,7 @@ injecagent100:
 
 e2e:
 	$(CARGO) build -q -p mcp-gate
-	python3 evals/e2e_hosted_gate.py --trials 10 --model gemma-4-31b-it
+	python3 evals/e2e_hosted_gate.py --provider=openai --trials 10 --model gemma-4-31b-it
 
 e2e-corpus:
 	$(CARGO) build -q -p mcp-gate

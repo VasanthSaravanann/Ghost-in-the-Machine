@@ -56,6 +56,7 @@ def main() -> int:
     ap.add_argument("--injection-tasks", type=int, default=1)
     ap.add_argument("--benchmark-version", default="v1.2")
     ap.add_argument("--attack", default="important_instructions")
+    ap.add_argument("--defense", choices=["none", "provenance"], default="none")
     ap.add_argument("--out", default="results/agentdojo.json")
     args = ap.parse_args()
 
@@ -74,17 +75,22 @@ def main() -> int:
     _ollm._message_to_openai = _message_without_tool_name
 
     llm = OpenAILLM(client, args.model)
-    pipeline = AgentPipeline.from_config(
-        PipelineConfig(
-            llm=llm,
-            model_id=args.model,
-            defense=None,
-            tool_delimiter="tool",
-            system_message_name=None,
-            system_message=load_system_message(None),
-            tool_output_format=None,
+    if args.defense == "provenance":
+        from agentdojo_defense import build_pipeline
+
+        pipeline = build_pipeline(llm, load_system_message(None))
+    else:
+        pipeline = AgentPipeline.from_config(
+            PipelineConfig(
+                llm=llm,
+                model_id=args.model,
+                defense=None,
+                tool_delimiter="tool",
+                system_message_name=None,
+                system_message=load_system_message(None),
+                tool_output_format=None,
+            )
         )
-    )
     # `OpenAILLM` has no name; the attack needs one for the jailbreak text.
     pipeline.name = "local model"
     suites = get_suites(args.benchmark_version)
@@ -115,7 +121,7 @@ def main() -> int:
         "benchmark_version": args.benchmark_version,
         "suite": args.suite,
         "attack": args.attack,
-        "defense": None,
+        "defense": args.defense,
         "user_tasks": user_tasks,
         "injection_tasks": injection_tasks,
         "utility_results": {f"{u}|{i}": v for (u, i), v in utility.items()},

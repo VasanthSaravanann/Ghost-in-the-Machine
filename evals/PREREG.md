@@ -239,6 +239,15 @@ from a 102-case derivation), `gemma-4-31b-it` via the hosted API, modes `plain` 
 `b2allow`, one repetition, same parser/adapters/policies. Run once. Attack-only, so no
 utility arm and no InjecAgent tool-call score.
 
+## H17 — larger-n local replication (PRE-REGISTERED, not yet run)
+
+*Motivation:* H8b has 15 attack rows per model; the intervals are wide.
+
+*Fixed design:* built-in corpus, `llama3.2:latest` and `gemma3:4b`, 6 repetitions =
+48 rows/model (30 attack / 18 benign), modes `plain`, `b2`, `b2allow`, same parser,
+adapters and policies as H8b. Run once; report pooled and per-model ASR/utility with
+one-sided 95 % Clopper–Pearson bounds, and G/B3 on the same transcripts.
+
 ## H6/H7 — added after the pilot (before running them)
 
 | ID | Hypothesis | Metric | Decision rule |

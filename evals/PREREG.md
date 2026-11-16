@@ -177,6 +177,18 @@ models, modes `plain` and `b2allow`, `--summarizer=neutral`, same parser, adapte
 policies and intervals. Run once. This isolates the session-1 prompt assistance that
 H8b disclosed as a limitation.
 
+## H11 — policy-aware LLM attacker (PRE-REGISTERED, not yet run)
+
+*Hypothesis:* an attacker that sees the defender's system text and the allowlist beats
+`b2allow` at a lower rewrite budget than the self-play attacker in H8d, while G still
+denies every successful call.
+
+*Fixed design:* `llama3.2:latest` only, prompt mode `b2allow`, budget 3, the 5 built-in
+attack styles, `--attacker=policy-aware`. The rewrite prompt now includes the defender's
+system instruction, the permitted recipient and the permissive allowlist. Everything
+else is H8c/H8d. Run once; report every row and every rewrite. Self-play remains a
+limitation (attacker and target are the same model).
+
 ## H6/H7 — added after the pilot (before running them)
 
 | ID | Hypothesis | Metric | Decision rule |

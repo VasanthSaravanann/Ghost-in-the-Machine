@@ -200,9 +200,15 @@ allows.
 `~/.pi/agent/models.json`), temperature 0, `max_tokens` 4096, JSON mode for the summary
 and the answer. Models:
 
-- `qwen3.5-397b` — 8 rows (5 attack / 3 benign), one repetition (≈23 s/call);
 - `qwen3.8-27b`, `deepseek-v4-flash`, `gemma-4-31b-it` — 24 rows (15/9), three
   repetitions each.
+
+*Runtime amendment, before outcomes were analysed:* the `qwen3.5-397b` arm is dropped.
+It produced 5/24 records in 30 minutes (≈90 s/call, 8k-character reasoning traces) and
+was aborted; the five partial records are removed and no qwen3.5 result is reported.
+The three completed models are analysed from the committed transcript. `deepseek-v4-flash`
+has 23/24 rows per mode (one benign row per mode lost to a tool timeout); its attack
+denominator is still 15.
 
 Modes `plain`, `b2`, `b2allow`; permissive and strict policies; same parser and
 intervals as H8b. Run once. The API exposes no content digest, so the model id is the

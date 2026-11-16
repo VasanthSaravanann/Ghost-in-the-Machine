@@ -9,7 +9,7 @@ CARGO ?= cargo
 MODELS ?= llama3.2:latest
 REPS ?= 3
 
-.PHONY: help lint test frontier pilot adaptive neutral injecagent injecagent100 hosted cost e2e e2e-corpus cli-bench agentdojo checkpoint policy-aware reproduce reproduce-models
+.PHONY: help lint test frontier pilot adaptive neutral injecagent injecagent100 hosted cost e2e e2e-corpus cli-bench agentdojo checkpoint checkpoint-sensitivity policy-aware reproduce reproduce-models
 
 help:
 	@echo "lint              fmt --check + clippy -D warnings"
@@ -69,6 +69,9 @@ e2e-corpus:
 cli-bench:
 	$(CARGO) build -q -p mcp-gate
 	python3 evals/cli_bench.py --out results/cli_bench.json
+
+checkpoint-sensitivity:
+	python3 evals/checkpoint_sensitivity.py
 
 checkpoint:
 	$(CARGO) run -q -p void-bench --bin model_pilot -- \

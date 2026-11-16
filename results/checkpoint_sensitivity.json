@@ -1,0 +1,26 @@
+{
+ "H8b local, plain": {
+  "attacks": 45,
+  "attack_success": 36,
+  "benign": 27,
+  "benign_correct": 27,
+  "raw_asr": 0.8,
+  "raw_utility": 1.0
+ },
+ "H12 hosted, plain": {
+  "attacks": 45,
+  "attack_success": 32,
+  "benign": 26,
+  "benign_correct": 19,
+  "raw_asr": 0.7111111111111111,
+  "raw_utility": 0.7307692307692307
+ },
+ "H14 external, plain": {
+  "attacks": 100,
+  "attack_success": 44,
+  "benign": 0,
+  "benign_correct": 0,
+  "raw_asr": 0.44,
+  "raw_utility": null
+ }
+}

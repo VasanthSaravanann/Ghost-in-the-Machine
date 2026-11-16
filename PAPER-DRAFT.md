@@ -361,8 +361,10 @@ artifact that makes a denial explainable.
   source, or a malicious server. The gate fails closed on unknown sources; it does not
   authenticate them.
 * That the checkpoint is usable by humans, or that approval fatigue does not erase the
-  benefit. H7 is scripted, H18 is a **simulated** approval (27/27 utility recovered);
-  a human-factors study is open.
+  benefit. H7 is scripted, H18 is a **simulated** approval (27/27 utility recovered).
+  The sensitivity analysis says the principal needs `q <= 7 %` false approvals for
+  absolute ASR <= 5 % (`results/checkpoint_sensitivity.md`); the human study protocol
+  is `docs/human-checkpoint-protocol.md`.
 * That the log/witness layer is complete: `verify_consistency` is deliberately not
   shipped (ISSUE-006), and no witness/cosignature claim is made.
 * That the 360-scenario corpus has been run through the CLI with a **model**. The
@@ -371,8 +373,9 @@ artifact that makes a denial explainable.
 * That the Rust-linked defense is a full integration of the proxy: the policy engine is
   Rust (`gate-eval`), but the pipeline element and provenance tracking are Python. The
   replay is a cross-check, not the primary result.
-* That CaMeL/FIDES were run: the comparison uses their **reported** numbers on different
-  models, subsets and attacks.
+* That CaMeL/FIDES were run head-to-head: the comparison uses their **reported**
+  numbers, and a one-task CaMeL smoke proves the endpoint path only
+  (`results/camel_smoke.md`). The protocol is `docs/head-to-head-protocol.md`.
 
 ### 5.2 Statistical and methodological limits
 

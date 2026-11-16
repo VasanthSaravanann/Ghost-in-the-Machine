@@ -66,6 +66,9 @@ eval numbers, open issues, pending decisions).
 | `results/model_pilot_large.md` | H17: 30 attack rows/model on llama3.2 + gemma3:4b; confirms H8b | a hosted larger-n run | `make pilot` |
 | `results/camel_fides.md` | CaMeL/FIDES **reported** AgentDojo numbers with a non-comparability boundary | a head-to-head run (not performed) | — |
 | `results/model_benign_checkpoint.md` | H18: simulated principal approval recovers 27/27 utility under G | a human-factors study | `make checkpoint` |
+| `results/checkpoint_sensitivity.md` | how accurate the principal must be (q ≤ 7 % for ASR ≤ 5 %) | human data | `make checkpoint-sensitivity` |
+| `docs/head-to-head-protocol.md` | exact CaMeL/FIDES/gate comparison protocol; CaMeL endpoint smoke | a completed head-to-head | — |
+| `docs/human-checkpoint-protocol.md` | IRB-ready within-subjects checkpoint study | human data (not run) | — |
 
 Every rate in these files carries a Clopper–Pearson interval. `results/*.jsonl` are the
 raw per-trial transcripts for the model runs; the markdown tables are derived from them.

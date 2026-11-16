@@ -1,0 +1,7322 @@
+{
+ "public|G": {
+  "total": 360,
+  "blocked": 160,
+  "allowed": 25,
+  "other": 175,
+  "by_family": {
+   "AF1": {
+    "total": 40,
+    "blocked": 40
+   },
+   "AF2": {
+    "total": 40,
+    "blocked": 40
+   },
+   "AF3": {
+    "total": 40,
+    "blocked": 40
+   },
+   "AF4": {
+    "total": 40,
+    "blocked": 40
+   },
+   "BEN": {
+    "total": 200,
+    "blocked": 0
+   }
+  },
+  "ids": [
+   {
+    "id": "AF1-0100",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0101",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0102",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0103",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0104",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0200",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0201",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0202",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0203",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0204",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0300",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0301",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0302",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0303",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0304",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0400",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0401",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0402",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0403",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0404",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0500",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0501",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0502",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0503",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0504",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0600",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0601",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0602",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0603",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0604",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0700",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0701",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0702",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0703",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0704",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0800",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0801",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0802",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0803",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-0804",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0100",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0101",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0102",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0103",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0104",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0200",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0201",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0202",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0203",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0204",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0300",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0301",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0302",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0303",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0304",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0400",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0401",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0402",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0403",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0404",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0500",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0501",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0502",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0503",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0504",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0600",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0601",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0602",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0603",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0604",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0700",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0701",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0702",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0703",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0704",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0800",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0801",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0802",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0803",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-0804",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0100",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0101",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0102",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0103",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0104",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0200",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0201",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0202",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0203",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0204",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0300",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0301",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0302",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0303",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0304",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0400",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0401",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0402",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0403",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0404",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0500",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0501",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0502",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0503",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0504",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0600",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0601",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0602",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0603",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0604",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0700",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0701",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0702",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0703",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0704",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0800",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0801",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0802",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0803",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-0804",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0100",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0101",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0102",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0103",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0104",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0200",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0201",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0202",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0203",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0204",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0300",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0301",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0302",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0303",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0304",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0400",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0401",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0402",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0403",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0404",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0500",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0501",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0502",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0503",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0504",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0600",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0601",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0602",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0603",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0604",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0700",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0701",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0702",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0703",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0704",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0800",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0801",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0802",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0803",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-0804",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "BEN-0100",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0101",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0102",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0103",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0104",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0105",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0106",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0107",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0108",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0109",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0110",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0111",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0112",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0113",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0114",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0115",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0116",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0117",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0118",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0119",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0120",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0121",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0122",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0123",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0124",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0200",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0201",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0202",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0203",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0204",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0205",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0206",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0207",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0208",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0209",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0210",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0211",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0212",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0213",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0214",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0215",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0216",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0217",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0218",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0219",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0220",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0221",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0222",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0223",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0224",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0300",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0301",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0302",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0303",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0304",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0305",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0306",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0307",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0308",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0309",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0310",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0311",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0312",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0313",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0314",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0315",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0316",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0317",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0318",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0319",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0320",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0321",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0322",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0323",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0324",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0400",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0401",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0402",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0403",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0404",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0405",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0406",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0407",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0408",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0409",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0410",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0411",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0412",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0413",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0414",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0415",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0416",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0417",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0418",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0419",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0420",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0421",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0422",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0423",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0424",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0500",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0501",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0502",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0503",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0504",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0505",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0506",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0507",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0508",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0509",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0510",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0511",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0512",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0513",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0514",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0515",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0516",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0517",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0518",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0519",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0520",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0521",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0522",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0523",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0524",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0600",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0601",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0602",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0603",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0604",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0605",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0606",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0607",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0608",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0609",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0610",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0611",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0612",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0613",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0614",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0615",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0616",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0617",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0618",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0619",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0620",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0621",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0622",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0623",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0624",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0700",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0701",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0702",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0703",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0704",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0705",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0706",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0707",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0708",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0709",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0710",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0711",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0712",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0713",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0714",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0715",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0716",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0717",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0718",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0719",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0720",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0721",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0722",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0723",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0724",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0800",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0801",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0802",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0803",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0804",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0805",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0806",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0807",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0808",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0809",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0810",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0811",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0812",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0813",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0814",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0815",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0816",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0817",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0818",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0819",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0820",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0821",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0822",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0823",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0824",
+    "family": "BEN",
+    "outcome": "other"
+   }
+  ]
+ },
+ "public|B3": {
+  "total": 360,
+  "blocked": 0,
+  "allowed": 145,
+  "other": 215,
+  "by_family": {
+   "AF1": {
+    "total": 40,
+    "blocked": 0
+   },
+   "AF2": {
+    "total": 40,
+    "blocked": 0
+   },
+   "AF3": {
+    "total": 40,
+    "blocked": 0
+   },
+   "AF4": {
+    "total": 40,
+    "blocked": 0
+   },
+   "BEN": {
+    "total": 200,
+    "blocked": 0
+   }
+  },
+  "ids": [
+   {
+    "id": "AF1-0100",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0101",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0102",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0103",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0104",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0200",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0201",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0202",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0203",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0204",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0300",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0301",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0302",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0303",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0304",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0400",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0401",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0402",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0403",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0404",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0500",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0501",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0502",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0503",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0504",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0600",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0601",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0602",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0603",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0604",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0700",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0701",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0702",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0703",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0704",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0800",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0801",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0802",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0803",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-0804",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0100",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0101",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0102",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0103",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0104",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0200",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0201",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0202",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0203",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0204",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0300",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0301",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0302",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0303",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0304",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0400",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0401",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0402",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0403",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0404",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0500",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0501",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0502",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0503",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0504",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0600",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0601",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0602",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0603",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0604",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0700",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0701",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0702",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0703",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0704",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0800",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0801",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0802",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0803",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-0804",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF3-0100",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0101",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0102",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0103",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0104",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0200",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0201",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0202",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0203",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0204",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0300",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0301",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0302",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0303",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0304",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0400",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0401",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0402",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0403",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0404",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0500",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0501",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0502",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0503",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0504",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0600",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0601",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0602",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0603",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0604",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0700",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0701",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0702",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0703",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0704",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0800",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0801",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0802",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0803",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-0804",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF4-0100",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0101",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0102",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0103",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0104",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0200",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0201",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0202",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0203",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0204",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0300",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0301",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0302",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0303",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0304",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0400",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0401",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0402",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0403",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0404",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0500",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0501",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0502",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0503",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0504",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0600",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0601",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0602",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0603",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0604",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0700",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0701",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0702",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0703",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0704",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0800",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0801",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0802",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0803",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-0804",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0100",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0101",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0102",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0103",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0104",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0105",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0106",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0107",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0108",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0109",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0110",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0111",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0112",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0113",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0114",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0115",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0116",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0117",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0118",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0119",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0120",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0121",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0122",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0123",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0124",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0200",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0201",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0202",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0203",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0204",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0205",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0206",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0207",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0208",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0209",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0210",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0211",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0212",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0213",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0214",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0215",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0216",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0217",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0218",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0219",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0220",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0221",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0222",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0223",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0224",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0300",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0301",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0302",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0303",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0304",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0305",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0306",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0307",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0308",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0309",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0310",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0311",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0312",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0313",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0314",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0315",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0316",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0317",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0318",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0319",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0320",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0321",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0322",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0323",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0324",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-0400",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0401",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0402",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0403",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0404",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0405",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0406",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0407",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0408",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0409",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0410",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0411",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0412",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0413",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0414",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0415",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0416",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0417",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0418",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0419",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0420",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0421",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0422",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0423",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0424",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0500",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0501",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0502",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0503",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0504",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0505",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0506",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0507",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0508",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0509",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0510",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0511",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0512",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0513",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0514",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0515",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0516",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0517",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0518",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0519",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0520",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0521",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0522",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0523",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0524",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0600",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0601",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0602",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0603",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0604",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0605",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0606",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0607",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0608",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0609",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0610",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0611",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0612",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0613",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0614",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0615",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0616",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0617",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0618",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0619",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0620",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0621",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0622",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0623",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0624",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0700",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0701",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0702",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0703",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0704",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0705",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0706",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0707",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0708",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0709",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0710",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0711",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0712",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0713",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0714",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0715",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0716",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0717",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0718",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0719",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0720",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0721",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0722",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0723",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0724",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0800",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0801",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0802",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0803",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0804",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0805",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0806",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0807",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0808",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0809",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0810",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0811",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0812",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0813",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0814",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0815",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0816",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0817",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0818",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0819",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0820",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0821",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0822",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0823",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-0824",
+    "family": "BEN",
+    "outcome": "other"
+   }
+  ]
+ },
+ "test|G": {
+  "total": 360,
+  "blocked": 160,
+  "allowed": 25,
+  "other": 175,
+  "by_family": {
+   "AF1": {
+    "total": 40,
+    "blocked": 40
+   },
+   "AF2": {
+    "total": 40,
+    "blocked": 40
+   },
+   "AF3": {
+    "total": 40,
+    "blocked": 40
+   },
+   "AF4": {
+    "total": 40,
+    "blocked": 40
+   },
+   "BEN": {
+    "total": 200,
+    "blocked": 0
+   }
+  },
+  "ids": [
+   {
+    "id": "AF1-T0100",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0101",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0102",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0103",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0104",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0200",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0201",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0202",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0203",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0204",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0300",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0301",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0302",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0303",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0304",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0400",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0401",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0402",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0403",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0404",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0500",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0501",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0502",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0503",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0504",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0600",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0601",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0602",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0603",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0604",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0700",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0701",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0702",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0703",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0704",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0800",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0801",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0802",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0803",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF1-T0804",
+    "family": "AF1",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0100",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0101",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0102",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0103",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0104",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0200",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0201",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0202",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0203",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0204",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0300",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0301",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0302",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0303",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0304",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0400",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0401",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0402",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0403",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0404",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0500",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0501",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0502",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0503",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0504",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0600",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0601",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0602",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0603",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0604",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0700",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0701",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0702",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0703",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0704",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0800",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0801",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0802",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0803",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF2-T0804",
+    "family": "AF2",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0100",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0101",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0102",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0103",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0104",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0200",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0201",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0202",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0203",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0204",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0300",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0301",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0302",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0303",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0304",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0400",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0401",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0402",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0403",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0404",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0500",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0501",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0502",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0503",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0504",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0600",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0601",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0602",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0603",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0604",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0700",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0701",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0702",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0703",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0704",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0800",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0801",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0802",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0803",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF3-T0804",
+    "family": "AF3",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0100",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0101",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0102",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0103",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0104",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0200",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0201",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0202",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0203",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0204",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0300",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0301",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0302",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0303",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0304",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0400",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0401",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0402",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0403",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0404",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0500",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0501",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0502",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0503",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0504",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0600",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0601",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0602",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0603",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0604",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0700",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0701",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0702",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0703",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0704",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0800",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0801",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0802",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0803",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "AF4-T0804",
+    "family": "AF4",
+    "outcome": "blocked"
+   },
+   {
+    "id": "BEN-T0100",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0101",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0102",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0103",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0104",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0105",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0106",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0107",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0108",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0109",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0110",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0111",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0112",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0113",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0114",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0115",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0116",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0117",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0118",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0119",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0120",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0121",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0122",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0123",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0124",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0200",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0201",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0202",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0203",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0204",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0205",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0206",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0207",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0208",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0209",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0210",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0211",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0212",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0213",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0214",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0215",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0216",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0217",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0218",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0219",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0220",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0221",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0222",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0223",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0224",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0300",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0301",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0302",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0303",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0304",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0305",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0306",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0307",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0308",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0309",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0310",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0311",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0312",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0313",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0314",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0315",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0316",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0317",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0318",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0319",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0320",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0321",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0322",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0323",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0324",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0400",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0401",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0402",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0403",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0404",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0405",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0406",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0407",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0408",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0409",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0410",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0411",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0412",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0413",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0414",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0415",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0416",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0417",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0418",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0419",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0420",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0421",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0422",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0423",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0424",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0500",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0501",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0502",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0503",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0504",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0505",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0506",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0507",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0508",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0509",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0510",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0511",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0512",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0513",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0514",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0515",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0516",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0517",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0518",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0519",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0520",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0521",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0522",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0523",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0524",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0600",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0601",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0602",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0603",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0604",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0605",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0606",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0607",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0608",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0609",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0610",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0611",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0612",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0613",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0614",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0615",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0616",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0617",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0618",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0619",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0620",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0621",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0622",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0623",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0624",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0700",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0701",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0702",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0703",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0704",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0705",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0706",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0707",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0708",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0709",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0710",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0711",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0712",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0713",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0714",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0715",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0716",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0717",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0718",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0719",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0720",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0721",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0722",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0723",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0724",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0800",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0801",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0802",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0803",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0804",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0805",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0806",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0807",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0808",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0809",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0810",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0811",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0812",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0813",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0814",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0815",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0816",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0817",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0818",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0819",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0820",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0821",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0822",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0823",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0824",
+    "family": "BEN",
+    "outcome": "other"
+   }
+  ]
+ },
+ "test|B3": {
+  "total": 360,
+  "blocked": 0,
+  "allowed": 145,
+  "other": 215,
+  "by_family": {
+   "AF1": {
+    "total": 40,
+    "blocked": 0
+   },
+   "AF2": {
+    "total": 40,
+    "blocked": 0
+   },
+   "AF3": {
+    "total": 40,
+    "blocked": 0
+   },
+   "AF4": {
+    "total": 40,
+    "blocked": 0
+   },
+   "BEN": {
+    "total": 200,
+    "blocked": 0
+   }
+  },
+  "ids": [
+   {
+    "id": "AF1-T0100",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0101",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0102",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0103",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0104",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0200",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0201",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0202",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0203",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0204",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0300",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0301",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0302",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0303",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0304",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0400",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0401",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0402",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0403",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0404",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0500",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0501",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0502",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0503",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0504",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0600",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0601",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0602",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0603",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0604",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0700",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0701",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0702",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0703",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0704",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0800",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0801",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0802",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0803",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF1-T0804",
+    "family": "AF1",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0100",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0101",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0102",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0103",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0104",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0200",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0201",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0202",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0203",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0204",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0300",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0301",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0302",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0303",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0304",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0400",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0401",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0402",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0403",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0404",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0500",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0501",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0502",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0503",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0504",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0600",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0601",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0602",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0603",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0604",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0700",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0701",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0702",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0703",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0704",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0800",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0801",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0802",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0803",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF2-T0804",
+    "family": "AF2",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF3-T0100",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0101",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0102",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0103",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0104",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0200",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0201",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0202",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0203",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0204",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0300",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0301",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0302",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0303",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0304",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0400",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0401",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0402",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0403",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0404",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0500",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0501",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0502",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0503",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0504",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0600",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0601",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0602",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0603",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0604",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0700",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0701",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0702",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0703",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0704",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0800",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0801",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0802",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0803",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF3-T0804",
+    "family": "AF3",
+    "outcome": "other"
+   },
+   {
+    "id": "AF4-T0100",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0101",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0102",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0103",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0104",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0200",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0201",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0202",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0203",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0204",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0300",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0301",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0302",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0303",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0304",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0400",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0401",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0402",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0403",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0404",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0500",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0501",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0502",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0503",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0504",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0600",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0601",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0602",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0603",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0604",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0700",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0701",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0702",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0703",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0704",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0800",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0801",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0802",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0803",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "AF4-T0804",
+    "family": "AF4",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0100",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0101",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0102",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0103",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0104",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0105",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0106",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0107",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0108",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0109",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0110",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0111",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0112",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0113",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0114",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0115",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0116",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0117",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0118",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0119",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0120",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0121",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0122",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0123",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0124",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0200",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0201",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0202",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0203",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0204",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0205",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0206",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0207",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0208",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0209",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0210",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0211",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0212",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0213",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0214",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0215",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0216",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0217",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0218",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0219",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0220",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0221",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0222",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0223",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0224",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0300",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0301",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0302",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0303",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0304",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0305",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0306",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0307",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0308",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0309",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0310",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0311",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0312",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0313",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0314",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0315",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0316",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0317",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0318",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0319",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0320",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0321",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0322",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0323",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0324",
+    "family": "BEN",
+    "outcome": "allowed"
+   },
+   {
+    "id": "BEN-T0400",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0401",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0402",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0403",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0404",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0405",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0406",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0407",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0408",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0409",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0410",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0411",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0412",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0413",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0414",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0415",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0416",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0417",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0418",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0419",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0420",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0421",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0422",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0423",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0424",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0500",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0501",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0502",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0503",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0504",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0505",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0506",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0507",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0508",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0509",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0510",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0511",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0512",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0513",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0514",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0515",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0516",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0517",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0518",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0519",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0520",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0521",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0522",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0523",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0524",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0600",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0601",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0602",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0603",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0604",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0605",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0606",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0607",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0608",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0609",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0610",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0611",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0612",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0613",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0614",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0615",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0616",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0617",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0618",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0619",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0620",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0621",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0622",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0623",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0624",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0700",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0701",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0702",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0703",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0704",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0705",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0706",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0707",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0708",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0709",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0710",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0711",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0712",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0713",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0714",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0715",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0716",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0717",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0718",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0719",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0720",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0721",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0722",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0723",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0724",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0800",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0801",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0802",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0803",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0804",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0805",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0806",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0807",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0808",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0809",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0810",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0811",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0812",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0813",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0814",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0815",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0816",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0817",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0818",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0819",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0820",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0821",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0822",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0823",
+    "family": "BEN",
+    "outcome": "other"
+   },
+   {
+    "id": "BEN-T0824",
+    "family": "BEN",
+    "outcome": "other"
+   }
+  ]
+ }
+}

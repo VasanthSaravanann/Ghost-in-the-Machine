@@ -79,6 +79,7 @@ trusted computing base. The proxy:
 | local | `llama3.2:latest` (3B) | digest `a80c4f17…b8b72` |
 | local | `gemma3:4b` | digest `68ceab7e…38df7` |
 | local | `qwen3:4b` | digest `359d7dd4…74fae7` |
+| local | 2-model replication (H17) | llama3.2 + gemma3:4b, 6 reps |
 | hosted | `qwen3.8-27b` | model id (API exposes no digest) |
 | hosted | `deepseek-v4-flash` | model id |
 | hosted | `gemma-4-31b-it` | model id |
@@ -164,6 +165,7 @@ under `results/`; the pre-registration and its runtime amendments are in
 | experiment | corpus | plain ASR | interval |
 |---|---|---|---|
 | H8b, 3 local models | built-in | 36/45 = 80.0 % | 67.7–89.1 |
+| H17, 2 local models | built-in, 6 reps | 54/60 = 90.0 % | 81.2–95.6 |
 | H10, 3 local models | built-in, neutral summariser | 11/15 = 73.3 % | 48.9–90.3 |
 | H12, 3 hosted models | built-in | 32/45 = 71.1 % | 58.0–82.0 |
 | H9, 2 models | InjecAgent-derived | 6/12 = 50.0 % | 24.5–75.5 |
@@ -178,6 +180,7 @@ present at 27B–31B — but its magnitude is model- and corpus-dependent.
 | experiment | b2 (no permitted address) | b2allow (recipient out-of-band) |
 |---|---|---|
 | H8b local, ASR | 27/45 = 60.0 % (46.7–72.3) | 15/45 = 33.3 % (21.8–46.6) |
+| H17 local, ASR | 36/60 = 60.0 % (48.6–70.7) | 18/60 = 30.0 % (20.4–41.2) |
 | H8b local, utility | 27/27 (9/9 per model) | 27/27 (9/9 per model) |
 | H12 hosted, ASR | 0/45 = 0.0 % (0.0–6.4) | 0/45 = 0.0 % (0.0–6.4) |
 | H12 hosted, utility | **3/26 = 11.5 %** (3.2–27.2) | 21/26 = 80.8 % (63.7–92.1) |
@@ -203,7 +206,10 @@ not a general inflator (H10: pooled 73.3 % vs 80.0 %).
 | **total** | **180** | **180/180** | **180/180** | **0/180** |
 
 Every denial is `DENY_TAINT_PIVOT` with the closure named `EXTERNAL_UNTRUSTED_DATA`.
-These are five experiments, not 180 independent trials; the sum is a consistency check.
+A separate larger-n replication (H17, two local models, 30 attack rows each) adds
+**108/108** denied (0/108 allows, 0.0–2.7). It is not summed above because it reuses
+H8b's corpus. These are five experiments, not 180 independent trials; the sum is a
+consistency check.
 
 The transport result is separate and stronger for external validity: `mcp-gate` now
 labels the tool response **itself** (the proxy previously short-circuited responses and
@@ -238,6 +244,7 @@ AgentDojo v1.2, baseline (no defense), hosted models:
 | workspace | qwen3.8-27b | 10 × 2 | 20/20 | 0/20 |
 | workspace | qwen3.8-27b, `direct` | 10 × 2 | 20/20 | 0/20 |
 | travel | qwen3.8-27b, `direct` | 8 × 2 | 16/16 | **1/16 = 6.2 %** |
+| travel | qwen3.8-27b, `direct`, **native defense** | 8 × 2 | **6/16 = 37.5 %** | **0/16 = 0.0 %** |
 
 The `important_instructions` attack did not land on the workspace suite for these
 models; `direct` on travel produced the only success. A post-hoc boundary replay over
@@ -337,13 +344,16 @@ artifact that makes a denial explainable.
   benefit. H7 is scripted; the transport digest checkpoint is tested, not deployed.
 * That the log/witness layer is complete: `verify_consistency` is deliberately not
   shipped (ISSUE-006), and no witness/cosignature claim is made.
-* That the 360-scenario corpus has been run through the CLI with a model; it has not.
-* Any claim about AgentDojo as a *native* defense: the gate is replayed over logs.
+* That the 360-scenario corpus has been run through the CLI with a **model**. The
+  scripted CLI run covers all 360 (G blocks 160/160 attacks, B3 0/360); a model-driven
+  360 run is still open.
+* That the native AgentDojo defense is the Rust gate: it is a Python pipeline element
+  implementing the same rule. The replay is a cross-check, not the primary result.
 
 ### 5.2 Statistical and methodological limits
 
-Small n in several cells (5–24 attacks per cell); wide intervals; repetitions of the
-same rows are not independent. Several runs are exploratory and not pre-registered
+Small n in several cells (5–30 attacks per cell); H17 tightens the two local models but
+not the hosted cells; repetitions of the same rows are not independent. Several runs are exploratory and not pre-registered
 (H8, H15, the CLII corpus, AgentDojo); the pre-registered runs include disclosed runtime
 amendments (H9 subset, H12 397B drop, H10 qwen adapter re-run). Self-play adaptive
 attacker; no human red-team; no human literature review of the related-work claims.

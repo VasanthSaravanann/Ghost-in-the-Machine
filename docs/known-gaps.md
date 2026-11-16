@@ -45,11 +45,11 @@ Generated from `STATE.md`. **This file is the honest answer to "is it safe yet?"
   hosted model through the real `mcp-gate` process: attacker 7/7 blocked, shadow
   control 3/3 executed, benign 3/3 blocked (the measured cost). The upstream is a
   fake server and the run stopped at a provider 429; a real upstream is still open.
-* **AgentDojo is a baseline + replay, not a native defense.** Real AgentDojo v1.2 runs
-  (workspace, travel) are in `results/agentdojo.md`; the boundary is applied to
-  AgentDojo's logs as a post-hoc replay. Implementing the gate as an AgentDojo
-  pipeline element, and a CaMeL/FIDES comparison, remain open. H9's InjecAgent-derived
-  corpus is still a derived corpus; the Adaption one could not be exported (ISSUE-010).
+* **AgentDojo has a native defense, but not a CaMeL/FIDES comparison.** The native
+  `ProvenanceGateLoop` (Python, same rule) removes the one travel attack at a 10/16
+  utility cost; the Rust gate is not linked into AgentDojo. A CaMeL/FIDES comparison
+  remains open. H9's InjecAgent-derived corpus is still a derived corpus; the Adaption
+  one could not be exported (ISSUE-010).
 * **The adaptive attacker is self-play.** One 3B model writes the rewrites, budget 3,
   5 rows. H11 gives it the defender's instruction and allowlist (no improvement); it
   still does not search over gate evasions or see the brief template (§6.4 is unrun).

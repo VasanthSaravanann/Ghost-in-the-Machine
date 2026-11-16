@@ -9,7 +9,7 @@ CARGO ?= cargo
 MODELS ?= llama3.2:latest
 REPS ?= 3
 
-.PHONY: help lint test frontier pilot adaptive neutral injecagent injecagent100 hosted cost e2e e2e-corpus agentdojo policy-aware reproduce reproduce-models
+.PHONY: help lint test frontier pilot adaptive neutral injecagent injecagent100 hosted cost e2e e2e-corpus cli-bench agentdojo policy-aware reproduce reproduce-models
 
 help:
 	@echo "lint              fmt --check + clippy -D warnings"
@@ -65,6 +65,10 @@ e2e-corpus:
 	python3 evals/e2e_hosted_gate.py --provider ollama --model llama3.2:latest \
 		--corpus evals/model-corpus.jsonl --modes plain,b2,b2allow \
 		--out results/e2e_corpus.jsonl
+
+cli-bench:
+	$(CARGO) build -q -p mcp-gate
+	python3 evals/cli_bench.py --out results/cli_bench.json
 
 AGENTDOJO_PY ?= /tmp/adjo312/bin/python
 agentdojo:

@@ -61,7 +61,9 @@ eval numbers, open issues, pending decisions).
 | `results/model_benign_cost.md` | H13: **the cost of G** — benign external-content flows: raw utility 49/81, under G 0/81 | a workload estimate (9 templates) | `make cost` |
 | `results/e2e_gate.md` | H15: **live hosted model through the real `mcp-gate` process** — attacker 7/7 blocked, shadow control 3/3 executed, benign 3/3 blocked | a full 360-scenario gate run | `make e2e` |
 | `results/e2e_corpus.md` | full model corpus (8 rows × 3 modes) through the CLI, local and hosted | the 360 templated scenarios | `make e2e-corpus` |
-| `results/agentdojo.md` | **real AgentDojo v1.2** baseline (workspace/travel) + post-hoc boundary replay | a native AgentDojo defense | `make agentdojo` |
+| `results/agentdojo.md` | **real AgentDojo v1.2** baseline + **native pipeline defense** + post-hoc replay | the Rust gate linked into AgentDojo (the defense mirrors the rule) | `make agentdojo` |
+| `results/cli_bench.md` | full **360-scenario** corpus through the real CLI (scripted agent, G vs B3) | a model-driven 360 run | `make cli-bench` |
+| `results/model_pilot_large.md` | H17: 30 attack rows/model on llama3.2 + gemma3:4b; confirms H8b | a hosted larger-n run | `make pilot` |
 
 Every rate in these files carries a Clopper–Pearson interval. `results/*.jsonl` are the
 raw per-trial transcripts for the model runs; the markdown tables are derived from them.

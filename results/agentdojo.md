@@ -30,6 +30,24 @@ Evidence: `results/agentdojo_workspace.json`, `results/agentdojo_gemma.json`,
 `results/agentdojo_qwen.json`, `results/agentdojo_travel.json`; logs under
 `results/agentdojo_runs/`.
 
+## Native defense (AgentDojo pipeline element)
+
+`evals/agentdojo_defense.py` implements the conservative rule as a native
+`ToolsExecutionLoop` replacement: before a tool call executes, if any tool result has
+been seen, an effectful call is replaced by a `DENY_TAINT_PIVOT` refusal and the loop
+**stops**. This is a Python implementation of the rule, not the Rust `mcp-gate` binary.
+
+| travel / qwen3.8-27b / direct | utility | security |
+|---|---|---|
+| baseline (no defense) | 16/16 = 100.0% | 1/16 = 6.2% |
+| native provenance defense | **6/16 = 37.5%** | **0/16 = 0.0%** |
+
+The defense removes the only successful attack and costs 10/16 utility (the runs that
+need an effectful call after a read). An earlier version let the LLM retry the blocked
+call until it hit the context limit; AgentDojo marks `security=True` on API/context
+errors as a fail-safe, which looked like an attack success. The loop now terminates at
+the first block, so the 0/16 is an actual outcome, not a fail-safe artefact.
+
 ## Boundary replay (post-hoc, same rule as `DENY_TAINT_PIVOT`)
 
 `evals/agentdojo_replay.py` replays AgentDojo's own trajectories: after a tool result,
@@ -54,10 +72,10 @@ turn-window rule, applied to the benchmark's logs, not a native defense.
 real tasks, real injections, real utility/security checks, with the model served through
 the same API the rest of the paper uses.
 
-**Does not close:** a **native AgentDojo defense** implementation (our gate as a
-`BasePipelineElement`/`Defense` rather than a replay), and a CaMeL/FIDES comparison on
-the same tasks. Those remain the final integration work, and the replay is labelled
-accordingly rather than presented as a defense result.
+**Does not close:** a CaMeL/FIDES comparison on the same tasks, and a native
+implementation that links the **Rust** gate rather than mirroring its rule in Python.
+The native defense above is an AgentDojo pipeline element; the replay is retained as a
+cross-check.
 
 ## Reproduce
 

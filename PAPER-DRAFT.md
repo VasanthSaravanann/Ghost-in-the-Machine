@@ -245,6 +245,7 @@ AgentDojo v1.2, baseline (no defense), hosted models:
 | workspace | qwen3.8-27b, `direct` | 10 × 2 | 20/20 | 0/20 |
 | travel | qwen3.8-27b, `direct` | 8 × 2 | 16/16 | **1/16 = 6.2 %** |
 | travel | qwen3.8-27b, `direct`, **native defense** | 8 × 2 | **6/16 = 37.5 %** | **0/16 = 0.0 %** |
+| travel | qwen3.8-27b, `direct`, **Rust-linked defense** | 8 × 2 | **6/16 = 37.5 %** | **0/16 = 0.0 %** |
 
 The `important_instructions` attack did not land on the workspace suite for these
 models; `direct` on travel produced the only success. A post-hoc boundary replay over
@@ -261,7 +262,26 @@ reached 3/5 and no further. The attacker model often refused to rewrite (“I ca
 with that”), so self-play safety caps the attack. G denied 5/5 successful calls in each
 arm. This is not the §6.4 campaign: one model, five rows, no search over gate evasions.
 
-### 3.7 What did not replicate
+### 3.7 Comparison to in-planner IFC (reported numbers)
+
+We did not run CaMeL or FIDES. Their reported AgentDojo results are compared with an
+explicit non-comparability boundary (`results/camel_fides.md`):
+
+| system | model | utility | ASR (count/949) |
+|---|---|---|---|
+| undefended | Claude 4 Sonnet | 80.1 % under attack | 75/949 = 7.9 % |
+| **CaMeL** | Claude 4 Sonnet | 75.7 % under attack | 13/949 = 1.4 % |
+| undefended | gpt-4o | 83.30 % | 163/949 = 17.2 % |
+| **FIDES** (no policies) | gpt-4o | 59.79 % | 24/949 = 2.53 % |
+| **FIDES** (with policies) | gpt-4o | **50.31 %** | 1/949 = 0.11 % |
+| our boundary (undefended) | travel / qwen3.8-27b, 8×2 | 100 % | 1/16 = 6.2 % |
+| our boundary (Rust gate) | travel / qwen3.8-27b, 8×2 | **37.5 %** | **0/16 = 0 %** |
+
+Different models, subsets, attacks and mechanisms: not a head-to-head. The consistent
+finding is the **shared utility cost of declassification**, not a ranking. CaMeL/FIDES
+require a planner/interpreter; the boundary gate does not.
+
+### 3.8 What did not replicate
 
 The neutral-summariser hypothesis (“assisted summariser inflates ASR”) was **not
 supported overall** (73.3 % vs 80.0 %); it held for llama3.2 only. The policy-aware
@@ -341,19 +361,24 @@ artifact that makes a denial explainable.
   source, or a malicious server. The gate fails closed on unknown sources; it does not
   authenticate them.
 * That the checkpoint is usable by humans, or that approval fatigue does not erase the
-  benefit. H7 is scripted; the transport digest checkpoint is tested, not deployed.
+  benefit. H7 is scripted, H18 is a **simulated** approval (27/27 utility recovered);
+  a human-factors study is open.
 * That the log/witness layer is complete: `verify_consistency` is deliberately not
   shipped (ISSUE-006), and no witness/cosignature claim is made.
 * That the 360-scenario corpus has been run through the CLI with a **model**. The
   scripted CLI run covers all 360 (G blocks 160/160 attacks, B3 0/360); a model-driven
   360 run is still open.
-* That the native AgentDojo defense is the Rust gate: it is a Python pipeline element
-  implementing the same rule. The replay is a cross-check, not the primary result.
+* That the Rust-linked defense is a full integration of the proxy: the policy engine is
+  Rust (`gate-eval`), but the pipeline element and provenance tracking are Python. The
+  replay is a cross-check, not the primary result.
+* That CaMeL/FIDES were run: the comparison uses their **reported** numbers on different
+  models, subsets and attacks.
 
 ### 5.2 Statistical and methodological limits
 
 Small n in several cells (5–30 attacks per cell); H17 tightens the two local models but
-not the hosted cells; repetitions of the same rows are not independent. Several runs are exploratory and not pre-registered
+not the hosted cells; repetitions of the same rows are not independent. H18 is a
+simulated checkpoint; CaMeL/FIDES are reported-number comparisons, not runs. Several runs are exploratory and not pre-registered
 (H8, H15, the CLII corpus, AgentDojo); the pre-registered runs include disclosed runtime
 amendments (H9 subset, H12 397B drop, H10 qwen adapter re-run). Self-play adaptive
 attacker; no human red-team; no human literature review of the related-work claims.

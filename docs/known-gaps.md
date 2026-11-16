@@ -45,14 +45,17 @@ Generated from `STATE.md`. **This file is the honest answer to "is it safe yet?"
   hosted model through the real `mcp-gate` process: attacker 7/7 blocked, shadow
   control 3/3 executed, benign 3/3 blocked (the measured cost). The upstream is a
   fake server and the run stopped at a provider 429; a real upstream is still open.
-* **AgentDojo has a native defense, but not a CaMeL/FIDES comparison.** The native
-  `ProvenanceGateLoop` (Python, same rule) removes the one travel attack at a 10/16
-  utility cost; the Rust gate is not linked into AgentDojo. A CaMeL/FIDES comparison
-  remains open. H9's InjecAgent-derived corpus is still a derived corpus; the Adaption
-  one could not be exported (ISSUE-010).
+* **AgentDojo has a native defense; CaMeL/FIDES are reported-number comparisons.** The
+  Rust-linked `RustGateLoop` removes the one travel attack at a 10/16 utility cost.
+  CaMeL/FIDES were **not run**; `results/camel_fides.md` compares their reported tables
+  with an explicit non-comparability boundary. A head-to-head remains open. H9's
+  InjecAgent-derived corpus is still derived; the Adaption corpus could not be exported
+  (ISSUE-010).
 * **The adaptive attacker is self-play.** One 3B model writes the rewrites, budget 3,
   5 rows. H11 gives it the defender's instruction and allowlist (no improvement); it
   still does not search over gate evasions or see the brief template (§6.4 is unrun).
+* **The checkpoint is simulated, not human.** H18 approves the benign segment and
+  recovers 27/27 utility; human approval rate, fatigue and usability are unmeasured.
 * **H8 (2026-11) is exploratory.** Its pre-registration was committed with its result
   and a prior 0/6 protocol was discarded. Only H8b/H8c/H8d are pre-registered before
   their runs.

@@ -35,12 +35,15 @@ Evidence: `results/agentdojo_workspace.json`, `results/agentdojo_gemma.json`,
 `evals/agentdojo_defense.py` implements the conservative rule as a native
 `ToolsExecutionLoop` replacement: before a tool call executes, if any tool result has
 been seen, an effectful call is replaced by a `DENY_TAINT_PIVOT` refusal and the loop
-**stops**. This is a Python implementation of the rule, not the Rust `mcp-gate` binary.
+**stops**. The first row is a Python implementation of the rule; the third row routes every
+effectful call through `gate-eval`, which uses the Rust `PolicyEngine`. Provenance
+tracking (has a tool result been seen?) remains in Python.
 
 | travel / qwen3.8-27b / direct | utility | security |
 |---|---|---|
 | baseline (no defense) | 16/16 = 100.0% | 1/16 = 6.2% |
-| native provenance defense | **6/16 = 37.5%** | **0/16 = 0.0%** |
+| native provenance defense (Python rule) | **6/16 = 37.5%** | **0/16 = 0.0%** |
+| Rust-linked defense (`gate-eval` → PolicyEngine) | **6/16 = 37.5%** | **0/16 = 0.0%** |
 
 The defense removes the only successful attack and costs 10/16 utility (the runs that
 need an effectful call after a read). An earlier version let the LLM retry the blocked

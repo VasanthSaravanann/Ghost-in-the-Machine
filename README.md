@@ -53,11 +53,16 @@ eval numbers, open issues, pending decisions).
 | `results/model_pilot_neutral.md` | H10: neutral-summariser control for the assisted prompt | a general claim (the effect is model-specific) | `make neutral` |
 | `results/model_injecagent.md` | H9: **InjecAgent-derived** external corpus (payload verbatim, routing suffix added) | the InjecAgent benchmark (no tool-call score) | `make injecagent` |
 | `results/model_pilot_frontier.md` | H12: **hosted 27B–31B models** via the Adaption API; plain 71% ASR, G denies 32/32; `b2allow` 0/45 with 81% utility | a general claim (`b2allow` is handed the answer) | `make hosted` (needs `ADAPTION_API_KEY`) |
+| `results/model_injecagent_100.md` | H14: 100 external attack cases; plain 44/100, `b2allow` 0/100, G denies 44/44 | the InjecAgent benchmark (derived, attack-only) | `make injecagent100` |
+| `results/model_benign_cost.md` | H13: **the cost of G** — benign external-content flows: raw utility 49/81, under G 0/81 | a workload estimate (9 templates) | `make cost` |
 
 Every rate in these files carries a Clopper–Pearson interval. `results/*.jsonl` are the
 raw per-trial transcripts for the model runs; the markdown tables are derived from them.
 `cargo test -p gate-policy --test model_transcript` closes the join between a **real
 model summary**, a persisted/reopened provenance store, and a `DENY_TAINT_PIVOT`.
+`crates/mcp-gate/tests/transport_taint.rs` closes the transport join: `mcp-gate` labels
+a `tools/call` **response** itself and denies the next call, with no harness-declared
+taint flag.
 
 ## Build and test
 

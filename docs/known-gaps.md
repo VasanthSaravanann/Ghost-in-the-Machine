@@ -41,12 +41,11 @@ Generated from `STATE.md`. **This file is the honest answer to "is it safe yet?"
 * **No eval gate has run against `mcp-gate`.** ASR, utility, `E_bar`, FPR, regret and NRP
   numbers have never been produced by the wired binary; the corpus (360 scenarios) is
   templated per subfamily, not curated attack prose.
-* **The real-model loop is not an `mcp-gate` run.** `model_pilot` measures the model's
-  `TO:` line and then asks the policy engine about that call, on the same transcript.
-  The label now derives from a declared `provenance_source` (tool vs principal, fail
-  closed), not from the attack flag, and `model_transcript.rs` persists a real model
-  summary through a reopen. What is still missing is an instrumented tool call at the
-  transport that sets that source automatically.
+* **Transport provenance is wired, but not with a live model through the proxy.**
+  `mcp-gate` now tracks `tools/call` request ids, labels the matching response itself
+  (EXTERNAL by default, PRINCIPAL only when `trust_tool_results` is set), and denies
+  the next call (5 tests, including an allowlisted attacker address). The remaining
+  step is a live model + real upstream through the CLI, not the label logic.
 * **The external corpus is derived, not the benchmark.** H9 uses `evals/external/injecagent-memory-v1.jsonl`:
   InjecAgent's tool responses and attacker instructions are verbatim, but a routing
   suffix is added and no InjecAgent tool-call score is computed. The Adaption corpus

@@ -373,7 +373,8 @@ impl Mediator for Gate {
         if frame.method() != Some("tools/call") {
             return Mediation::Forward;
         }
-        if let (FrameKind::Request { id, .. }, Ok((tool, _))) = (&frame.kind, call_arguments(frame)) {
+        if let (FrameKind::Request { id, .. }, Ok((tool, _))) = (&frame.kind, call_arguments(frame))
+        {
             if let Ok(mut pending) = self.pending.lock() {
                 pending.insert(id.to_json(), tool);
             }

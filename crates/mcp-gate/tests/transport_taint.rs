@@ -125,7 +125,10 @@ fn a_tool_result_taints_the_next_call() {
     // 3. The next call is denied by provenance, although its parameter passes
     //    the allowlist (evil.example is deliberately allowlisted).
     let mediation = gate.mediate(&ctx(), Direction::ClientToServer, &send_to_attacker());
-    assert!(matches!(mediation, Mediation::Block { .. }), "{mediation:?}");
+    assert!(
+        matches!(mediation, Mediation::Block { .. }),
+        "{mediation:?}"
+    );
     let report = gate.report();
     assert_eq!(report.evaluated, 2);
     let blocked = report.would_block.last().expect("a block was recorded");

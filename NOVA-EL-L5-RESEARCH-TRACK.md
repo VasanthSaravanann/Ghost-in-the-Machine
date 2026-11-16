@@ -42,13 +42,14 @@ A quick search in this revision confirmed substantial prior art on deterministic
 | AgentPoison (arXiv:2407.12784) | Poisons an agent's long-term memory or knowledge base so a trigger retrieves an adversarial demonstration | **Direct prior art for memory poisoning.** Attacks the retrieval path; does not carry a provenance label through compaction or enforce at the boundary |
 | MINJA (arXiv:2503.03704) | Query-only memory injection: malicious records are written through normal interaction | Establishes memory writes as an attack surface. No boundary enforcement, no cross-session label persistence |
 | InjecAgent (arXiv:2403.02691) | Benchmark for indirect prompt injection in tool-integrated agents | Candidate external benchmark; measures model compliance, not boundary provenance |
-| AgentDojo, MCPTox, MSB | Benchmarks for injection and MCP tool poisoning | External validity (§6) |
+| AgentDojo (arXiv:2406.13352), MCPTox, MSB | Benchmarks for injection and MCP tool poisoning | External validity (§6) |
 
 **Candidate contributions (hypotheses to validate against the literature, not facts):**
 
-> Citation warning: the AgentPoison / MINJA / InjecAgent rows above were added from memory
-> during a status-fix pass. Per the rule at the top of this section, a human must verify the
-> identifiers and claims before they appear in a paper.
+> Citation status: the arXiv identifiers and titles above were checked against
+> `arxiv.org/abs` on 2026-11-16 (2403.02691 InjecAgent, 2407.12784 AgentPoison,
+> 2503.03704 MINJA, 2406.13352 AgentDojo). The *substantive* comparison claims still
+> require a human literature review before they appear in a paper.
 - **C1** Deployment model: out-of-band enforcement at the MCP transport, unmodified agents and servers, model outside the TCB.
 - **C2** Cross-session provenance persistence and summarisation-as-derivation (memory/compaction laundering). **Delta over memory-poisoning work** (AgentPoison, MINJA): those attacks target the retrieval/memory write; C2 is about the *label* surviving compaction and restart and being enforced at the boundary, outside the planner. This delta is the claim a reviewer will test first.
 - **C3** Measured cost of boundary-level taint versus in-planner IFC.

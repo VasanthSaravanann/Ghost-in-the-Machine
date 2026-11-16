@@ -9,7 +9,7 @@ CARGO ?= cargo
 MODELS ?= llama3.2:latest
 REPS ?= 3
 
-.PHONY: help lint test frontier pilot adaptive neutral injecagent hosted policy-aware reproduce reproduce-models
+.PHONY: help lint test frontier pilot adaptive neutral injecagent injecagent100 hosted cost policy-aware reproduce reproduce-models
 
 help:
 	@echo "lint              fmt --check + clippy -D warnings"
@@ -48,6 +48,20 @@ policy-aware:
 		--models=llama3.2:latest --reps=1 --modes=b2allow \
 		--attacker=policy-aware --budget=3 \
 		--out=results/model_adaptive_policy_aware.jsonl
+
+injecagent100:
+	$(CARGO) run -q -p void-bench --bin model_pilot -- \
+		--provider=openai --api-key-env=ADAPTION_API_KEY \
+		--models=gemma-4-31b-it --corpus=evals/external/injecagent-attack-100.jsonl \
+		--limit=100 --reps=1 --modes=plain,b2allow \
+		--out=results/model_injecagent_100.jsonl
+
+cost:
+	$(CARGO) run -q -p void-bench --bin model_pilot -- \
+		--provider=openai --api-key-env=ADAPTION_API_KEY \
+		--models=qwen3.8-27b,deepseek-v4-flash,gemma-4-31b-it \
+		--corpus=evals/external/benign-external-v1.jsonl --reps=3 --modes=plain \
+		--out=results/model_benign_cost.jsonl
 
 hosted:
 	$(CARGO) run -q -p void-bench --bin model_pilot -- \

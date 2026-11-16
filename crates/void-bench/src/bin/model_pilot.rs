@@ -131,6 +131,9 @@ struct Row {
     attack: bool,
     ticket: String,
     task: Option<String>,
+    /// Declared provenance of the content: "tool" (untrusted) or "principal".
+    /// The label is derived from this, not from `attack`.
+    source: Option<String>,
     expected: String,
     style: String,
 }
@@ -283,17 +286,18 @@ fn take_summary(reply: &str, json_model: bool) -> String {
 
 /// Closure derived from a real provenance graph: ticket -> summary -> memory.
 /// The label is earned by the derivation (meet), not passed as a flag.
-fn provenance_closure(attack: bool, ticket: &str) -> Option<AuthClosure> {
+fn provenance_closure(source_kind: &str, ticket: &str) -> Option<AuthClosure> {
     let mut store = ProvenanceStore::new();
-    let (label, source) = if attack {
-        (
-            Label::ExternalUntrustedData,
-            SourceRef::with_locator("tool:ticket", "session 1"),
-        )
-    } else {
+    // Fail closed: anything not explicitly principal is untrusted.
+    let (label, source) = if source_kind == "principal" {
         (
             Label::PrincipalDirect,
             SourceRef::new("principal:address-book"),
+        )
+    } else {
+        (
+            Label::ExternalUntrustedData,
+            SourceRef::with_locator("tool:ticket", "session 1"),
         )
     };
     let segment = store
@@ -373,6 +377,7 @@ fn builtin_rows() -> Vec<Row> {
             expected: BENIGN.to_owned(),
             style: style.to_owned(),
             task: None,
+            source: Some("tool".to_owned()),
         });
     }
     rows.push(Row {
@@ -385,6 +390,7 @@ fn builtin_rows() -> Vec<Row> {
         expected: BENIGN.to_owned(),
         style: "none".to_owned(),
         task: None,
+        source: Some("principal".to_owned()),
     });
     rows.push(Row {
         id: "MP-B-2".to_owned(),
@@ -396,6 +402,7 @@ fn builtin_rows() -> Vec<Row> {
         expected: BENIGN.to_owned(),
         style: "none".to_owned(),
         task: None,
+        source: Some("principal".to_owned()),
     });
     rows.push(Row {
         id: "MP-B-3".to_owned(),
@@ -406,6 +413,7 @@ fn builtin_rows() -> Vec<Row> {
         expected: BENIGN.to_owned(),
         style: "none".to_owned(),
         task: None,
+        source: Some("principal".to_owned()),
     });
     rows
 }
@@ -447,6 +455,10 @@ fn load_rows(path: &str) -> Option<Vec<Row>> {
                 .get("task")
                 .and_then(|t| t.as_str())
                 .map(str::to_owned),
+            source: value
+                .get("provenance_source")
+                .and_then(|s| s.as_str())
+                .map(str::to_owned),
         });
     }
     (!rows.is_empty()).then_some(rows)
@@ -479,7 +491,11 @@ fn run_model(
             is_json_model(model),
         );
 
-        let closure = provenance_closure(row.attack, &row.ticket).unwrap_or_default();
+        let source_kind =
+            row.source
+                .as_deref()
+                .unwrap_or(if row.attack { "tool" } else { "principal" });
+        let closure = provenance_closure(source_kind, &row.ticket).unwrap_or_default();
         let target = if row.attack {
             ATTACKER
         } else {
@@ -573,7 +589,7 @@ fn run_adaptive(
 
     for row in rows.iter().filter(|r| r.attack) {
         let mut ticket = row.ticket.clone();
-        let closure = provenance_closure(true, &row.ticket).unwrap_or_default();
+        let closure = provenance_closure("tool", &row.ticket).unwrap_or_default();
         let (b3_allows, _) = decide(&permissive, ATTACKER, AuthClosure::new());
         let (g_allows, _) = decide(&permissive, ATTACKER, closure);
         let mut won_at = 0u64;
@@ -859,10 +875,16 @@ mod tests {
 
     #[test]
     fn provenance_closure_labels_attack_external_and_benign_principal() {
-        let attack = provenance_closure(true, "ticket").unwrap();
-        let benign = provenance_closure(false, "address book").unwrap();
+        let attack = provenance_closure("tool", "ticket").unwrap();
+        let benign = provenance_closure("principal", "address book").unwrap();
         assert_eq!(attack.weakest(), Some(Label::ExternalUntrustedData));
         assert_eq!(benign.weakest(), Some(Label::PrincipalDirect));
+    }
+
+    #[test]
+    fn an_unknown_source_fails_closed_to_external() {
+        let spoofed = provenance_closure("injected", "ticket").unwrap();
+        assert_eq!(spoofed.weakest(), Some(Label::ExternalUntrustedData));
     }
 
     #[test]

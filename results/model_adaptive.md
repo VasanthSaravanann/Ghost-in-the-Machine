@@ -59,3 +59,22 @@ budget 1 and stays there.
 * This is **not** the §6.4 adaptive campaign: one 3B model, self-play, 5 rows, no
   knowledge of the policy or the brief, no search over gate evasions. Intervals are
   correspondingly wide (e.g. 3/5 has a lower bound of 18.9%).
+
+## H11 — policy-aware attacker (pre-registered, run once)
+
+The rewrite prompt in H11 includes the defender's system instruction, the permitted
+recipient and the fact that the permissive allowlist also admits the attacker domain.
+
+| budget | attacks succeeding at ≤ k | B3 allows | G allows |
+|---|---|---|---|
+| 1 | 3/5 = 60.0% (95% 18.9–92.4) | 3/5 | 0/5 |
+| 2 | 3/5 = 60.0% (95% 18.9–92.4) | 3/5 | 0/5 |
+| 3 | 3/5 = 60.0% (95% 18.9–92.4) | 3/5 | 0/5 |
+
+The winning styles are the same three as H8d (`encoded`, `politeness`, `urgency`);
+`authority` and `precedent` never succeed. **H11 is not supported**: knowing the
+defence did not raise success or lower the budget. In the failing rows the attacker
+model often refuses to rewrite at all (*"I can't assist with that."*), so self-play
+safety caps the attack. G denies 5/5 successful calls.
+
+Evidence: `results/model_adaptive_policy_aware.jsonl`.

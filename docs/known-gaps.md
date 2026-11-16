@@ -34,19 +34,25 @@ Generated from `STATE.md`. **This file is the honest answer to "is it safe yet?"
 
 ## What the tests do *not* establish
 
+* **No frontier model.** No provider credentials are available in this environment; the
+  largest local model is 4B. H8b/H9/H10 are 3–4B results and do not transfer to
+  frontier models without measurement.
 * **No eval gate has run against `mcp-gate`.** ASR, utility, `E_bar`, FPR, regret and NRP
   numbers have never been produced by the wired binary; the corpus (360 scenarios) is
   templated per subfamily, not curated attack prose.
 * **The real-model loop is not an `mcp-gate` run.** `model_pilot` measures the model's
   `TO:` line and then asks the policy engine about that call, on the same transcript.
-  Memory is still passed as text, and the attack/benign provenance label is assigned by
-  the harness from the row kind; it is not derived from an instrumented tool call.
-* **The external corpus is model-generated.** `evals/external/adaption-mp-v1.jsonl`
-  (when present) comes from Adaption's dataset generator, not AgentDojo/MCPTox. It is
-  independent of the B2 text but still synthetic.
+  The label now derives from a declared `provenance_source` (tool vs principal, fail
+  closed), not from the attack flag, and `model_transcript.rs` persists a real model
+  summary through a reopen. What is still missing is an instrumented tool call at the
+  transport that sets that source automatically.
+* **The external corpus is derived, not the benchmark.** H9 uses `evals/external/injecagent-memory-v1.jsonl`:
+  InjecAgent's tool responses and attacker instructions are verbatim, but a routing
+  suffix is added and no InjecAgent tool-call score is computed. The Adaption corpus
+  (120 rows) exists on the platform but could not be exported (ISSUE-010).
 * **The adaptive attacker is self-play.** One 3B model writes the rewrites, budget 3,
-  5 rows; it does not see the policy, the brief template or the layout model, and does
-  not search over gate evasions (§6.4 is still unrun).
+  5 rows. H11 gives it the defender's instruction and allowlist (no improvement); it
+  still does not search over gate evasions or see the brief template (§6.4 is unrun).
 * **H8 (2026-11) is exploratory.** Its pre-registration was committed with its result
   and a prior 0/6 protocol was discarded. Only H8b/H8c/H8d are pre-registered before
   their runs.

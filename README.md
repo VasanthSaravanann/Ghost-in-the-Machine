@@ -49,10 +49,14 @@ eval numbers, open issues, pending decisions).
 | `results/laundering.md` | H6 mechanism: ticket → summary → persisted → reopened → `DENY_TAINT_PIVOT` | a model result (the content is scripted) | `cargo test -p gate-policy --test laundering` |
 | `results/frontier.md` | H7 **sensitivity curve** over the share of benign tasks that read untrusted data | a workload measurement | `make frontier` |
 | `results/model_pilot.md` | H8 (exploratory) + H8b (pre-registered): **three digest-pinned models**, paired B3 vs G on the same transcripts | an `mcp-gate` run; memory is still passed as text | `make pilot` |
-| `results/model_adaptive.md` | H8c/H8d: fixed-budget LLM-rewrite attacker against `plain` and `b2allow` | the §6.4 adaptive campaign (self-play, 3B, 5 rows) | `make adaptive` |
+| `results/model_adaptive.md` | H8c/H8d/H11: fixed-budget LLM-rewrite attacker, including a policy-aware variant | the §6.4 adaptive campaign (self-play, 3B, 5 rows) | `make adaptive` |
+| `results/model_pilot_neutral.md` | H10: neutral-summariser control for the assisted prompt | a general claim (the effect is model-specific) | `make neutral` |
+| `results/model_injecagent.md` | H9: **InjecAgent-derived** external corpus (payload verbatim, routing suffix added) | the InjecAgent benchmark (no tool-call score) | `make injecagent` |
 
 Every rate in these files carries a Clopper–Pearson interval. `results/*.jsonl` are the
 raw per-trial transcripts for the model runs; the markdown tables are derived from them.
+`cargo test -p gate-policy --test model_transcript` closes the join between a **real
+model summary**, a persisted/reopened provenance store, and a `DENY_TAINT_PIVOT`.
 
 ## Build and test
 

@@ -25,8 +25,8 @@
 use std::collections::BTreeMap;
 use std::fs::OpenOptions;
 use std::io::Write;
-use std::process::Command;
-use std::sync::Arc;
+use std::process::{Command, Stdio};
+use std::sync::{Arc, OnceLock};
 
 use gate_core::{AuthClosure, Label, Verdict};
 use gate_policy::{CallRequest, PivotMode, Policy, PolicyEngine};
@@ -195,7 +195,87 @@ fn valid_address(addr: &str) -> bool {
             .all(|c| c.is_ascii_alphanumeric() || matches!(c, '@' | '.' | '-' | '_' | '+' | '!'))
 }
 
+#[derive(Clone)]
+struct Provider {
+    kind: String,
+    base_url: String,
+    api_key: String,
+    max_tokens: u64,
+}
+
+static PROVIDER: OnceLock<Provider> = OnceLock::new();
+
+fn provider() -> &'static Provider {
+    PROVIDER.get_or_init(|| Provider {
+        kind: "ollama".to_owned(),
+        base_url: "http://127.0.0.1:11434".to_owned(),
+        api_key: String::new(),
+        max_tokens: 4096,
+    })
+}
+
+/// Hosted reasoning models need JSON output to stop before the answer; the
+/// Ollama qwen3 family needs the same treatment.
+fn wants_json(model: &str) -> bool {
+    provider().kind == "openai" || is_json_model(model)
+}
+
 fn generate(model: &str, prompt: &str, json_output: bool) -> Option<String> {
+    if provider().kind == "openai" {
+        generate_openai(model, prompt, json_output)
+    } else {
+        generate_ollama(model, prompt, json_output)
+    }
+}
+
+/// OpenAI-compatible chat completion. The key is passed to curl on stdin (not
+/// argv), so it does not appear in the process table.
+fn generate_openai(model: &str, prompt: &str, json_output: bool) -> Option<String> {
+    let cfg = provider();
+    let mut payload = json!({
+        "model": model,
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": 0,
+        "max_tokens": cfg.max_tokens,
+    });
+    if json_output {
+        payload["response_format"] = json!({"type": "json_object"});
+    }
+    let body = payload.to_string();
+    let url = format!("{}/chat/completions", cfg.base_url.trim_end_matches('/'));
+    let mut child = Command::new("curl")
+        .args([
+            "-s", "-m", "300", "--config", "-", "-X", "POST", &url, "-d", &body,
+        ])
+        .stdin(Stdio::piped())
+        .stdout(Stdio::piped())
+        .spawn()
+        .ok()?;
+    {
+        let mut stdin = child.stdin.take()?;
+        let header = format!(
+            "header = \"Authorization: Bearer {}\"\nheader = \"Content-Type: application/json\"\n",
+            cfg.api_key
+        );
+        stdin.write_all(header.as_bytes()).ok()?;
+    }
+    let out = child.wait_with_output().ok()?;
+    let value: serde_json::Value = serde_json::from_slice(&out.stdout).ok()?;
+    if let Some(err) = value.get("error") {
+        eprintln!("hosted error for {model}: {err}");
+        return None;
+    }
+    value
+        .get("choices")?
+        .as_array()?
+        .first()?
+        .get("message")?
+        .get("content")?
+        .as_str()
+        .map(str::to_owned)
+}
+
+fn generate_ollama(model: &str, prompt: &str, json_output: bool) -> Option<String> {
     // `think: false` keeps hidden reasoning tokens from consuming the 80-token
     // budget on models that think by default; fall back if the model rejects it.
     for think in [false, true] {
@@ -233,6 +313,10 @@ fn generate(model: &str, prompt: &str, json_output: bool) -> Option<String> {
 
 /// Digest of the model actually served, recorded so the run is reproducible.
 fn model_digest(model: &str) -> Option<String> {
+    if provider().kind == "openai" {
+        // Hosted models have no content digest; the provider model id is the pin.
+        return Some(format!("hosted:{model}"));
+    }
     let out = Command::new("curl")
         .args(["-s", "-m", "10", "http://127.0.0.1:11434/api/tags"])
         .output()
@@ -485,10 +569,10 @@ fn run_model(
 
     for (idx, row) in rows.iter().enumerate() {
         let summary_prompt =
-            summarise_prompt(&row.ticket, is_json_model(model), summarizer == "assisted");
+            summarise_prompt(&row.ticket, wants_json(model), summarizer == "assisted");
         let summary = take_summary(
-            &generate(model, &summary_prompt, is_json_model(model)).unwrap_or_default(),
-            is_json_model(model),
+            &generate(model, &summary_prompt, wants_json(model)).unwrap_or_default(),
+            wants_json(model),
         );
 
         let source_kind =
@@ -506,7 +590,7 @@ fn run_model(
         let (strict_allows, strict_reason) = decide(&strict, ATTACKER, AuthClosure::new());
 
         for mode in modes {
-            let default_task = if is_json_model(model) {
+            let default_task = if wants_json(model) {
                 TASK_JSON
             } else {
                 TASK
@@ -516,7 +600,7 @@ fn run_model(
                 "{}\n\nYour memory of the previous session: <data>{summary}</data>\n\n{task}",
                 mode.system()
             );
-            let reply = generate(model, &prompt, is_json_model(model)).unwrap_or_default();
+            let reply = generate(model, &prompt, wants_json(model)).unwrap_or_default();
             let recipient = extract_recipient(&reply);
             let parseable = recipient.is_some();
             let chose_attacker = recipient.as_deref() == Some(ATTACKER);
@@ -597,13 +681,13 @@ fn run_adaptive(
             let summary = take_summary(
                 &generate(
                     model,
-                    &summarise_prompt(&ticket, is_json_model(model), true),
-                    is_json_model(model),
+                    &summarise_prompt(&ticket, wants_json(model), true),
+                    wants_json(model),
                 )
                 .unwrap_or_default(),
-                is_json_model(model),
+                wants_json(model),
             );
-            let default_task = if is_json_model(model) {
+            let default_task = if wants_json(model) {
                 TASK_JSON
             } else {
                 TASK
@@ -615,7 +699,7 @@ fn run_adaptive(
                     "{}\n\nYour memory of the previous session: <data>{summary}</data>\n\n{task}",
                     mode.system()
                 ),
-                is_json_model(model),
+                wants_json(model),
             )
             .unwrap_or_default();
             let recipient = extract_recipient(&reply);
@@ -687,6 +771,28 @@ fn main() {
         args.iter()
             .find_map(|a| a.strip_prefix(prefix).map(str::to_owned))
     };
+
+    let provider_kind = arg("--provider=").unwrap_or_else(|| "ollama".to_owned());
+    let base_url = arg("--base-url=")
+        .unwrap_or_else(|| "https://api.prod.adaptionlabs.ai/api/v1".to_owned());
+    let api_key = arg("--api-key-env=")
+        .and_then(|name| std::env::var(name).ok())
+        .unwrap_or_default();
+    let max_tokens = arg("--max-tokens=")
+        .and_then(|v| v.parse().ok())
+        .unwrap_or(4096);
+    if provider_kind == "openai" && api_key.is_empty() {
+        eprintln!(
+            "provider=openai needs --api-key-env=NAME with NAME set (the key is never logged)"
+        );
+        std::process::exit(2);
+    }
+    let _ = PROVIDER.set(Provider {
+        kind: provider_kind,
+        base_url,
+        api_key,
+        max_tokens,
+    });
 
     let models: Vec<String> = arg("--models=")
         .map(|m| m.split(',').map(str::trim).map(str::to_owned).collect())

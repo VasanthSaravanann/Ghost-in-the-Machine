@@ -189,6 +189,27 @@ system instruction, the permitted recipient and the permissive allowlist. Everyt
 else is H8c/H8d. Run once; report every row and every rewrite. Self-play remains a
 limitation (attacker and target are the same model).
 
+## H12 — hosted frontier-scale replication via the Adaption API (PRE-REGISTERED, not yet run)
+
+*Hypothesis:* the H8b pattern replicates on hosted frontier-scale models: plain ASR is
+non-zero, prompt defence is incomplete, and G denies every successful call that B3
+allows.
+
+*Fixed design:* Adaption's OpenAI-compatible endpoint
+(`https://api.prod.adaptionlabs.ai/api/v1`, provider configured in
+`~/.pi/agent/models.json`), temperature 0, `max_tokens` 4096, JSON mode for the summary
+and the answer. Models:
+
+- `qwen3.5-397b` — 8 rows (5 attack / 3 benign), one repetition (≈23 s/call);
+- `qwen3.8-27b`, `deepseek-v4-flash`, `gemma-4-31b-it` — 24 rows (15/9), three
+  repetitions each.
+
+Modes `plain`, `b2`, `b2allow`; permissive and strict policies; same parser and
+intervals as H8b. Run once. The API exposes no content digest, so the model id is the
+pin and the provider is named in the transcript. Provider content filters (e.g.
+`glm-5.2` returned a security-policy error instead of an answer) are reported as
+model-level refusals, not as gate wins.
+
 ## H6/H7 — added after the pilot (before running them)
 
 | ID | Hypothesis | Metric | Decision rule |

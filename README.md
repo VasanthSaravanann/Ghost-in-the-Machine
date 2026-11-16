@@ -2,6 +2,10 @@ Inline enforcement proxy at the MCP transport boundary. The model is outside the
 trusted computing base; authority is derived from data provenance
 (`plan.md` is the build spec and wins over this file).
 
+**Paper draft:** [`PAPER-DRAFT.md`](PAPER-DRAFT.md) — introduction, methodology,
+results, discussion, limitations and dual-use/ethics, grounded in the committed
+evidence below.
+
 ## Status
 
 | Task | Status | Tests |

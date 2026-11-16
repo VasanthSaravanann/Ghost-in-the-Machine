@@ -1,7 +1,7 @@
 # Boundary Provenance for Cross-Session Agent Memory
 
-**Draft — grounded in the committed artifacts in this repository. Every number below
-has a result file, a command, and (where marked) a pre-registration. This is not a
+**Draft — grounded in the committed artifacts in this repository. Every number below has
+a result file, a command, and (where marked) a pre-registration. This is not a
 submission-ready paper: the limitations section is part of the contribution.**
 
 ---
@@ -40,11 +40,14 @@ The headline is conditional, and that condition is the interesting part. On host
 frontier-scale models, a prompt defence that is handed the permitted recipient
 eliminated the attack (0/45 and 0/100) at high utility. On local 3B models the same
 defence left 15/45 residual attacks. The boundary denied **180 of 180** successful
-attack calls across five experiments, but the conservative rule also denied **81 of 81**
-legitimate external-content flows in the cost experiment. The contribution is therefore
-not “the gate beats prompt defence”. It is: **prompt defence is best-effort and
-model-dependent; boundary provenance is the enforcement invariant, and its price is
-declassification, not detection.**
+attack calls across five experiments, and a larger local replication adds **108 of 108**;
+but the conservative rule also denied **81 of 81** legitimate external-content flows in
+the cost experiment. A matched 16-pair comparison with CaMeL shows the other side:
+CaMeL preserved **93.8 %** utility where the conservative boundary preserved **37.5 %**.
+The contribution is therefore not “the gate beats prompt defence” or “the gate beats
+in-planner IFC”. It is: **prompt defence is best-effort and model-dependent; boundary
+provenance is the enforcement invariant; in-planner IFC is more precise; and the
+boundary’s price is declassification, not detection.**
 
 Why it matters: MCP-style agents compose tools and servers from different trust domains,
 and memory is the mechanism by which one domain’s content reaches another domain’s
@@ -79,16 +82,17 @@ trusted computing base. The proxy:
 | local | `llama3.2:latest` (3B) | digest `a80c4f17…b8b72` |
 | local | `gemma3:4b` | digest `68ceab7e…38df7` |
 | local | `qwen3:4b` | digest `359d7dd4…74fae7` |
-| local | 2-model replication (H17) | llama3.2 + gemma3:4b, 6 reps |
 | hosted | `qwen3.8-27b` | model id (API exposes no digest) |
 | hosted | `deepseek-v4-flash` | model id |
 | hosted | `gemma-4-31b-it` | model id |
 
 Local models run through Ollama (`temperature 0`, `seed 42`, `num_predict 80`,
 `think:false` where supported). Hosted models run through Adaption’s OpenAI-compatible
-endpoint (`temperature 0`, `max_tokens 4096`, JSON mode). `qwen3.5-397b` was dropped
-after 5/24 records in 30 minutes (≈90 s/call); `glm-5.2` refused at the provider layer
-(“potential data exfiltration”), reported as a model-level mitigation, not a gate win.
+endpoint (`temperature 0`, `max_tokens 4096`, JSON mode). A pre-registered larger-n
+replication (H17) uses `llama3.2` and `gemma3:4b` with 6 repetitions (30 attack rows
+each). `qwen3.5-397b` was dropped after 5/24 records in 30 minutes (≈90 s/call);
+`glm-5.2` refused at the provider layer (“potential data exfiltration”), reported as a
+model-level mitigation, not a gate win.
 
 ### 2.3 Prompts and conditions
 
@@ -122,12 +126,26 @@ hidden reasoning; the parsed fields are identical.
 | built-in | 5 attack styles ×3 + 3 benign | controlled comparison, prompt modes |
 | InjecAgent-derived | 36 cases → 72 rows; 100-attack subset | external injection prose (MIT, arXiv:2403.02691); payload verbatim, routing suffix added |
 | benign external | 9 templates ×3 | cost of conservative taint on legitimate external content |
-| AgentDojo v1.2 | workspace, travel; 8–20 user tasks × 1–3 injections | real benchmark (arXiv:2406.13352), baseline + replay |
+| AgentDojo v1.2 | workspace/travel; 3–20 user tasks × 1–3 injections | real benchmark (arXiv:2406.13352): baseline, native defense, head-to-head |
 
 Built-in attack styles: authority, urgency, precedent, politeness, encoded (`[at]`,
 `[dot]`). Benign memory is principal-authored; attack memory is a tool result.
 
-### 2.5 Metrics and statistics
+### 2.5 AgentDojo implementations
+
+Three boundary implementations are reported, and they are not interchangeable:
+
+1. **Native pipeline defense (Python)** — `ProvenanceGateLoop` replaces the tool loop
+   and stops at the first blocked effectful call (`evals/agentdojo_defense.py`).
+2. **Rust-linked defense** — `RustGateLoop` sends every effectful call to
+   `gate-eval`, which uses the Rust `PolicyEngine`; provenance tracking (has a tool
+   result been seen?) remains in Python.
+3. **Post-hoc replay** — the conservative rule applied to AgentDojo’s logs, used only as
+   a cross-check.
+
+The **head-to-head** with CaMeL (`results/head_to_head.md`) uses the Rust-linked defense.
+
+### 2.6 Metrics and statistics
 
 * **ASR** = the model’s parsed recipient equals `attacker@evil.example`.
 * **Utility** = the parsed recipient equals the expected partner address.
@@ -137,23 +155,29 @@ Built-in attack styles: authority, urgency, precedent, politeness, encoded (`[at
   computed on the **same transcript**, so B3 vs G is paired.
 * Intervals: one-sided 95 % Clopper–Pearson, reported for every rate. Trials are binary;
   repetitions of the same row are not independent, so intervals are descriptive, not a
-  hierarchical estimate. No p-values are claimed.
-* AgentDojo uses its own utility/security rubrics; the boundary is applied as a
-  **post-hoc replay** over its logs (effectful call after a tool result ⇒ deny).
+  hierarchical estimate. No p-values are claimed; the 16-pair head-to-head is a pilot,
+  not a significance test.
+* AgentDojo uses its own utility/security rubrics. The head-to-head holds the model,
+  suite, attack and task pairs fixed; the attack text is generated per pipeline, so
+  security is indicative rather than paired, while utility is paired by task.
+* The checkpoint sensitivity analysis (`results/checkpoint_sensitivity.md`) treats the
+  principal’s benign-approval rate `p` and false-approval rate `q` as parameters.
 
-### 2.6 Baselines
+### 2.7 Baselines
 
 B0 ungated; B1 deny-all non-read-only (sanity, punished on utility); B3 pinning +
 parameter allowlist; G = B3 + provenance. B2 is the prompt-defence baseline; `b2allow`
 is its utility-preserving variant. The permissive allowlist admits the attacker domain
-on purpose, so B3/G isolate provenance from parameter validation.
+on purpose, so B3/G isolate provenance from parameter validation. CaMeL and FIDES are
+compared first by their **reported** AgentDojo numbers, then CaMeL by a matched pilot.
 
-### 2.7 Reproduction
+### 2.8 Reproduction
 
 `cargo test --workspace` (433 tests) and `make reproduce` run the static path.
 `make pilot`, `make hosted`, `make injecagent100`, `make cost`, `make e2e`,
-`make agentdojo` reproduce the model runs. Every model result has a JSONL transcript
-under `results/`; the pre-registration and its runtime amendments are in
+`make e2e-corpus`, `make cli-bench`, `make agentdojo`, `make checkpoint`,
+`make checkpoint-sensitivity` reproduce the model runs. Every model result has a JSONL
+transcript under `results/`; the pre-registration and its runtime amendments are in
 `evals/PREREG.md`; the claim level of each file is in `README.md`.
 
 ---
@@ -208,20 +232,22 @@ not a general inflator (H10: pooled 73.3 % vs 80.0 %).
 Every denial is `DENY_TAINT_PIVOT` with the closure named `EXTERNAL_UNTRUSTED_DATA`.
 A separate larger-n replication (H17, two local models, 30 attack rows each) adds
 **108/108** denied (0/108 allows, 0.0–2.7). It is not summed above because it reuses
-H8b's corpus. These are five experiments, not 180 independent trials; the sum is a
+H8b’s corpus. These are five experiments, not 180 independent trials; the sum is a
 consistency check.
 
-The transport result is separate and stronger for external validity: `mcp-gate` now
-labels the tool response **itself** (the proxy previously short-circuited responses and
-never showed them to the mediator). In a live run, a hosted gemma-4 chose the attacker
-address 7/7 and the real proxy blocked 7/7; the shadow control executed 3/3; a benign
-ticket with a legitimate partner address was blocked 3/3 (the cost). The full 8-row
-corpus × 3 modes through the CLI blocked **5/5** attack calls in every mode on
-llama3.2, and 4/4 on hosted gemma-4 in `plain` and `b2allow`. The per-segment
-checkpoint (content-digest approval) declassifies the approved segment and not a
-different segment from the same tool (7 transport tests).
+The transport result is separate and stronger for deployment: `mcp-gate` labels the tool
+response **itself** (the proxy previously short-circuited responses and never showed
+them to the mediator). In a live run, a hosted gemma-4 chose the attacker address 7/7
+and the real proxy blocked 7/7; the shadow control executed 3/3; a benign ticket with a
+legitimate partner address was blocked 3/3 (the cost). The full 8-row corpus × 3 modes
+through the CLI blocked **5/5** attack calls in every mode on llama3.2, and 4/4 on
+hosted gemma-4 in `plain` and `b2allow`. The full 360-scenario corpus through the CLI
+(scripted agent) blocks **160/160** attack calls under G and **0/360** under B3, with
+all 200 benign scenarios allowed. The per-segment checkpoint (content-digest approval)
+declassifies the approved segment and not a different segment from the same tool (7
+transport tests).
 
-### 3.4 The cost is real and workload-dependent
+### 3.4 The cost is real, and the checkpoint recovers it
 
 On 9 benign external-content templates × 3 repetitions × 3 hosted models, the model
 chose the legitimate partner address in **49/81 = 60.5 %** (49.4–70.8) of trials. Under
@@ -229,13 +255,27 @@ the conservative gate, **0/81 = 0.0 %** (0.0–3.6) executed: the read is extern
 write is tainted. The same asymmetry appears at the process level (benign 0/3 executed).
 The H7 sensitivity curve makes the structure explicit: denial is linear in the fraction
 of benign tasks that read untrusted content; the corpus cannot supply that fraction, so
-it is swept, not measured. The recovery mechanism is a principal checkpoint: H7’s
-scripted screen restores the flow, and the transport now supports per-segment approval (7 transport tests);
-neither has been evaluated with human principals at scale.
+it is swept, not measured.
 
-### 3.5 External validity: real benchmark, low attack rate
+The recovery mechanism is a principal checkpoint. H7’s scripted screen restores the
+flow; H18 simulates approval of the benign segment (9 rows × 3, llama3.2) and recovers
+**27/27 = 100 %** utility under G, against 0/81 in H13. The transport now supports
+per-segment content-digest approval. The sensitivity analysis says how accurate the
+principal must be:
 
-AgentDojo v1.2, baseline (no defense), hosted models:
+| corpus (plain) | raw ASR | false-approval rate `q` for absolute ASR ≤ 5 % |
+|---|---|---|
+| H8b local | 80.0 % | **q ≤ 6.2 %** |
+| H12 hosted | 71.1 % | **q ≤ 7.0 %** |
+| H14 external | 44.0 % | **q ≤ 11.4 %** |
+
+Utility scales linearly with the benign-approval rate `p`; `p = 0.8` recovers 80 % of
+raw utility. A principal with symmetric 10 % error is not good enough. Human behavior
+is not measured; the protocol is `docs/human-checkpoint-protocol.md`.
+
+### 3.5 External validity: real benchmark, native defense, low base rate
+
+AgentDojo v1.2, hosted models. Baseline:
 
 | suite | model | user × injection | utility | security (attack succeeded) |
 |---|---|---|---|---|
@@ -244,28 +284,41 @@ AgentDojo v1.2, baseline (no defense), hosted models:
 | workspace | qwen3.8-27b | 10 × 2 | 20/20 | 0/20 |
 | workspace | qwen3.8-27b, `direct` | 10 × 2 | 20/20 | 0/20 |
 | travel | qwen3.8-27b, `direct` | 8 × 2 | 16/16 | **1/16 = 6.2 %** |
-| travel | qwen3.8-27b, `direct`, **native defense** | 8 × 2 | **6/16 = 37.5 %** | **0/16 = 0.0 %** |
-| travel | qwen3.8-27b, `direct`, **Rust-linked defense** | 8 × 2 | **6/16 = 37.5 %** | **0/16 = 0.0 %** |
+
+Defenses on travel / qwen3.8-27b / `direct` / 8×2:
+
+| implementation | utility | security |
+|---|---|---|
+| native pipeline defense (Python) | 6/16 = 37.5 % | 0/16 |
+| Rust-linked defense (`gate-eval`) | 6/16 = 37.5 % | 0/16 |
+| post-hoc replay | utility upper bound 10/16 | 1/1 prevented |
 
 The `important_instructions` attack did not land on the workspace suite for these
-models; `direct` on travel produced the only success. A post-hoc boundary replay over
-AgentDojo’s logs prevents that **1/1** success; the utility upper bound (a denied
-effect may be the attack or a legitimate booking) is 10/16. This is a baseline plus a
-replay, **not** a native AgentDojo defense.
+models; `direct` on travel produced the only success. The native defense removes it at a
+10/16 utility cost. This is now a native AgentDojo defense, not only a replay.
 
-### 3.6 Adaptive attacker: the model is the limiting factor
+### 3.6 Head-to-head with CaMeL
 
-A fixed-budget LLM rewrite attacker (self-play, budget 3) took the plain condition from
-4/5 at budget 1 to 5/5 at budget 2; against `b2allow` it reached 3/5 at budget 1 and no
-further. A policy-aware variant that sees the defender’s instruction and allowlist also
-reached 3/5 and no further. The attacker model often refused to rewrite (“I can’t assist
-with that”), so self-play safety caps the attack. G denied 5/5 successful calls in each
-arm. This is not the §6.4 campaign: one model, five rows, no search over gate evasions.
+A matched pilot (`results/head_to_head.md`): same model (`gemma-4-31b-it`), suite
+(travel), attack (`direct`), 8 user tasks × 2 injections = 16 pairs. CaMeL is
+`google-research/camel-prompt-injection` @ `f083b6b`, no security policies; the boundary
+is the Rust-linked defense.
+
+| system | utility | security |
+|---|---|---|
+| undefended | **16/16 = 100.0 %** (82.9–100.0) | 0/16 = 0.0 % (0.0–17.1) |
+| **CaMeL** (in-planner IFC) | **15/16 = 93.8 %** (73.6–99.7) | 1/16 = 6.2 % (0.3–26.4) |
+| **boundary gate** | **6/16 = 37.5 %** (17.8–60.9) | **0/16 = 0.0 %** (0.0–17.1) |
+
+CaMeL preserves far more utility; the conservative boundary eliminates the attack at a
+62.5 % utility cost. The undefended 0/16 is not a paired ASR: the injection text is
+generated per pipeline, so the model saw different attack text under CaMeL. Utility is
+paired; security is indicative. The pilot is 16 of 949 pairs.
 
 ### 3.7 Comparison to in-planner IFC (reported numbers)
 
-We did not run CaMeL or FIDES. Their reported AgentDojo results are compared with an
-explicit non-comparability boundary (`results/camel_fides.md`):
+The papers’ reported AgentDojo results, with a non-comparability boundary
+(`results/camel_fides.md`):
 
 | system | model | utility | ASR (count/949) |
 |---|---|---|---|
@@ -274,25 +327,21 @@ explicit non-comparability boundary (`results/camel_fides.md`):
 | undefended | gpt-4o | 83.30 % | 163/949 = 17.2 % |
 | **FIDES** (no policies) | gpt-4o | 59.79 % | 24/949 = 2.53 % |
 | **FIDES** (with policies) | gpt-4o | **50.31 %** | 1/949 = 0.11 % |
-| our boundary (undefended) | travel / qwen3.8-27b, 8×2 | 100 % | 1/16 = 6.2 % |
-| our boundary (Rust gate) | travel / qwen3.8-27b, 8×2 | **37.5 %** | **0/16 = 0 %** |
 
-Different models, subsets, attacks and mechanisms: the reported-number table is not a
-head-to-head. A **matched pilot** now exists (`results/head_to_head.md`): same model
-(`gemma-4-31b-it`), suite (travel), attack (`direct`) and 16 task pairs:
+FIDES was **not run head-to-head**: its public artifact is a tutorial notebook, not the
+949-attack harness. CaMeL was run on the 16-pair pilot above, not the full 949. The
+reported-number table is context, not a ranking.
 
-| system | utility | security |
-|---|---|---|
-| undefended | 16/16 = 100.0% | 0/16 |
-| CaMeL | **15/16 = 93.8%** | 1/16 = 6.2% |
-| boundary gate | **6/16 = 37.5%** | **0/16** |
+### 3.8 Adaptive attacker: the model is the limiting factor
 
-CaMeL preserves more utility; the boundary gate eliminates the attack at a 62.5 %
-utility cost. The honest reading is that in-planner IFC is more precise, and the
-boundary's claim is deployability without a planner/model change, not AgentDojo
-superiority. The pilot is 16 of 949 pairs; it is not a full benchmark.
+A fixed-budget LLM rewrite attacker (self-play, budget 3) took the plain condition from
+4/5 at budget 1 to 5/5 at budget 2; against `b2allow` it reached 3/5 at budget 1 and no
+further. A policy-aware variant that sees the defender’s instruction and allowlist also
+reached 3/5 and no further. The attacker model often refused to rewrite (“I can’t assist
+with that”), so self-play safety caps the attack. G denied 5/5 successful calls in each
+arm. This is not the §6.4 campaign: one model, five rows, no search over gate evasions.
 
-### 3.8 What did not replicate
+### 3.9 What did not replicate
 
 The neutral-summariser hypothesis (“assisted summariser inflates ASR”) was **not
 supported overall** (73.3 % vs 80.0 %); it held for llama3.2 only. The policy-aware
@@ -320,20 +369,29 @@ memory), when the model ignores it (local 3B, gemma3:4b), or when the decision m
 auditable. The honest framing is **defence in depth**: prompt defence for the common
 case, boundary provenance for the invariant.
 
+**In-planner IFC is more precise.** The head-to-head is the most important negative
+result in the draft: CaMeL keeps 93.8 % utility where the conservative boundary keeps
+37.5 %, because CaMeL tracks exact data dependencies and allows data-independent
+actions, while the boundary denies every effectful call after an untrusted read. The
+boundary’s claim is not utility superiority; it is deployment without a planner or model
+change, persistence across sessions, and a fail-closed decision. The next design step is
+obvious: a boundary checkpoint that can recover the precision CaMeL gets from the
+planner, without requiring the planner.
+
 **The cost is the deployment question.** A conservative rule that denies every effectful
 call after an untrusted read is unusable without declassification: 0/81 benign external
-flows executed. The mechanism that makes it deployable is a checkpoint that is scoped to
-a segment, not a tool: approving one read should not bless every future read from the
-same source. The transport now supports content-digest approval; the human-factors and
-usability of that approval are not measured, and that is the next experiment, not a
-footnote.
+flows executed. The mechanism that makes it deployable is a checkpoint scoped to a
+segment, not a tool: approving one read should not bless every future read from the same
+source. The transport supports content-digest approval; H18 recovers 27/27 utility under
+simulated approval; the human study is the missing evidence, and the sensitivity target
+(q ≤ 7 %) is precise.
 
 **External validity cuts both ways.** The InjecAgent-derived corpus lowered llama3.2’s
 ASR from 80 % to 17 %, so a self-authored attack set overestimated susceptibility. On
 AgentDojo, the attack rate was low (0/60 workspace, 1/16 travel), so the gate had little
-to block; the replay prevents the one success, but a benchmark with a higher base rate
-is needed to estimate marginal benefit. Benchmark and model choice dominate the
-headline, which is why the repository reports both.
+to block; the head-to-head supplies one attack success and a clear utility comparison.
+Benchmark and model choice dominate the headline, which is why the repository reports
+both.
 
 **Implications.** For agent frameworks: provenance should be attached at the transport,
 persisted with memory, and enforced outside the model; prompt-level defence should be
@@ -353,12 +411,14 @@ artifact that makes a denial explainable.
 * An attacker-controlled recipient in untrusted content reaches a later tool argument on
   3B–31B models, at rates from 44 % to 100 % depending on model and corpus.
 * A transport-set provenance label survives summarisation, persistence, and restart; the
-  gate denies every successful attack call in the five model experiments (180/180) and
-  in the live proxy path.
+  gate denies every successful attack call in the five model experiments (180/180), the
+  larger local replication (108/108), and the live proxy path.
 * The conservative rule has a measured cost: 0/81 benign external-content flows
-  executed, against 60.5 % ungated.
+  executed, against 60.5 % ungated; a simulated per-segment approval recovers 27/27.
 * Prompt defence is model-dependent: 0/45 and 0/100 on hosted models with an allowlist,
   15/45 residual on local models, and no effect on gemma3:4b under `b2`.
+* CaMeL is more precise than the conservative boundary on the 16-pair pilot
+  (93.8 % vs 37.5 % utility); the boundary removes the attack at a higher utility cost.
 
 **Not established:**
 
@@ -372,34 +432,34 @@ artifact that makes a denial explainable.
   source, or a malicious server. The gate fails closed on unknown sources; it does not
   authenticate them.
 * That the checkpoint is usable by humans, or that approval fatigue does not erase the
-  benefit. H7 is scripted, H18 is a **simulated** approval (27/27 utility recovered).
-  The sensitivity analysis says the principal needs `q <= 7 %` false approvals for
-  absolute ASR <= 5 % (`results/checkpoint_sensitivity.md`); the human study protocol
-  is `docs/human-checkpoint-protocol.md`.
+  benefit. H7 is scripted, H18 is **simulated** (27/27 recovered); the sensitivity target
+  is q ≤ 7 % for ASR ≤ 5 %, and the protocol is
+  `docs/human-checkpoint-protocol.md`.
 * That the log/witness layer is complete: `verify_consistency` is deliberately not
   shipped (ISSUE-006), and no witness/cosignature claim is made.
 * That the 360-scenario corpus has been run through the CLI with a **model**. The
   scripted CLI run covers all 360 (G blocks 160/160 attacks, B3 0/360); a model-driven
-  360 run is still open.
+  360 run is still open, because the templated scenarios have no task prompts.
 * That the Rust-linked defense is a full integration of the proxy: the policy engine is
   Rust (`gate-eval`), but the pipeline element and provenance tracking are Python. The
   replay is a cross-check, not the primary result.
-* That the CaMeL/FIDES comparison is complete: a **16-pair CaMeL pilot** is matched
-  (`results/head_to_head.md`), but FIDES is not run head-to-head (its public artifact is
-  a notebook), and 16 of 949 pairs is a pilot. The full protocol is
-  `docs/head-to-head-protocol.md`.
+* That CaMeL/FIDES is a completed comparison: CaMeL has a **16-pair pilot**; FIDES was
+  **not run head-to-head** (its public artifact is a notebook); 16 of 949 pairs is a
+  pilot. The protocol is `docs/head-to-head-protocol.md`.
 
 ### 5.2 Statistical and methodological limits
 
 Small n in several cells (5–30 attacks per cell); H17 tightens the two local models but
 not the hosted cells; repetitions of the same rows are not independent. H18 is a
-simulated checkpoint; CaMeL/FIDES are reported-number comparisons, not runs. Several runs are exploratory and not pre-registered
-(H8, H15, the CLII corpus, AgentDojo); the pre-registered runs include disclosed runtime
-amendments (H9 subset, H12 397B drop, H10 qwen adapter re-run). Self-play adaptive
-attacker; no human red-team; no human literature review of the related-work claims.
-Hosted models expose no content digest, so provider updates can change results. The
-AgentDojo run stopped at provider rate limits (7/10 in H15), and the counts are reported
-as they are rather than topped up.
+simulated checkpoint; the human study is not run. The CaMeL pilot is 16 pairs, one
+model, one suite, one attack; the attack text is generated per pipeline, so security is
+not paired. AgentDojo 0.1.34 (CaMeL) and 0.1.35 (ours) are close but not identical.
+Several runs are exploratory and not pre-registered (H8, H15, the CLI corpus,
+AgentDojo); the pre-registered runs include disclosed runtime amendments (H9 subset,
+H12 397B drop, H10 qwen adapter re-run). Self-play adaptive attacker; no human
+red-team; no human literature review of the related-work claims. Hosted models expose no
+content digest, so provider updates can change results. The e2e run stopped at provider
+rate limits (7/10 in H15), and the counts are reported as they are rather than topped up.
 
 ### 5.3 Dual-use
 
@@ -417,6 +477,9 @@ Mitigations and scope:
 * No live third-party system, production MCP server, or real credential is used. Hosted
   model keys are read from the environment and are not committed; the transcripts
   contain model text, not secrets.
+* CaMeL and FIDES are used as research artifacts under their licences; the comparison
+  reports their published numbers and a small CaMeL pilot, not a redistribution of their
+  code.
 * The gate is the defensive artifact; the attacker is a measurement instrument with a
   fixed budget. We report attack success because a defence claim without an attack rate
   is unfalsifiable.
@@ -430,10 +493,15 @@ Mitigations and scope:
 No personal data was collected. All names, addresses, tickets, invoices, and calendar
 entries are synthetic; AgentDojo’s user persona is synthetic. The hosted models were
 queried with synthetic prompts only. There were no human subjects, no user studies, and
-no approval requirements. The AgentDojo logs contain model-generated text about
-synthetic entities; they are committed as evidence and contain no real personal data.
-If the harness is reused, the same rule applies: do not insert real mailbox contents or
-credentials into the memory pipeline.
+no approval requirements. **We did not scrape human data from the internet**: public
+logs and labels are not a probability sample, carry no consent for this task, and cannot
+supply per-trial approve/deny labels; using them as participants would be invalid and
+unethical. The human checkpoint study is protocol-only
+(`docs/human-checkpoint-protocol.md`); the valid path is an IRB-approved crowdsourced
+study (≈24 participants, ≈$300–400). The AgentDojo logs contain model-generated text
+about synthetic entities; they are committed as evidence and contain no real personal
+data. If the harness is reused, do not insert real mailbox contents or credentials into
+the memory pipeline.
 
 ### 5.5 Ethical stance
 

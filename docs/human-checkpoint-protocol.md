@@ -86,3 +86,30 @@ everything is safe but unhelpful.
   approval workflow), or that the simulated H18 numbers transfer to real operators.
 * **Effort**: 4–6 weeks including IRB and recruitment; ~$3–5k in participant
   compensation at typical rates, plus analysis time.
+
+## Why you cannot “pull human data from the internet”
+
+There is no public dataset of decisions for **these** briefs, and unrelated public
+decisions cannot be used as if they were participants:
+
+* **No probability sample.** Public logs/labels are not a sample of the population that
+  would operate this checkpoint; the false-approval rate would not estimate anything.
+* **No consent, no IRB.** Treating scraped or public human decisions as study data
+  bypasses consent and ethics review; it can also breach platform terms and privacy law.
+* **No control of framing.** The checkpoint's effect depends on how the action and
+  provenance are presented; a public dataset does not have that manipulation.
+* **No linkage to the outcome.** You need per-trial approve/deny against known
+  attack/benign labels; public data does not carry those labels for this task.
+
+What is allowed:
+
+1. **Crowdsourced study with IRB/consent** (Prolific/MTurk): 24 participants × 50–60
+   minutes at $10–12/hour ≈ **$300–400** including fees; expedited IRB, 1–2 weeks.
+2. **Expert pilot with consent** (5 colleagues): fixes wording/timing, not a
+   generalizable estimate, not counted in the main result.
+3. **Published priors for power analysis**: phishing detection, SOC alert triage and
+   automation-bias studies can set plausible effect sizes, but they do not replace the
+   study and should be cited as priors, not data.
+
+The protocol above is written so that (1) can be run without redesign; the stimuli and
+analysis script are the only remaining build items.

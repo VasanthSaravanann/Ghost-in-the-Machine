@@ -67,7 +67,8 @@ eval numbers, open issues, pending decisions).
 | `results/camel_fides.md` | CaMeL/FIDES **reported** AgentDojo numbers with a non-comparability boundary | a head-to-head run (not performed) | — |
 | `results/model_benign_checkpoint.md` | H18: simulated principal approval recovers 27/27 utility under G | a human-factors study | `make checkpoint` |
 | `results/checkpoint_sensitivity.md` | how accurate the principal must be (q ≤ 7 % for ASR ≤ 5 %) | human data | `make checkpoint-sensitivity` |
-| `docs/head-to-head-protocol.md` | exact CaMeL/FIDES/gate comparison protocol; CaMeL endpoint smoke | a completed head-to-head | — |
+| `results/head_to_head.md` | **matched 16-pair pilot**: CaMeL 93.8% utility/6.2% attack, gate 37.5%/0%, undefended 100%/0% | the full 949-attack benchmark | `docs/head-to-head-protocol.md` |
+| `docs/head-to-head-protocol.md` | exact CaMeL/FIDES/gate protocol for the full run | a completed full benchmark | — |
 | `docs/human-checkpoint-protocol.md` | IRB-ready within-subjects checkpoint study | human data (not run) | — |
 
 Every rate in these files carries a Clopper–Pearson interval. `results/*.jsonl` are the

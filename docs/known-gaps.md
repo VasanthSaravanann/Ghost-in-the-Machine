@@ -48,10 +48,11 @@ Generated from `STATE.md`. **This file is the honest answer to "is it safe yet?"
 * **AgentDojo has a native defense; CaMeL/FIDES are reported-number comparisons.** The
   Rust-linked `RustGateLoop` removes the one travel attack at a 10/16 utility cost.
   CaMeL/FIDES were **not run head-to-head**; `results/camel_fides.md` compares their
-  reported tables with an explicit non-comparability boundary. A one-task CaMeL smoke
-  proves the endpoint path (`results/camel_smoke.md`); the full protocol is
-  `docs/head-to-head-protocol.md`. H9's InjecAgent-derived corpus is still derived; the
-  Adaption corpus could not be exported (ISSUE-010).
+  reported tables with an explicit non-comparability boundary. A 16-pair matched CaMeL pilot is in
+  `results/head_to_head.md` (CaMeL 93.8% utility/6.2% attack; gate 37.5%/0%).
+  FIDES is not head-to-head; the full 949-attack run is the remaining protocol
+  (`docs/head-to-head-protocol.md`). H9's InjecAgent-derived corpus is still derived;
+  the Adaption corpus could not be exported (ISSUE-010).
 * **The adaptive attacker is self-play.** One 3B model writes the rewrites, budget 3,
   5 rows. H11 gives it the defender's instruction and allowlist (no improvement); it
   still does not search over gate evasions or see the brief template (§6.4 is unrun).

@@ -277,9 +277,20 @@ explicit non-comparability boundary (`results/camel_fides.md`):
 | our boundary (undefended) | travel / qwen3.8-27b, 8×2 | 100 % | 1/16 = 6.2 % |
 | our boundary (Rust gate) | travel / qwen3.8-27b, 8×2 | **37.5 %** | **0/16 = 0 %** |
 
-Different models, subsets, attacks and mechanisms: not a head-to-head. The consistent
-finding is the **shared utility cost of declassification**, not a ranking. CaMeL/FIDES
-require a planner/interpreter; the boundary gate does not.
+Different models, subsets, attacks and mechanisms: the reported-number table is not a
+head-to-head. A **matched pilot** now exists (`results/head_to_head.md`): same model
+(`gemma-4-31b-it`), suite (travel), attack (`direct`) and 16 task pairs:
+
+| system | utility | security |
+|---|---|---|
+| undefended | 16/16 = 100.0% | 0/16 |
+| CaMeL | **15/16 = 93.8%** | 1/16 = 6.2% |
+| boundary gate | **6/16 = 37.5%** | **0/16** |
+
+CaMeL preserves more utility; the boundary gate eliminates the attack at a 62.5 %
+utility cost. The honest reading is that in-planner IFC is more precise, and the
+boundary's claim is deployability without a planner/model change, not AgentDojo
+superiority. The pilot is 16 of 949 pairs; it is not a full benchmark.
 
 ### 3.8 What did not replicate
 
@@ -373,9 +384,10 @@ artifact that makes a denial explainable.
 * That the Rust-linked defense is a full integration of the proxy: the policy engine is
   Rust (`gate-eval`), but the pipeline element and provenance tracking are Python. The
   replay is a cross-check, not the primary result.
-* That CaMeL/FIDES were run head-to-head: the comparison uses their **reported**
-  numbers, and a one-task CaMeL smoke proves the endpoint path only
-  (`results/camel_smoke.md`). The protocol is `docs/head-to-head-protocol.md`.
+* That the CaMeL/FIDES comparison is complete: a **16-pair CaMeL pilot** is matched
+  (`results/head_to_head.md`), but FIDES is not run head-to-head (its public artifact is
+  a notebook), and 16 of 949 pairs is a pilot. The full protocol is
+  `docs/head-to-head-protocol.md`.
 
 ### 5.2 Statistical and methodological limits
 

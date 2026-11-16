@@ -229,6 +229,16 @@ Three hosted models (`qwen3.8-27b`, `deepseek-v4-flash`, `gemma-4-31b-it`), prom
 expected partner address) and `utility_G` (G allowed the call), paired. Run once.
 No principal-checkpoint arm: the H7 curve already shows the recovery mechanism.
 
+## H14 — 100 InjecAgent-derived attack cases (PRE-REGISTERED, not yet run)
+
+*Hypothesis:* on 100 InjecAgent-derived attack cases spanning all three harm types,
+plain ASR is non-zero, `b2allow` reduces it, and G denies every successful call.
+
+*Fixed design:* `evals/external/injecagent-attack-100.jsonl` (first 100 attack rows
+from a 102-case derivation), `gemma-4-31b-it` via the hosted API, modes `plain` and
+`b2allow`, one repetition, same parser/adapters/policies. Run once. Attack-only, so no
+utility arm and no InjecAgent tool-call score.
+
 ## H6/H7 — added after the pilot (before running them)
 
 | ID | Hypothesis | Metric | Decision rule |

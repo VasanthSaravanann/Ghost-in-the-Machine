@@ -151,10 +151,15 @@ allows.
 *Fixed design (amended BEFORE the definitive run):* the first execution was aborted by
 a 40-minute tool timeout after 77/216 records and was discarded without analysis. The
 subset is reduced for runtime, not because of any outcome: first 12 rows of
-`evals/external/injecagent-memory-v1.jsonl` by id = 6 attack / 6 benign. Three models
-as in H8b. Modes `plain` and `b2allow` (the `b2` arm is dropped to halve runtime; H8b
-already measures it); one repetition; same parser, adapters, policies and intervals.
-Run once.
+`evals/external/injecagent-memory-v1.jsonl` by id = 6 attack / 6 benign. Modes `plain`
+and `b2allow` (the `b2` arm is dropped to halve runtime; H8b already measures it); one
+repetition; same parser, adapters, policies and intervals. Run once.
+
+*Second runtime amendment, before the llama/gemma table was computed:* `qwen3:4b`
+exceeded the 180 s per-call timeout on the long InjecAgent prompts (6/24 records in
+30 min), so it is excluded and no qwen result is reported. The two completed models
+(`llama3.2:latest`, `gemma3:4b`) are analysed from the committed transcript; the six
+partial qwen records are dropped.
 
 *Non-claim:* this is **not** the InjecAgent benchmark and no InjecAgent score is
 computed. The benchmark's `Tool Response` and `Attacker Instruction` are verbatim; a

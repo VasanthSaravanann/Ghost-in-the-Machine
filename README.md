@@ -56,6 +56,8 @@ eval numbers, open issues, pending decisions).
 | `results/model_injecagent_100.md` | H14: 100 external attack cases; plain 44/100, `b2allow` 0/100, G denies 44/44 | the InjecAgent benchmark (derived, attack-only) | `make injecagent100` |
 | `results/model_benign_cost.md` | H13: **the cost of G** — benign external-content flows: raw utility 49/81, under G 0/81 | a workload estimate (9 templates) | `make cost` |
 | `results/e2e_gate.md` | H15: **live hosted model through the real `mcp-gate` process** — attacker 7/7 blocked, shadow control 3/3 executed, benign 3/3 blocked | a full 360-scenario gate run | `make e2e` |
+| `results/e2e_corpus.md` | full model corpus (8 rows × 3 modes) through the CLI, local and hosted | the 360 templated scenarios | `make e2e-corpus` |
+| `results/agentdojo.md` | **real AgentDojo v1.2** baseline (workspace/travel) + post-hoc boundary replay | a native AgentDojo defense | `make agentdojo` |
 
 Every rate in these files carries a Clopper–Pearson interval. `results/*.jsonl` are the
 raw per-trial transcripts for the model runs; the markdown tables are derived from them.

@@ -9,7 +9,7 @@ CARGO ?= cargo
 MODELS ?= llama3.2:latest
 REPS ?= 3
 
-.PHONY: help lint test frontier pilot adaptive neutral injecagent injecagent100 hosted cost e2e policy-aware reproduce reproduce-models
+.PHONY: help lint test frontier pilot adaptive neutral injecagent injecagent100 hosted cost e2e e2e-corpus agentdojo policy-aware reproduce reproduce-models
 
 help:
 	@echo "lint              fmt --check + clippy -D warnings"
@@ -59,6 +59,22 @@ injecagent100:
 e2e:
 	$(CARGO) build -q -p mcp-gate
 	python3 evals/e2e_hosted_gate.py --trials 10 --model gemma-4-31b-it
+
+e2e-corpus:
+	$(CARGO) build -q -p mcp-gate
+	python3 evals/e2e_hosted_gate.py --provider ollama --model llama3.2:latest \
+		--corpus evals/model-corpus.jsonl --modes plain,b2,b2allow \
+		--out results/e2e_corpus.jsonl
+
+AGENTDOJO_PY ?= /tmp/adjo312/bin/python
+agentdojo:
+	$(AGENTDOJO_PY) evals/agentdojo_run.py --suite travel --model qwen3.8-27b \
+		--user-tasks 8 --injection-tasks 2 --attack direct \
+		--out results/agentdojo_travel.json
+	$(AGENTDOJO_PY) evals/agentdojo_replay.py \
+		results/agentdojo_runs/travel/qwen3.8-27b \
+		--pairs results/agentdojo_travel.json \
+		--out results/agentdojo_replay_travel.json
 
 cost:
 	$(CARGO) run -q -p void-bench --bin model_pilot -- \

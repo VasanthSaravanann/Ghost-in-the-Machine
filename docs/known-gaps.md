@@ -45,10 +45,11 @@ Generated from `STATE.md`. **This file is the honest answer to "is it safe yet?"
   hosted model through the real `mcp-gate` process: attacker 7/7 blocked, shadow
   control 3/3 executed, benign 3/3 blocked (the measured cost). The upstream is a
   fake server and the run stopped at a provider 429; a real upstream is still open.
-* **The external corpus is derived, not the benchmark.** H9 uses `evals/external/injecagent-memory-v1.jsonl`:
-  InjecAgent's tool responses and attacker instructions are verbatim, but a routing
-  suffix is added and no InjecAgent tool-call score is computed. The Adaption corpus
-  (120 rows) exists on the platform but could not be exported (ISSUE-010).
+* **AgentDojo is a baseline + replay, not a native defense.** Real AgentDojo v1.2 runs
+  (workspace, travel) are in `results/agentdojo.md`; the boundary is applied to
+  AgentDojo's logs as a post-hoc replay. Implementing the gate as an AgentDojo
+  pipeline element, and a CaMeL/FIDES comparison, remain open. H9's InjecAgent-derived
+  corpus is still a derived corpus; the Adaption one could not be exported (ISSUE-010).
 * **The adaptive attacker is self-play.** One 3B model writes the rewrites, budget 3,
   5 rows. H11 gives it the defender's instruction and allowlist (no improvement); it
   still does not search over gate evasions or see the brief template (§6.4 is unrun).

@@ -102,7 +102,8 @@ fn main() {
     ) {
         Ok(gate) => Arc::new(
             gate.with_trust_tool_results(config.trust_tool_results)
-                .with_trusted_tools(config.trusted_tools.clone()),
+                .with_trusted_tools(config.trusted_tools.clone())
+                .with_principal_approved(config.principal_approved.clone()),
         ),
         Err(e) => {
             eprintln!("mcp-gate: {e}");

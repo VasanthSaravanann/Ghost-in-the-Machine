@@ -28,9 +28,11 @@ hosted models. `utility_raw` = the model chose the expected partner address;
   nothing; one that reads a customer email for every task pays roughly the completion
   rate above.
 * **The recovery path is the principal checkpoint** (H7, `results/frontier.md`): a
-  principal-only screen of the read restores the flow. The transport now has a coarse
-  version — `trust_tool_results` in the gate config marks a tool's results as
-  principal-authored — but per-segment checkpointing at the transport is not wired.
+  principal-only screen of the read restores the flow. At the transport, `mcp-gate`
+  now supports **per-segment** approval by content digest (`principal_approved`), in
+  addition to the coarse `trust_tool_results`/`trusted_tools` switches. The digest
+  checkpoint is tested (`transport_taint.rs`): an approved segment is declassified, a
+  different segment from the same tool is not.
 
 ## Honest reading
 

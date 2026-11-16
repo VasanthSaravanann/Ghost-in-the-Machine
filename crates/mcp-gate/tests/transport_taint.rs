@@ -239,3 +239,61 @@ fn a_per_tool_checkpoint_marks_only_that_tool_as_principal() {
         "a trusted tool result must not taint the session"
     );
 }
+
+#[test]
+fn a_per_segment_checkpoint_declassifies_only_the_approved_content() {
+    // A principal approves one exact tool result (by content digest), not a tool.
+    let approved = response(30, serde_json::json!({"content": "approved ticket text"}));
+    let digest = gate_crypto::sha256_hex(approved.raw.as_bytes());
+
+    let dir = tempfile::TempDir::new().unwrap();
+    let workspace = dir.path().join("workspace");
+    std::fs::create_dir_all(&workspace).unwrap();
+    let gate = Arc::new(
+        Gate::new(
+            &policy(&workspace),
+            dir.path().join("spans.seg"),
+            false,
+            &"11".repeat(32),
+            Arc::new(FakeClock::new(1_700_000_000_000)),
+        )
+        .unwrap()
+        .with_principal_approved(vec![digest]),
+    );
+
+    let read = request(
+        30,
+        "tools/call",
+        serde_json::json!({
+            "name": "fs:read_file",
+            "arguments": {"path": workspace.join("ticket.txt").display().to_string()}
+        }),
+    );
+    let _ = gate.mediate(&ctx(), Direction::ClientToServer, &read);
+    let _ = gate.mediate(&ctx(), Direction::ServerToClient, &approved);
+    assert_eq!(
+        gate.mediate(&ctx(), Direction::ClientToServer, &send_to_attacker()),
+        Mediation::Forward,
+        "an approved segment must be declassified"
+    );
+
+    // The same tool, different content, is still untrusted.
+    let other = response(31, serde_json::json!({"content": "unapproved ticket text"}));
+    let read2 = request(
+        31,
+        "tools/call",
+        serde_json::json!({
+            "name": "fs:read_file",
+            "arguments": {"path": workspace.join("ticket.txt").display().to_string()}
+        }),
+    );
+    let _ = gate.mediate(&ctx(), Direction::ClientToServer, &read2);
+    let _ = gate.mediate(&ctx(), Direction::ServerToClient, &other);
+    assert!(
+        matches!(
+            gate.mediate(&ctx(), Direction::ClientToServer, &send_to_attacker()),
+            Mediation::Block { .. }
+        ),
+        "a different segment must not inherit the approval"
+    );
+}

@@ -24,7 +24,7 @@ use std::sync::{Arc, Mutex};
 use gate_core::{
     AuthClosure, Class, Decision, EpisodeId, GateError, IdFactory, Label, ReasonCode, SegmentId,
 };
-use gate_crypto::{Ed25519Signer, KeyId};
+use gate_crypto::{sha256_hex, Ed25519Signer, KeyId};
 use gate_policy::{CallRequest, FsResolver, Policy, PolicyEngine};
 use gate_provenance::{ProvenanceStore, SegmentSpec, SourceRef, TaintPath};
 use gate_span::{AttrValue, RealFsync, SegmentLog, SignedSpan, Span, SpanSpec};
@@ -57,6 +57,10 @@ pub struct Config {
     /// This is the transport-level checkpoint; empty means every tool is untrusted.
     #[serde(default)]
     pub trusted_tools: Vec<String>,
+    /// Per-segment principal checkpoint: sha256 digests of tool-result content a
+    /// principal has reviewed. Only those segments are declassified.
+    #[serde(default)]
+    pub principal_approved: Vec<String>,
 }
 
 fn default_shadow() -> bool {
@@ -120,6 +124,7 @@ pub struct Gate {
     pending: Mutex<BTreeMap<String, String>>,
     trust_tool_results: bool,
     trusted_tools: Vec<String>,
+    principal_approved: Vec<String>,
 }
 
 impl Gate {
@@ -159,6 +164,7 @@ impl Gate {
             pending: Mutex::new(BTreeMap::new()),
             trust_tool_results: false,
             trusted_tools: Vec::new(),
+            principal_approved: Vec::new(),
         })
     }
 
@@ -176,6 +182,13 @@ impl Gate {
         self
     }
 
+    /// Per-segment checkpoint: only the listed content digests are declassified.
+    #[must_use]
+    pub fn with_principal_approved(mut self, digests: Vec<String>) -> Self {
+        self.principal_approved = digests;
+        self
+    }
+
     fn taint_closure(&self) -> AuthClosure {
         self.tainted
             .lock()
@@ -186,8 +199,13 @@ impl Gate {
     /// Called for a `tools/call` response. The transport — not the caller —
     /// decides the label: EXTERNAL by default, PRINCIPAL only when configured.
     fn record_tool_result(&self, tool: &str, content: &str) {
-        let trusted =
-            self.trust_tool_results || self.trusted_tools.iter().any(|candidate| candidate == tool);
+        let digest = sha256_hex(content.as_bytes());
+        let trusted = self.trust_tool_results
+            || self.trusted_tools.iter().any(|candidate| candidate == tool)
+            || self
+                .principal_approved
+                .iter()
+                .any(|approved| approved == &digest);
         let label = if trusted {
             Label::PrincipalDirect
         } else {

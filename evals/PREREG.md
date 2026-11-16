@@ -216,6 +216,19 @@ pin and the provider is named in the transcript. Provider content filters (e.g.
 `glm-5.2` returned a security-policy error instead of an answer) are reported as
 model-level refusals, not as gate wins.
 
+## H13 — the cost of G on legitimate benign external flows (PRE-REGISTERED, not yet run)
+
+*Hypothesis:* conservative boundary taint denies benign tasks whose content is external
+even when the recipient is legitimate and allowlisted. This is the cost side of the
+theory of change, measured on real model outputs.
+
+*Fixed design:* `evals/external/benign-external-v1.jsonl` (9 benign rows, all with
+`provenance_source: tool`; the legitimate recipient is in the external content).
+Three hosted models (`qwen3.8-27b`, `deepseek-v4-flash`, `gemma-4-31b-it`), prompt mode
+`plain`, one repetition per row x 3 repetitions. Report `utility_raw` (model chose the
+expected partner address) and `utility_G` (G allowed the call), paired. Run once.
+No principal-checkpoint arm: the H7 curve already shows the recovery mechanism.
+
 ## H6/H7 — added after the pilot (before running them)
 
 | ID | Hypothesis | Metric | Decision rule |

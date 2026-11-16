@@ -16,14 +16,17 @@
     )
 )]
 
+use std::collections::BTreeMap;
 use std::path::PathBuf;
 use std::sync::atomic::{AtomicU64, Ordering};
 use std::sync::{Arc, Mutex};
 
-use gate_core::{AuthClosure, Class, Decision, EpisodeId, GateError, IdFactory, Label, ReasonCode};
+use gate_core::{
+    AuthClosure, Class, Decision, EpisodeId, GateError, IdFactory, Label, ReasonCode, SegmentId,
+};
 use gate_crypto::{Ed25519Signer, KeyId};
 use gate_policy::{CallRequest, FsResolver, Policy, PolicyEngine};
-use gate_provenance::TaintPath;
+use gate_provenance::{ProvenanceStore, SegmentSpec, SourceRef, TaintPath};
 use gate_span::{AttrValue, RealFsync, SegmentLog, SignedSpan, Span, SpanSpec};
 use gate_transport::{
     ConnectionContext, Direction, Frame, FrameKind, Mediation, Mediator, TransportEvent,
@@ -46,6 +49,10 @@ pub struct Config {
     /// Dev-only signing seed (hex, 32 bytes). Production must use the KeyStore.
     #[serde(default = "default_seed")]
     pub dev_signing_seed: String,
+    /// Treat tool results as principal-authored. Default false: every tool result
+    /// is EXTERNAL_UNTRUSTED_DATA, so the next call is tainted (fail closed).
+    #[serde(default)]
+    pub trust_tool_results: bool,
 }
 
 fn default_shadow() -> bool {
@@ -101,6 +108,13 @@ pub struct Gate {
     shadow: bool,
     evaluated: AtomicU64,
     would_block: Mutex<Vec<WouldBlock>>,
+    /// Provenance is set by the transport, not by the caller: a `tools/call`
+    /// response is inserted as a segment, and subsequent calls inherit it.
+    provenance: Mutex<ProvenanceStore>,
+    tainted: Mutex<Vec<(SegmentId, Label)>>,
+    /// Request id -> tool, so only genuine `tools/call` results taint the session.
+    pending: Mutex<BTreeMap<String, String>>,
+    trust_tool_results: bool,
 }
 
 impl Gate {
@@ -135,13 +149,59 @@ impl Gate {
             shadow,
             evaluated: AtomicU64::new(0),
             would_block: Mutex::new(Vec::new()),
+            provenance: Mutex::new(ProvenanceStore::new()),
+            tainted: Mutex::new(Vec::new()),
+            pending: Mutex::new(BTreeMap::new()),
+            trust_tool_results: false,
         })
+    }
+
+    /// Trust tool results as principal-authored (default: false / fail closed).
+    #[must_use]
+    pub fn with_trust_tool_results(mut self, trust: bool) -> Self {
+        self.trust_tool_results = trust;
+        self
+    }
+
+    fn taint_closure(&self) -> AuthClosure {
+        self.tainted
+            .lock()
+            .map(|t| t.iter().cloned().collect())
+            .unwrap_or_default()
+    }
+
+    /// Called for a `tools/call` response. The transport — not the caller —
+    /// decides the label: EXTERNAL by default, PRINCIPAL only when configured.
+    fn record_tool_result(&self, tool: &str, content: &str) {
+        let label = if self.trust_tool_results {
+            Label::PrincipalDirect
+        } else {
+            Label::ExternalUntrustedData
+        };
+        let spec = SegmentSpec::new(
+            label,
+            SourceRef::with_locator(format!("tool:{tool}"), "response"),
+            content,
+            Vec::new(),
+            0,
+        );
+        let Ok(mut store) = self.provenance.lock() else {
+            return;
+        };
+        let Ok(segment) = store.insert(spec) else {
+            return;
+        };
+        if label == Label::ExternalUntrustedData {
+            if let Ok(mut tainted) = self.tainted.lock() {
+                tainted.push((segment.id, label));
+            }
+        }
     }
 
     /// Evaluate one `tools/call`. Returns the decision and records a span.
     pub fn evaluate(&self, frame: &Frame) -> Result<Decision, GateError> {
         let (tool, params) = call_arguments(frame)?;
-        let closure = AuthClosure::new();
+        let closure = self.taint_closure();
         let request = CallRequest::new(tool.clone(), params).with_closure(closure);
         let decision = self.engine.decide(&request);
         self.evaluated.fetch_add(1, Ordering::SeqCst);
@@ -289,6 +349,21 @@ pub fn call_arguments(
 /// only recorded. In enforce mode a non-Allow verdict blocks the request.
 impl Mediator for Gate {
     fn mediate(&self, _ctx: &ConnectionContext, direction: Direction, frame: &Frame) -> Mediation {
+        // Server -> client: a `tools/call` result is untrusted content. Label it
+        // here so the next call inherits a real provenance closure.
+        if direction == Direction::ServerToClient {
+            if let FrameKind::Response { id, .. } = &frame.kind {
+                let tool = self
+                    .pending
+                    .lock()
+                    .ok()
+                    .and_then(|mut pending| pending.remove(&id.to_json()));
+                if let Some(tool) = tool {
+                    self.record_tool_result(&tool, &frame.raw);
+                }
+            }
+            return Mediation::Forward;
+        }
         if direction != Direction::ClientToServer {
             return Mediation::Forward;
         }
@@ -297,6 +372,11 @@ impl Mediator for Gate {
         };
         if frame.method() != Some("tools/call") {
             return Mediation::Forward;
+        }
+        if let (FrameKind::Request { id, .. }, Ok((tool, _))) = (&frame.kind, call_arguments(frame)) {
+            if let Ok(mut pending) = self.pending.lock() {
+                pending.insert(id.to_json(), tool);
+            }
         }
         match self.evaluate(frame) {
             Ok(decision) if decision.verdict() == gate_core::Verdict::Allow => Mediation::Forward,

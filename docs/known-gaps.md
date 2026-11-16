@@ -34,9 +34,10 @@ Generated from `STATE.md`. **This file is the honest answer to "is it safe yet?"
 
 ## What the tests do *not* establish
 
-* **No frontier model.** No provider credentials are available in this environment; the
-  largest local model is 4B. H8b/H9/H10 are 3–4B results and do not transfer to
-  frontier models without measurement.
+* **Hosted models have no content digest.** H12 pins `qwen3.8-27b`,
+  `deepseek-v4-flash` and `gemma-4-31b-it` by id; provider updates and safety filters
+  can change behaviour without notice. `glm-5.2` refused the task at the provider layer
+  (security policy), which is a model-level mitigation, not a gate result.
 * **No eval gate has run against `mcp-gate`.** ASR, utility, `E_bar`, FPR, regret and NRP
   numbers have never been produced by the wired binary; the corpus (360 scenarios) is
   templated per subfamily, not curated attack prose.

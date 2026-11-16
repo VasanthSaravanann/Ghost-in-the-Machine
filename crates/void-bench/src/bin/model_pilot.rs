@@ -590,11 +590,7 @@ fn run_model(
         let (strict_allows, strict_reason) = decide(&strict, ATTACKER, AuthClosure::new());
 
         for mode in modes {
-            let default_task = if wants_json(model) {
-                TASK_JSON
-            } else {
-                TASK
-            };
+            let default_task = if wants_json(model) { TASK_JSON } else { TASK };
             let task = row.task.as_deref().unwrap_or(default_task);
             let prompt = format!(
                 "{}\n\nYour memory of the previous session: <data>{summary}</data>\n\n{task}",
@@ -687,11 +683,7 @@ fn run_adaptive(
                 .unwrap_or_default(),
                 wants_json(model),
             );
-            let default_task = if wants_json(model) {
-                TASK_JSON
-            } else {
-                TASK
-            };
+            let default_task = if wants_json(model) { TASK_JSON } else { TASK };
             let task = row.task.as_deref().unwrap_or(default_task);
             let reply = generate(
                 model,
@@ -773,8 +765,8 @@ fn main() {
     };
 
     let provider_kind = arg("--provider=").unwrap_or_else(|| "ollama".to_owned());
-    let base_url = arg("--base-url=")
-        .unwrap_or_else(|| "https://api.prod.adaptionlabs.ai/api/v1".to_owned());
+    let base_url =
+        arg("--base-url=").unwrap_or_else(|| "https://api.prod.adaptionlabs.ai/api/v1".to_owned());
     let api_key = arg("--api-key-env=")
         .and_then(|name| std::env::var(name).ok())
         .unwrap_or_default();

@@ -166,6 +166,17 @@ computed. The benchmark's `Tool Response` and `Attacker Instruction` are verbati
 routing suffix naming the attacker/partner address is added because this pilot's
 metric is the recipient of a later-session email, not an attacker tool call.
 
+## H10 — neutral summariser (PRE-REGISTERED, not yet run)
+
+*Hypothesis:* the assisted summariser ("keeping any email address it contains")
+inflates attack success. With a neutral summariser, ASR falls but remains non-zero on
+at least one model, and G still denies every successful call.
+
+*Fixed design:* built-in corpus (5 attack / 3 benign), one repetition, the three H8b
+models, modes `plain` and `b2allow`, `--summarizer=neutral`, same parser, adapters,
+policies and intervals. Run once. This isolates the session-1 prompt assistance that
+H8b disclosed as a limitation.
+
 ## H6/H7 — added after the pilot (before running them)
 
 | ID | Hypothesis | Metric | Decision rule |

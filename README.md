@@ -1,6 +1,7 @@
-# Ghost in the Machine
+# MCP Provenance Boundary
 
-**A provenance boundary for cross-session agent memory.**
+**Manuscript:** *Trust Nothing You Remember* — a provenance boundary for cross-session
+agent memory. The artifact and evidence are in this repository.
 
 > **Description.** A research prototype that labels tool results at the MCP transport,
 > carries the label through summarisation and persistence, and denies privileged calls
@@ -14,8 +15,8 @@ builds a boundary that labels tool results at the transport, carries the label t
 summarisation and storage, and denies a later privileged call that inherits it. Then it
 measures the attack it stops **and** the benign work it stops.
 
-This is a research prototype, not a product. The paper draft is
-[`PAPER-DRAFT.md`](PAPER-DRAFT.md); the honest negative comparison is
+This is a research prototype, not a product. The manuscript is *Trust Nothing You
+Remember*; the honest negative comparison is
 [`results/head_to_head.md`](results/head_to_head.md).
 
 ---
@@ -66,16 +67,17 @@ enforced **outside the model/planner**, and the comparison B3 (policy-only) vs G
 
 ## Start here (15 minutes)
 
-1. [`PAPER-DRAFT.md`](PAPER-DRAFT.md) — introduction, method, results, discussion,
-   limitations and dual-use. Start here if you want the whole story.
-2. [`results/head_to_head.md`](results/head_to_head.md) — the matched CaMeL comparison
+1. [`results/head_to_head.md`](results/head_to_head.md) — the matched CaMeL comparison
    and why in-planner IFC preserves more utility.
-3. [`results/model_pilot.md`](results/model_pilot.md) — H8b: three digest-pinned models,
+2. [`results/model_pilot.md`](results/model_pilot.md) — H8b: three digest-pinned models,
    paired B3/G, the 180/180 result.
-4. [`results/model_benign_cost.md`](results/model_benign_cost.md) and
+3. [`results/model_benign_cost.md`](results/model_benign_cost.md) and
    [`results/model_benign_checkpoint.md`](results/model_benign_checkpoint.md) — the cost
    and the recovery.
-5. [`docs/known-gaps.md`](docs/known-gaps.md) — what is not done, in plain language.
+4. [`docs/known-gaps.md`](docs/known-gaps.md) — what is not done, in plain language.
+
+The full narrative is the separate manuscript *Trust Nothing You Remember*; this
+repository is the code, evaluation harness and evidence it reports.
 
 ---
 
@@ -236,8 +238,8 @@ fuzz/      cargo-fuzz targets (JCS, MCP framing, policy TOML)
 ci/        lint/dependency/unsafe/repo-rule scripts
 ```
 
-`STATE.md` is the machine-maintained task ledger. `plan.md` is the original build spec.
-`PAPER-DRAFT.md` is the narrative.
+`STATE.md` is the machine-maintained task ledger. The manuscript is separate from this
+repository.
 
 ---
 

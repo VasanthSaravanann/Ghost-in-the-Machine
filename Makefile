@@ -9,7 +9,7 @@ CARGO ?= cargo
 MODELS ?= llama3.2:latest
 REPS ?= 3
 
-.PHONY: help lint test frontier pilot adaptive neutral injecagent injecagent100 hosted cost policy-aware reproduce reproduce-models
+.PHONY: help lint test frontier pilot adaptive neutral injecagent injecagent100 hosted cost e2e policy-aware reproduce reproduce-models
 
 help:
 	@echo "lint              fmt --check + clippy -D warnings"
@@ -55,6 +55,10 @@ injecagent100:
 		--models=gemma-4-31b-it --corpus=evals/external/injecagent-attack-100.jsonl \
 		--limit=100 --reps=1 --modes=plain,b2allow \
 		--out=results/model_injecagent_100.jsonl
+
+e2e:
+	$(CARGO) build -q -p mcp-gate
+	python3 evals/e2e_hosted_gate.py --trials 10 --model gemma-4-31b-it
 
 cost:
 	$(CARGO) run -q -p void-bench --bin model_pilot -- \

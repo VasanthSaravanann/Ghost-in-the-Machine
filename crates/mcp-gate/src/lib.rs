@@ -53,6 +53,10 @@ pub struct Config {
     /// is EXTERNAL_UNTRUSTED_DATA, so the next call is tainted (fail closed).
     #[serde(default)]
     pub trust_tool_results: bool,
+    /// Per-tool principal override: results from these tools are PRINCIPAL.
+    /// This is the transport-level checkpoint; empty means every tool is untrusted.
+    #[serde(default)]
+    pub trusted_tools: Vec<String>,
 }
 
 fn default_shadow() -> bool {
@@ -115,6 +119,7 @@ pub struct Gate {
     /// Request id -> tool, so only genuine `tools/call` results taint the session.
     pending: Mutex<BTreeMap<String, String>>,
     trust_tool_results: bool,
+    trusted_tools: Vec<String>,
 }
 
 impl Gate {
@@ -153,6 +158,7 @@ impl Gate {
             tainted: Mutex::new(Vec::new()),
             pending: Mutex::new(BTreeMap::new()),
             trust_tool_results: false,
+            trusted_tools: Vec::new(),
         })
     }
 
@@ -160,6 +166,13 @@ impl Gate {
     #[must_use]
     pub fn with_trust_tool_results(mut self, trust: bool) -> Self {
         self.trust_tool_results = trust;
+        self
+    }
+
+    /// Per-tool principal override (the coarse checkpoint at the transport).
+    #[must_use]
+    pub fn with_trusted_tools(mut self, tools: Vec<String>) -> Self {
+        self.trusted_tools = tools;
         self
     }
 
@@ -173,7 +186,9 @@ impl Gate {
     /// Called for a `tools/call` response. The transport — not the caller —
     /// decides the label: EXTERNAL by default, PRINCIPAL only when configured.
     fn record_tool_result(&self, tool: &str, content: &str) {
-        let label = if self.trust_tool_results {
+        let trusted =
+            self.trust_tool_results || self.trusted_tools.iter().any(|candidate| candidate == tool);
+        let label = if trusted {
             Label::PrincipalDirect
         } else {
             Label::ExternalUntrustedData

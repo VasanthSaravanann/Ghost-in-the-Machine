@@ -100,7 +100,10 @@ fn main() {
         &config.dev_signing_seed,
         Arc::new(SystemClock),
     ) {
-        Ok(gate) => Arc::new(gate.with_trust_tool_results(config.trust_tool_results)),
+        Ok(gate) => Arc::new(
+            gate.with_trust_tool_results(config.trust_tool_results)
+                .with_trusted_tools(config.trusted_tools.clone()),
+        ),
         Err(e) => {
             eprintln!("mcp-gate: {e}");
             std::process::exit(1);

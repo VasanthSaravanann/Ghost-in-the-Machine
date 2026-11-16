@@ -431,7 +431,21 @@ impl<M: Mediator, S: EventSink> StdioProxy<M, S> {
                                 outcome.rewrote = true;
                                 continue;
                             }
-                            outcome.keep.push(frame.raw.clone());
+                            // Responses must still reach the mediator: the gate
+                            // derives provenance from tool results here. A Block
+                            // drops the response (it cannot be answered upstream).
+                            match self.mediator.mediate(ctx, Direction::ServerToClient, frame) {
+                                Mediation::Forward => outcome.keep.push(frame.raw.clone()),
+                                Mediation::Block { reason } => {
+                                    summary.blocked += 1;
+                                    outcome.rewrote = true;
+                                    self.sink.emit(TransportEvent::Blocked {
+                                        direction: Direction::ServerToClient,
+                                        method: frame.method().map(str::to_owned),
+                                        reason,
+                                    });
+                                }
+                            }
                             continue;
                         }
 

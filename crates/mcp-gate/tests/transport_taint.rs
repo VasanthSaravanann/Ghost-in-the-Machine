@@ -201,3 +201,41 @@ fn trusted_tool_results_can_be_configured_for_principal_tools() {
         Mediation::Forward
     );
 }
+
+#[test]
+fn a_per_tool_checkpoint_marks_only_that_tool_as_principal() {
+    // `fs:read_file` is the trusted address-book lookup here; `fs:read_ticket`
+    // is untrusted. Only the trusted tool's result is exempt.
+    let dir = tempfile::TempDir::new().unwrap();
+    let workspace = dir.path().join("workspace");
+    std::fs::create_dir_all(&workspace).unwrap();
+    let gate = Gate::new(
+        &policy(&workspace),
+        dir.path().join("spans.seg"),
+        false,
+        &"11".repeat(32),
+        Arc::new(FakeClock::new(1_700_000_000_000)),
+    )
+    .unwrap()
+    .with_trusted_tools(vec!["fs:read_file".to_owned()]);
+    let gate = Arc::new(gate);
+    let read = request(
+        20,
+        "tools/call",
+        serde_json::json!({
+            "name": "fs:read_file",
+            "arguments": {"path": workspace.join("ticket.txt").display().to_string()}
+        }),
+    );
+    let _ = gate.mediate(&ctx(), Direction::ClientToServer, &read);
+    let _ = gate.mediate(
+        &ctx(),
+        Direction::ServerToClient,
+        &response(20, serde_json::json!({"content": "trusted"})),
+    );
+    assert_eq!(
+        gate.mediate(&ctx(), Direction::ClientToServer, &send_to_attacker()),
+        Mediation::Forward,
+        "a trusted tool result must not taint the session"
+    );
+}
